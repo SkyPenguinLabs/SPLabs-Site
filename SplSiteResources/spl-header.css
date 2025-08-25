@@ -33,7 +33,6 @@ nav {
     display: flex;
     align-items: center;
     gap: var(--space-2);
-    /* This ensures spacing between image and text */
     letter-spacing: -0.02em;
 }
 
@@ -104,37 +103,32 @@ nav {
         gap: var(--space-2);
     }
 
-    /* Logo optimization - reduce icon size significantly */
+    /* Logo optimization */
     .logo {
         font-size: 1.1rem;
         font-weight: 700;
         flex: 1;
         min-width: 0;
-        /* Allow text to shrink if needed */
     }
 
     .logo-icon {
         width: 32px;
-        /* Reduced from 65px */
         height: 32px;
-        /* Reduced from 65px */
         object-fit: contain;
         display: block;
     }
 
-    /* Navigation links container - better mobile layout */
+    /* Navigation links container */
     .nav-links {
         display: flex;
         align-items: center;
         gap: var(--space-2);
         flex-shrink: 0;
-        /* Prevent shrinking */
         width: auto;
-        /* Remove fixed width */
         justify-content: flex-end;
     }
 
-    /* Hide consultation button on mobile to save space */
+    /* Hide consultation button osn mobile  */
     .books-trigger {
         display: none;
     }
@@ -144,7 +138,6 @@ nav {
     .tldr-trigger {
         font-size: 0.8rem;
         padding: 0.5rem 0.75rem;
-        /* Increased padding for better touch targets */
         gap: var(--space-1);
         min-height: 44px;
         /* iOS touch target minimum */
@@ -160,9 +153,7 @@ nav {
         left: auto;
         width: 320px;
         max-width: calc(100vw - 24px);
-        /* Account for screen edges */
         transform: translateX(0);
-        /* Remove any transforms */
     }
 
     /* Better crypto item layout for mobile */
@@ -193,7 +184,6 @@ nav {
         overflow-x: auto;
         white-space: nowrap;
         text-align: center;
-        /* Center the address */
         word-break: keep-all;
     }
 
@@ -212,7 +202,6 @@ nav {
     .copy-btn {
         width: 100%;
         height: 44px;
-        /* Proper touch target */
         font-size: 0.8rem;
         display: flex;
         align-items: center;

@@ -1,6 +1,18 @@
 
 /* ---------- Footer ---------- */
+/*
+[_+]
+[_+] Intentionally designed to carry this style. Thick enough to carry all of our contents
+[_+] while also showing a secondary icon, commonly found on our courses, listed at 
+[_+] skypenguinlabs.etsy.com
+[_+]
+*/
 footer {
+    /*
+    [+]
+    [+] Vars are pulled from scope 
+    [+]
+    */
     background: var(--black);
     border-top: 1px solid var(--gray-800);
     padding: var(--space-12) 0 var(--space-6);

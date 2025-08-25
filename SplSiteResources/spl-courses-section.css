@@ -3,8 +3,6 @@
     display: flex;
     gap: var(--space-6);
     align-items: flex-start;
-    /* Ensures alignment at the top */
-
 }
 
 .course-sidebar {
@@ -17,7 +15,6 @@
     position: sticky;
     top: 80px;
     height: auto;
-    /* Allow natural height */
     max-height: calc(100vh - 100px);
     overflow-y: auto;
 }
@@ -98,27 +95,22 @@
 .course-content {
     flex: 1;
     min-width: 0;
-    /* Prevent content from expanding beyond container */
     height: auto;
-    /* Natural height */
 }
 
 .course-category {
     display: none;
     min-height: 0;
-    /* Prevent minimum height enforcement */
-
 }
 
 .course-category.active {
     display: block;
     animation: fadeIn 0.3s ease-out;
     height: auto;
-    /* Natural height based on content */
 
 }
 
-/* Course Cards */
+/* --------------- Course Cards --------------- */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -193,7 +185,6 @@
         max-height: none;
         margin-bottom: var(--space-4);
         order: 1;
-        /* Ensure sidebar appears first on mobile */
     }
 
     .course-content {
@@ -203,6 +194,9 @@
     }
 
     /* --------- Sidebar Mobile Behavior --------- */
+    /*
+    [-] I don't use AI agents a lot, but when I do, they fuck things up
+    */
     .sidebar-item .sidebar-content {
         max-height: 0;
         overflow: hidden;
@@ -211,10 +205,8 @@
 
     .sidebar-item.active .sidebar-content {
         max-height: 500px;
-        /* Specific height to allow animation */
     }
 
-    /* Improve touch targets for mobile */
     .sidebar-header {
         padding: var(--space-3) var(--space-4);
         font-size: 0.9rem;
@@ -227,7 +219,6 @@
         padding: var(--space-3) var(--space-4);
         font-size: 0.85rem;
         min-height: 44px;
-        /* Proper touch target */
         display: flex;
         align-items: center;
         text-align: left;
@@ -249,7 +240,6 @@
     .grid {
         display: grid;
         grid-template-columns: 1fr;
-        /* Single column on mobile */
         gap: var(--space-4);
         width: 100%;
     }
@@ -267,7 +257,6 @@
         display: flex;
         flex-direction: column;
         min-height: 200px;
-        /* Ensure consistent minimum height */
         width: 100%;
     }
 
@@ -287,7 +276,6 @@
         flex-grow: 1;
         display: -webkit-box;
         -webkit-line-clamp: 4;
-        /* Allow more lines on mobile */
         -webkit-box-orient: vertical;
         overflow: hidden;
     }
@@ -295,7 +283,6 @@
     .card-footer {
         display: flex;
         flex-direction: column;
-        /* Stack on mobile for better readability */
         gap: var(--space-2);
         margin-top: auto;
         padding-top: var(--space-3);
