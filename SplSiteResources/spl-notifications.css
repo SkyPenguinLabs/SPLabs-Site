@@ -1,5 +1,17 @@
-
-/* ---------- DefCon Notification ---------- */
+/*
+////////////////////////////////////////////////////
+   ______        ___                     _      __        __     
+  / __/ /____ __/ _ \___ ___  ___ ___ __(_)__  / /  ___ _/ /  ___
+ _\ \/  '_/ // / ___/ -_) _ \/ _ `/ // / / _ \/ /__/ _ `/ _ \(_-<
+/___/_/\_\\_, /_/   \__/_//_/\_, /\_,_/_/_//_/____/\_,_/_.__/___/
+         /___/              /___/                                
+////////////////////////////////////////////////////
+///
+/// This is a simple styling for all notifications that get called onto the render. 
+/// 'notifcation' in this context, is simply a box of information, that is a lot more 
+/// noticeable and is designed to be, as the information displayed is typically importan
+*/
+/* ---------- Warning Notification ---------- */
 .staticcont-notification {
     max-width: 600px;
     margin: var(--space-6) auto 0;
@@ -74,4 +86,50 @@
     display: block;
     margin-bottom: var(--space-1);
     text-shadow: 0 0 4px rgba(255, 215, 0, 0.4);
+}
+
+
+@media (max-width: 780px) {
+    /* --------- Notification Banner Mobile --------- */
+    .staticcont-notification {
+        margin: var(--space-4) auto 0;
+        padding: var(--space-3);
+        max-width: calc(100% - 1rem);
+        border-radius: var(--radius);
+    }
+
+    .staticcont-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding-top: var(--space-2);
+    }
+
+    .staticcont-icon {
+        visibility: hidden;
+    }
+
+    .staticcont-text {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        width: 100%;
+        text-align: center;
+    }
+
+    .staticcont-text strong {
+        font-size: 1rem;
+        margin-bottom: var(--space-2);
+        display: block;
+        text-align: center;
+    }
+
+
+    .staticcont-close {
+        top: 8px;
+        right: 8px;
+        width: 28px;
+        height: 28px;
+        font-size: 0.85rem;
+    }
+
 }
