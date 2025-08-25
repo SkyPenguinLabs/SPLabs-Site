@@ -1,0 +1,72 @@
+/* ---------- Contributions Block ---------- */
+.contributions-block {
+    max-width: 700px;
+    margin: var(--space-8) auto 0;
+    background: var(--gradient-card);
+    border: 1px solid var(--gray-800);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    text-align: left;
+    display: none;
+    transition: all var(--transition);
+    position: relative;
+    box-shadow: var(--shadow-xl);
+}
+
+.contributions-block.show {
+    display: block;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.contributions-block::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.contributions-block h3 {
+    font-size: 1.25rem;
+    color: var(--white);
+    margin-bottom: var(--space-4);
+    text-align: center;
+}
+
+.contributions-block p {
+    font-size: 0.9375rem;
+    color: var(--gray-300);
+    margin-bottom: var(--space-4);
+    line-height: 1.6;
+}
+
+.contributions-block p:last-child {
+    margin-bottom: 0;
+}
+
+.close-btn {
+    position: absolute;
+    top: var(--space-3);
+    right: var(--space-3);
+    background: transparent;
+    border: none;
+    color: var(--gray-500);
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: all var(--transition);
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius);
+}
+
+.close-btn:hover {
+    color: var(--white);
+    background: var(--gray-800);
+    transform: rotate(90deg);
+}

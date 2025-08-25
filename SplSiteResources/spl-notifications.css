@@ -1,0 +1,77 @@
+
+/* ---------- DefCon Notification ---------- */
+.staticcont-notification {
+    max-width: 600px;
+    margin: var(--space-6) auto 0;
+    background: linear-gradient(145deg, #000000 0%, #1a1a1a 100%);
+    border: 2px solid #ffd700;
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    position: relative;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.2), var(--shadow-lg);
+}
+
+.staticcont-notification::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.staticcont-content {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    font-family: 'Roboto Mono', var(--font-mono);
+    color: #ffd700;
+}
+
+.staticcont-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #000000;
+    border: 2px solid #ff0000;
+    color: #ff3333;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 5;
+    box-shadow: 0 0 10px rgba(255, 51, 51, 0.3);
+}
+
+.staticcont-close:hover {
+    background: #1a1a1a;
+    /* We can get rid of animation, fuck that for no reason*/
+}
+
+
+.staticcont-icon {
+    font-size: 1.25rem;
+    color: #ffd700;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.staticcont-text {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: #f0f0f0;
+}
+
+.staticcont-text strong {
+    color: #ffd700;
+    font-weight: 700;
+    display: block;
+    margin-bottom: var(--space-1);
+    text-shadow: 0 0 4px rgba(255, 215, 0, 0.4);
+}

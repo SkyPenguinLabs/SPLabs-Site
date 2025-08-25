@@ -1,0 +1,56 @@
+                <br>
+                <h2>SkyPenguinLabs - Recently Released Courses</h2>
+                <br>
+                <!-- Course Category Tabs -->
+                <div class="simplified-course-layout">
+                    <div class="grid">
+                        <!-- Card 1 -->
+                        <div class="card" onclick="redirect_to_course('math_reverse_engineering')">
+                            <h3>Mathematics in Reverse Engineering</h3>
+                            <p class="short-description">Explore how mathematical concepts apply across reverse
+                                engineering, from game hacking to exploit development.</p>
+                            <div class="card-footer">
+                                <div class="price">$9.81</div>
+                                <div class="learn-more">Click to Purchase!</div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="card" onclick="redirect_to_course('time_managing_re_process')">
+                            <h3>Time Managing The Reversing Process</h3>
+                            <p class="short-description">Time managing can be hard with reversing- and often times, you
+                                can get stuck in loopholes. This course helps you untangle them a bit! </p>
+                            <div class="card-footer">
+                                <div class="price">$11.78</div>
+                                <div class="learn-more">Click to Purchase!</div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="card" onclick="redirect_to_course('analyzing_gui_components_for_windows')">
+                            <h3>How to analyze GUI components built for x64, Windows apps</h3>
+                            <p class="short-description">Having trouble keeping track of the logical breakdown
+                                of specific functionalities during RE ops? Lets fix that for you...</p>
+                            <div class="card-footer">
+                                <div class="price">$19.63</div>
+                                <div class="learn-more">Click to Purchase!</div>
+                            </div>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div class="card" onclick="redirect_to_course('golang_modules_in_depth_for_beginners')">
+                            <h3>Go Modules In Depth For Beginners</h3>
+                            <p class="short-description">Lets take to the rig and try to understand how Go's
+                                confusing ass module system works. This lesson covers the basics to surface
+                                level intro to what Golang modules are and how they work conceptually</p>
+                            <div class="card-footer">
+                                <div class="price">$8.20</div>
+                                <div class="learn-more">Click to Purchase!</div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <br>
+                <br>

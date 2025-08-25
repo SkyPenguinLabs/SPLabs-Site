@@ -1,0 +1,185 @@
+<!-- 
+Coming soon page
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon | SkyPenguinLabs</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: #000;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .container {
+            max-width: 600px;
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 4px;
+            padding: 30px 20px
+        }
+
+        .logo {
+            white-space: pre;
+            font-size: 10px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: #2563eb
+        }
+
+        .status {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2563eb;
+            margin: 15px 0;
+            letter-spacing: 2px
+        }
+
+        .desc {
+            font-size: 14px;
+            margin: 20px 0;
+            color: #ccc;
+            line-height: 1.6
+        }
+
+        .separator {
+            border-top: 1px solid #333;
+            margin: 20px 0
+        }
+
+
+        .features {
+            text-align: left;
+            margin: 20px 0;
+            padding: 15px;
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 4px
+        }
+
+        .features h3 {
+            color: #2563eb;
+            margin: 0 0 10px 0;
+            font-size: 14px;
+            text-align: center
+        }
+
+        .feature-item {
+            font-size: 12px;
+            color: #ccc;
+            margin: 5px 0;
+            padding-left: 15px;
+            position: relative
+        }
+
+        .feature-item:before {
+            content: '>';
+            color: #2563eb;
+            position: absolute;
+            left: 0
+        }
+
+        .nav {
+            margin: 20px 0
+        }
+
+        .link {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 8px 16px;
+            background: #1a1a1a;
+            color: #2563eb;
+            text-decoration: none;
+            border: 1px solid #2563eb;
+            border-radius: 4px;
+            font-size: 12px
+        }
+
+        .link:hover {
+            background: #2563eb;
+            color: #000
+        }
+
+
+        @keyframes pulse {
+            0% {
+                opacity: 0.8
+            }
+
+            100% {
+                opacity: 1
+            }
+        }
+
+        @media(max-width:600px) {
+            .logo {
+                font-size: 8px
+            }
+
+            .status {
+                font-size: 20px
+            }
+
+            .msg {
+                font-size: 16px
+            }
+
+            .icon {
+                width: 60px;
+                height: 60px
+            }
+
+            .link {
+                display: block;
+                margin: 5px 0
+            }
+
+            .email-input {
+                width: 150px;
+                margin: 5px 0
+            }
+
+            .notify-btn {
+                display: block;
+                margin: 5px 0;
+                width: 100%
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+<div class="logo">   ______        ___                    _       __        __     
+  / __/ /____ __/ _ \___ ___ ___ ___ __(_)___  / /  ___ _/ /  ___
+ _\ \/  '_/ // / ___/ -_) _ | _ `/ // / // _ \/ /__/ _ `/ _ \(_-<
+/___/_/\_\\_, /_/   \__/_//_|_, /\_,_/_//_//_/____/\_,_/_.__/___/
+         /___/             /___/                                 </div>
+                <div class="status">UNDER CONSTRUCTION</div>
+                <div class="separator"></div>
+                <div class="desc">Our penguins are working around the clock in the digital ice caves, crafting something
+                    extraordinary. The servers are humming with anticipation.</div>
+                <div class="features">
+                    <h3>What's Coming?</h3>
+                    <div class="feature-item">A shopify for people to buy basic print-on-demand stuff, none of this is handmade and the profits hardly contribute to our brand, we get less than half :D</div>
+                </div>
+                <div class="separator"></div>
+                <div class="nav">
+                    <a href="https://skypenguinlabs.wtf" class="link">Home</a>
+                    <a href="https://rants.skypenguinlabs.wtf" class="link">Rants</a>
+                    <a href="https://skypenguinlabs.wtf/toc" class="link">ToC</a>
+                </div>
+        </div>
+</body>
+</html>

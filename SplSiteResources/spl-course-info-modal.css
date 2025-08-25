@@ -1,0 +1,326 @@
+/* ---------- Course Information Overlay Modal ---------- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: var(--z-modal);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-4);
+}
+
+.modal-overlay.show {
+    display: flex;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.modal {
+    background: var(--gradient-card);
+    border: 1px solid var(--gray-700);
+    border-radius: var(--radius-xl);
+    max-width: 650px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    animation: slideIn 0.3s ease-out;
+    box-shadow: var(--shadow-xl);
+}
+
+.modal-header {
+    padding: var(--space-5) var(--space-10) var(--space-5) var(--space-5);
+    border-bottom: 1px solid var(--gray-800);
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-4);
+    background: var(--gray-800);
+    color: var(--gray-400);
+    font-size: 1.125rem;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius);
+    transition: all var(--transition);
+}
+
+.modal-close:hover {
+    color: var(--white);
+    background: var(--gray-700);
+    transform: rotate(90deg);
+}
+
+.modal h3 {
+    font-size: 1.25rem;
+    color: var(--white);
+    margin-bottom: var(--space-1);
+    line-height: 1.3;
+    font-weight: 700;
+    padding-right: var(--space-8);
+}
+
+.modal-subtitle {
+    color: var(--gray-400);
+    font-size: 0.875rem;
+    margin-bottom: var(--space-4);
+    font-weight: 500;
+}
+
+.modal-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+}
+
+.info-item {
+    text-align: center;
+    padding: var(--space-2);
+    background: var(--gray-900);
+    border: 1px solid var(--gray-800);
+    border-radius: var(--radius);
+    transition: all var(--transition);
+}
+
+.info-item:hover {
+    border-color: var(--gray-700);
+    transform: translateY(-1px);
+}
+
+.info-label {
+    font-size: 0.7rem;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+    font-weight: 600;
+}
+
+.info-value {
+    font-size: 0.875rem;
+    color: var(--white);
+    font-weight: 600;
+    font-family: var(--font-mono);
+}
+
+.modal-content {
+    padding: var(--space-4) var(--space-5) var(--space-5);
+}
+
+.modal-description {
+    color: var(--gray-300);
+    line-height: 1.6;
+    margin-bottom: var(--space-5);
+    font-size: 0.9375rem;
+}
+
+.modal-actions {
+    display: flex;
+    gap: var(--space-3);
+    justify-content: center;
+}
+
+.modal-buy-btn {
+    background: var(--gradient-primary);
+    color: var(--white);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition);
+    flex: 1;
+    max-width: 220px;
+    border-radius: var(--radius-lg);
+    font-size: 0.9375rem;
+}
+
+.modal-buy-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+}
+
+.modal-demo-btn {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid var(--gray-700);
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition);
+    border-radius: var(--radius-lg);
+    font-size: 0.9375rem;
+}
+
+.modal-demo-btn:hover {
+    border-color: var(--gray-600);
+    background: var(--gray-800);
+    transform: translateY(-2px);
+}
+
+
+/* ---------- Mobile Optimization for Course Modal ---------- */
+@media (max-width: 767px) {
+  .modal-overlay {
+    padding: var(--space-2);
+    align-items: flex-end; /* Position at bottom for easier thumb access */
+  }
+  
+  .modal {
+    max-width: 100%;
+    max-height: 80vh;
+    width: 100%;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0; /* Flat bottom when attached to screen edge */
+    animation: slideUp 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  
+  @keyframes slideUp {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  
+  .modal-header {
+    padding: var(--space-3) var(--space-8) var(--space-3) var(--space-3);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .modal h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0;
+    padding-right: var(--space-6);
+  }
+  
+  .modal-subtitle {
+    font-size: 0.8125rem;
+    margin-bottom: var(--space-2);
+  }
+  
+  .modal-close {
+    top: var(--space-3);
+    right: var(--space-3);
+    width: 28px;
+    height: 28px;
+    font-size: 1rem;
+    background: var(--gray-800);
+    z-index: 1; /* Ensure it's above other elements */
+  }
+  
+  /* Compact info grid with horizontal scroll for many items */
+  .modal-info {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: var(--space-2);
+    padding-bottom: var(--space-2);
+    margin: 0 calc(var(--space-3) * -1) var(--space-3);
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  }
+  
+  .modal-info::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .info-item {
+    min-width: 110px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    padding: var(--space-2) var(--space-1);
+    background: rgba(17, 17, 17, 0.7);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+  
+  .info-label {
+    font-size: 0.65rem;
+  }
+  
+  .info-value {
+    font-size: 0.8125rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .modal-content {
+    padding: var(--space-3);
+  }
+  
+  .modal-description {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin-bottom: var(--space-4);
+    max-height: 30vh;
+    overflow-y: auto;
+    padding-right: var(--space-1);
+  }
+  
+  /* Custom scrollbar for description */
+  .modal-description::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .modal-description::-webkit-scrollbar-track {
+    background: var(--gray-900);
+    border-radius: 4px;
+  }
+  
+  .modal-description::-webkit-scrollbar-thumb {
+    background: var(--gray-700);
+    border-radius: 4px;
+  }
+  
+  /* Sticky action buttons at bottom */
+  .modal-actions {
+    position: sticky;
+    bottom: 0;
+    background: linear-gradient(transparent, var(--gray-900) 20%);
+    padding-top: var(--space-3);
+    padding-bottom: var(--space-1);
+    margin: 0 calc(var(--space-3) * -1);
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+  }
+  
+  .modal-buy-btn,
+  .modal-demo-btn {
+    padding: 0.6875rem 1.25rem;
+    font-size: 0.875rem;
+    border-radius: var(--radius);
+    min-height: 44px; /* Minimum touch target size */
+  }
+  
+  /* Add haptic feedback for buttons on supported devices */
+  @supports (-webkit-touch-callout: none) {
+    .modal-buy-btn:active, 
+    .modal-demo-btn:active {
+      transform: scale(0.98);
+    }
+  }
+  
+  /* Add pull indicator to show this is a bottom sheet */
+  .modal-header::before {
+    content: '';
+    width: 36px;
+    height: 4px;
+    background: var(--gray-700);
+    border-radius: 2px;
+    margin: 0 auto var(--space-3);
+    display: block;
+  }
+}

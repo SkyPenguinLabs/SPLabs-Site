@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+|TODOs -
+        > Add search bar to the app
+        > Add development notes & Trademarks + License
+        >  
+
+    -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sky Penguin Labs - Professional Development Courses</title>
+    <link rel="stylesheet" href="./SplSiteResources/spl-coaching-section.css">
+    <link rel="stylesheet" href="./SplSiteResources/spl-contributions.block.css">
+    <link rel="stylesheet" href="./SplSiteResources/spl-course-info-modal.css">
+    <link rel="stylesheet" href="./SplSiteResources/spl-courses-section.css">
+    <link rel="stylesheet" href="./SplSiteResources/spl-donate-section.css">
+    <link rel="stylesheet" href="./SplSiteResources/spl-footer.css">
+    <link rel="stylesheet" href="./SplSiteResources/spl-header.css">
+    <link rel="stylesheet" href="./SplSiteResources/spl-hero.css">
+    <link rel="stylesheet" href="./SplSiteResources/spl-html-attrs.css">
+    <link rel="stylesheet" href="./SplSiteResources/spl-info-tags.css">
+    <link rel="stylesheet" href="./SplSiteResources/spl-info-tldrstyles.css">
+    <link rel="stylesheet" href="./SplSiteResources/spl-notifications.css">
+    <link rel="stylesheet" href="./SplSiteResources/spl-our-story.css">
+    <link rel="stylesheet" href="./SplSiteResources/spl-book-detail-modal.css">
+    <link rel="stylesheet" href="./SplSiteResources/SiteStyle.css">
+    <script src="./SplSiteResources/SiteLogic.js"></script>
+    <script src="./SplSiteResources/rldr.js"></script>
+    <meta name="description"
+        content="Master web development, data science, and design with affordable PDF courses and books. Expert mentorship available.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="https://avatars.githubusercontent.com/u/121910566?s=400&u=3fd06db0d7ec6506dc1c6db9b0a7eb35eee77721&v=4"
+                    alt="Logo Icon" class="logo-icon">
+                SkyPenguinLabs
+            </div>
+
+            <div class="nav-links">
+                <a class="books-trigger" href="#coaching">
+                    Book a Consultation
+                </a>
+                <button class="donate-trigger" onclick="toggleDonateDropdown()">
+                    <i class="fas fa-hand-holding-dollar"></i>
+                    Donate
+                </button>
+
+                <!-- Add this to the nav-links section -->
+                <button class="tldr-trigger" onclick="toggleTldrOverlay()">
+                    <i class="fas fa-snowflake"></i>
+                    TLDR
+                </button>
+            </div>
+
+            <!-- Optimized mobile-friendly donation dropdown -->
+            <div id="donateDropdown" class="donate-dropdown">
+                <h4>Support Personally</h4>
+                <div class="crypto-list">
+                    <div class="crypto-item">
+                        <div class="crypto-label">
+                            <!-- OFFICAL SOLANA STANDARD LOGO - (REF: https://solana.com/branding#asset) -->
+                            <svg width="15" height="15" viewBox="0 0 101 88" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M100.48 69.3817L83.8068 86.8015C83.4444 87.1799 83.0058 87.4816 82.5185 87.6878C82.0312 87.894 81.5055 88.0003 80.9743 88H1.93563C1.55849 88 1.18957 87.8926 0.874202 87.6912C0.558829 87.4897 0.31074 87.2029 0.160416 86.8659C0.0100923 86.529 -0.0359181 86.1566 0.0280382 85.7945C0.0919944 85.4324 0.263131 85.0964 0.520422 84.8278L17.2061 67.408C17.5676 67.0306 18.0047 66.7295 18.4904 66.5234C18.9762 66.3172 19.5002 66.2104 20.0301 66.2095H99.0644C99.4415 66.2095 99.8104 66.3169 100.126 66.5183C100.441 66.7198 100.689 67.0067 100.84 67.3436C100.99 67.6806 101.036 68.0529 100.972 68.415C100.908 68.7771 100.737 69.1131 100.48 69.3817ZM83.8068 34.3032C83.4444 33.9248 83.0058 33.6231 82.5185 33.4169C82.0312 33.2108 81.5055 33.1045 80.9743 33.1048H1.93563C1.55849 33.1048 1.18957 33.2121 0.874202 33.4136C0.558829 33.6151 0.31074 33.9019 0.160416 34.2388C0.0100923 34.5758 -0.0359181 34.9482 0.0280382 35.3103C0.0919944 35.6723 0.263131 36.0083 0.520422 36.277L17.2061 53.6968C17.5676 54.0742 18.0047 54.3752 18.4904 54.5814C18.9762 54.7875 19.5002 54.8944 20.0301 54.8952H99.0644C99.4415 54.8952 99.8104 54.7879 100.126 54.5864C100.441 54.3849 100.689 54.0981 100.84 53.7612C100.99 53.4242 101.036 53.0518 100.972 52.6897C100.908 52.3277 100.737 51.9917 100.48 51.723L83.8068 34.3032ZM1.93563 21.7905H80.9743C81.5055 21.7907 82.0312 21.6845 82.5185 21.4783C83.0058 21.2721 83.4444 20.9704 83.8068 20.592L100.48 3.17219C100.737 2.90357 100.908 2.56758 100.972 2.2055C101.036 1.84342 100.99 1.47103 100.84 1.13408C100.689 0.79713 100.441 0.510296 100.126 0.308823C99.8104 0.107349 99.4415 1.24074e-05 99.0644 0L20.0301 0C19.5002 0.000878397 18.9762 0.107699 18.4904 0.313848C18.0047 0.519998 17.5676 0.821087 17.2061 1.19848L0.524723 18.6183C0.267681 18.8866 0.0966198 19.2223 0.0325185 19.5839C-0.0315829 19.9456 0.0140624 20.3177 0.163856 20.6545C0.31365 20.9913 0.561081 21.2781 0.875804 21.4799C1.19053 21.6817 1.55886 21.7896 1.93563 21.7905Z"
+                                    fill="url(#paint0_linear_174_4403)" />
+                                <defs>
+                                    <linearGradient id="paint0_linear_174_4403" x1="8.52558" y1="90.0973" x2="88.9933"
+                                        y2="-3.01622" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0.08" stop-color="#9945FF" />
+                                        <stop offset="0.3" stop-color="#8752F3" />
+                                        <stop offset="0.5" stop-color="#5497D5" />
+                                        <stop offset="0.6" stop-color="#43B4CA" />
+                                        <stop offset="0.72" stop-color="#28E0B9" />
+                                        <stop offset="0.97" stop-color="#19FB9B" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            Solana<span class="info-tag" data-title="Uhhh..." data-description="This is on node@api.mainnet-beta.solana.com and note that you are donating to 
+                                the address
+                                9H6FtbaDhtPBYFvk67yxmacKntDuYYyHVATQPyBAzQpg"><i class="fas fa-info-circle"></i></span>
+                        </div>
+                        <div class="crypto-address">9H6FtbaDhtPBYFvk67yxmacKntDuYYyHVATQPyBAzQpg</div>
+                        <a href="https://explorer.solana.com/address/9H6FtbaDhtPBYFvk67yxmacKntDuYYyHVATQPyBAzQpg"
+                            target="_blank" rel="noopener noreferrer" class="crypto-explorer-link">
+                            <i class="fas fa-external-link-alt"></i> View on Solana Explorer
+                        </a>
+                        <button class="copy-btn"
+                            onclick="copyToClipboard('9H6FtbaDhtPBYFvk67yxmacKntDuYYyHVATQPyBAzQpg')">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+
+                    <div class="crypto-item">
+
+                        <div class="crypto-label">
+                            <i class="fab fa-ethereum"></i>
+                            Ethereum<span class="info-tag" data-title="Uhhh..."
+                                data-description="This is on node@ethereum-rpc.publicnode.com and note that you are donating to 0xe3c40c79b22018e90E68DA55fDaDD75A287E8bac"><i
+                                    class="fas fa-info-circle"></i></span>
+                        </div>
+                        <div class="crypto-address">0xe3c40c79b22018e90E68DA55fDaDD75A287E8bac</div>
+                        <a href="https://etherscan.io/address/0xe3c40c79b22018e90E68DA55fDaDD75A287E8bac"
+                            target="_blank" rel="noopener noreferrer" class="crypto-explorer-link">
+                            <i class="fas fa-external-link-alt"></i> View on Etherscan
+                        </a>
+                        <button class="copy-btn"
+                            onclick="copyToClipboard('0xe3c40c79b22018e90E68DA55fDaDD75A287E8bac')">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+                <!--
+[-] We can't pay for shopify right now. Not worth it. 
+
+                                    <br>
+                <hr>
+                <br>
+                <h4>Quick Merch</h4>
+                <br>
+
+                <div class="crypto-list">
+                    <div class="crypto-item">
+                        <div class="crypto-label">
+                            <svg width="15" height="15" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 109.5 124.5">
+                                <path fill="#95BF47"
+                                    d="M95.9,23.9c-0.1-0.6-0.6-1-1.1-1c-0.5,0-9.3-0.2-9.3-0.2s-7.4-7.2-8.1-7.9c-0.7-0.7-2.2-0.5-2.7-0.3
+                            c0,0-1.4,0.4-3.7,1.1c-0.4-1.3-1-2.8-1.8-4.4c-2.6-5-6.5-7.7-11.1-7.7c0,0,0,0,0,0c-0.3,0-0.6,0-1,0.1c-0.1-0.2-0.3-0.3-0.4-0.5
+                                    c-2-2.2-4.6-3.2-7.7-3.1c-6,0.2-12,4.5-16.8,12.2c-3.4,5.4-6,12.2-6.8,17.5c-6.9,2.1-11.7,3.6-11.8,3.7c-3.5,1.1-3.6,1.2-4,4.5
+                                    c-0.3,2.5-9.5,73-9.5,73l76.4,13.2l33.1-8.2C109.5,115.8,96,24.5,95.9,23.9z M67.2,16.8c-1.8,0.5-3.8,1.2-5.9,1.8
+                                    c0-3-0.4-7.3-1.8-10.9C64,8.6,66.2,13.7,67.2,16.8z M57.2,19.9c-4,1.2-8.4,2.6-12.8,3.9c1.2-4.7,3.6-9.4,6.4-12.5
+                                    c1.1-1.1,2.6-2.4,4.3-3.2C56.9,11.6,57.3,16.5,57.2,19.9z M49.1,4c1.4,0,2.6,0.3,3.6,0.9C51.1,5.8,49.5,7,48,8.6
+                                    c-3.8,4.1-6.7,10.5-7.9,16.6c-3.6,1.1-7.2,2.2-10.5,3.2C31.7,18.8,39.8,4.3,49.1,4z" />
+                                <g>
+                                    <path fill="#5E8E3E" d="M94.8,22.9c-0.5,0-9.3-0.2-9.3-0.2s-7.4-7.2-8.1-7.9c-0.3-0.3-0.6-0.4-1-0.5l0,109.7l33.1-8.2
+                                        c0,0-13.5-91.3-13.6-92C95.8,23.3,95.3,22.9,94.8,22.9z" />
+                                    <path fill="#FFFFFF"
+                                        d="M58,39.9l-3.8,14.4c0,0-4.3-2-9.4-1.6c-7.5,0.5-7.5,5.2-7.5,6.4c0.4,6.4,17.3,7.8,18.3,22.9
+                                        c0.7,11.9-6.3,20-16.4,20.6c-12.2,0.8-18.9-6.4-18.9-6.4l2.6-11c0,0,6.7,5.1,12.1,4.7c3.5-0.2,4.8-3.1,4.7-5.1
+                                        c-0.5-8.4-14.3-7.9-15.2-21.7c-0.7-11.6,6.9-23.4,23.7-24.4C54.7,38.2,58,39.9,58,39.9z" />
+                                </g>
+                            </svg>
+                            Shopify<span class="info-tag" data-title="Uhhh..."
+                                data-description="Our shopify does not make us the most profit, but its the fastest way to support experimental lines!"><i
+                                    class="fas fa-info-circle"></i></span>
+                        </div>
+                        <div class="crypto-address">shop.skypenguinlabs.wtf</div>
+                        <a href="https://shopify.com" target="_blank" rel="noopener noreferrer"
+                            class="crypto-explorer-link">
+                            <i class="fas fa-external-link-alt"></i> Visit Shopify
+                        </a>
+                        <button class="copy-btn" onclick="copyToClipboard('shop.skypenguinlabs.wtf')">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+
+                </div>
+                -->
+            </div>
+
+
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>We. Do. It. Better.</h1>
+                <p class="subtitle">Professional Courses Under $25</p>
+
+                <div class="cta-buttons">
+                    <a href="#courses" class="cta-story">Learn More</a>
+                    <button class="cta-primary" onclick="toggleStoryModal()">
+                        <i class="fas fa-rocket"></i>
+                        Our Story
+                    </button>
+                    <button class="cta-secondary" onclick="toggleContributions()">Help Us Grow</button>
+                </div>
+
+
+
+
+                <div class="staticcont-notification" id="staticcont-notification1">
+                    <button class="staticcont-close" onclick="closeNotification(1)">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <br>
+                    <div class="staticcont-content">
+                        <i class="fas fa-exclamation-triangle staticcont-icon"></i>
+                        <div class="staticcont-text">
+                            <strong>Season 1 pre-release now available! </strong>
+
+                            In the meantime, you can still checkout this
+                            seasons booklet, and also explore
+                            some of the courses we were able to release
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contributions-block" id="contributionsBlock">
+                    <button class="close-btn" onclick="toggleContributions()">&times;</button>
+                    <h3>How Your Support Fuels Our Mission</h3>
+
+                    <p>Community support is the backbone of our growth strategy. Rather than seeking venture capital or
+                        corporate funding that might pressure us to inflate prices or dilute our content quality, we're
+                        building something sustainable through genuine community engagement unlike massive educational
+                        platforms (who we ALL are aware of as the most popular right now) that prioritize profit
+                        margins. Every purchase helps us expand our course library, hire expert contributors, and
+                        develop new learning paths that respond directly to what our community needs. Additionally,
+                        SkyPenguinLabs is opting to move onto self-hosted, self-engineered and self-ran hosting software
+                        for future blogging, announcement programs, and more which investments into courses drive. This
+                        is to ensure that our content can never get locked behind a companies hands, and SkyPenguinLabs
+                        gets full, complete profit from the content which aids us in keeping prices down even during
+                        shifted economical periods. If courses are bought enough, SkyPenguinLabs considers creating
+                        hardcover, entire book versions on the concepts released to the public! :D
+                    </p>
+
+                    <p>SkyPenguinLabs thrives on the philosophy that small-scale, focused products can create massive
+                        impact. We intentionally keep our courses concise, practical, and affordable because we believe
+                        learning should be accessible to everyone - from students to career changers to professionals
+                        upskilling. Your contributions allow us to maintain this philosophy while scaling our reach.
+                        Together, we're proving that a community-driven approach to education can compete with and often
+                        outperform larger, more expensive alternatives by staying true to our core values of quality,
+                        accessibility, and real-world applicability.</p>
+                </div>
+
+
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-number">BOOKS</div>
+                        <div class="stat-label">// Starting at $15.00</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">COURSES</div>
+                        <div class="stat-label">// All under $25!</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">CONSULTING</div>
+                        <div class="stat-label">// 24/7 (with notice)</div>
+                    </div>
+                </div>
+                <br>
+                <a href="https://skypenguinlabs.etsy.com">
+                    <button class="cta-primary">
+                        <i class="fas fa-book-open"></i>
+                        Visit The Shop!
+                    </button>
+                </a>
+            </div>
+        </section>
+
+
+        <section id="courses">
+            <div class="container">
+                <h2>SkyPenguinLabs - Featured Courses</h2>
+                <br>
+                <!-- Course Category Tabs -->
+                <div class="simplified-course-layout">
+                    <div class="grid">
+                        <!-- Card 1 -->
+                        <div class="card" onclick="redirect_to_course('math_reverse_engineering')">
+                            <h3>Mathematics in Reverse Engineering</h3>
+                            <p class="short-description">Explore how mathematical concepts apply across reverse
+                                engineering, from game hacking to exploit development.</p>
+                            <div class="card-footer">
+                                <div class="price">$9.81</div>
+                                <div class="learn-more">Click to Purchase!</div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="card" onclick="redirect_to_course('time_managing_re_process')">
+                            <h3>Time Managing The Reversing Process</h3>
+                            <p class="short-description">Time managing can be hard with reversing- and often times, you
+                                can get stuck in loopholes. This course helps you untangle them a bit! </p>
+                            <div class="card-footer">
+                                <div class="price">$11.78</div>
+                                <div class="learn-more">Click to Purchase!</div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="card" onclick="redirect_to_course('analyzing_gui_components_for_windows')">
+                            <h3>How to analyze GUI components built for x64, Windows apps</h3>
+                            <p class="short-description">Having trouble keeping track of the logical breakdown
+                                of specific functionalities during RE ops? Lets fix that for you...</p>
+                            <div class="card-footer">
+                                <div class="price">$19.63</div>
+                                <div class="learn-more">Click to Purchase!</div>
+                            </div>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div class="card" onclick="redirect_to_course('golang_modules_in_depth_for_beginners')">
+                            <h3>Go Modules In Depth For Beginners</h3>
+                            <p class="short-description">Lets take to the rig and try to understand how Go's
+                                confusing ass module system works. This lesson covers the basics to surface
+                                level intro to what Golang modules are and how they work conceptually</p>
+                            <div class="card-footer">
+                                <div class="price">$8.20</div>
+                                <div class="learn-more">Click to Purchase!</div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <br>
+
+
+
+                <h2>SkyPenguinLabs - Published Books</h2>
+                <div class="staticcont-notification" id="staticcont-notification2">
+                    <button class="staticcont-close" onclick="closeNotification(2)">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <br>
+                    <div class="staticcont-content">
+                        <i class="fas fa-exclamation-triangle staticcont-icon"></i>
+                        <div class="staticcont-text">
+                            <strong>Want a signed PHYSICAL copy?</strong>
+                            For U.S. and Canadian Orders
+                            Please email us at [<a style="color: #2159D2;"
+                                href="mailto:skypenguinlabs@gmail.com">skypenguinlabs@gmail.com</a>] with:
+
+                            Full name or online alias (e.g: instagram/x/github/etc), Preferred contact method
+                            Book title you want shipped from us and the Shipping address!
+
+                            We will follow up via email to confirm pricing and complete your order with some fun
+                            goodies!
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="course-layout">
+                    <!-- New sidebar navigation -->
+                    <div class="course-sidebar">
+                        <!-- Expandable categories section -->
+                        <div class="sidebar-item expandable active">
+                            <div class="sidebar-header" onclick="toggleSidebar(this)">
+                                <span>Book Categories</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="sidebar-content">
+                                <button class="sidebar-tab active" onclick="switchTab('ebooks')">Regular Ebooks</button>
+                                <button class="sidebar-tab" onclick="switchTab('osr')">Open Source Rips<span
+                                        class="info-tag" data-title="What is this?"
+                                        data-description="O.S.R, also known as, Open Source RIPS, is a series dedicated entirely to taking open sourced projects published onto GitHub and reviewing their contents, while breaking down their code, analyzing their technical flaws, strengths, or application over other systems. This usually ends up going really deep and gets super technical, thus only really being designed as a niche-subtopic thing that we do for the community to give back to those that support our efforts!"><i
+                                            class="fas fa-info-circle"></i></span></button>
+                                <button class="sidebar-tab" onclick="switchTab('liquid_docs')">Liquid Docs Series <span
+                                        class="info-tag" data-title="What is this?"
+                                        data-description="Liquid Docs, is a season-based, course-specific guide that encompases highlights, extensions, and updates in relation to SkyPenguinLabs, course material notes, resources, fun guides and etc all built around each batch of courses released."><i
+                                            class="fas fa-info-circle"></i></span></button>
+                            </div>
+                        </div>
+
+                        <!-- Non-expandable tabs -->
+                        <div class="sidebar-item">
+                            <button class="sidebar-tab standalone" onclick="switchTab('ebooks_comingsoon')">Coming
+                                Soon</button>
+                        </div>
+                    </div>
+                    <div class="course-content">
+                        <!-- Published / Released eBooks -->
+                        <div class="course-category" id="ebooks">
+                            <div class="grid">
+                                <!-- BHGM -->
+                                <div class="card" onclick="toggleCourseCategory('ebooks_bhgm')">
+                                    <h3>BHGM</h3>
+                                    <p class="short-description">Very first manual every produced, ranging upwards of
+                                        160+ pages, comprised of scripts written in the Go programming language designed
+                                        to explore nicbe portions of Go, useful sides of Go that often aren't covered,
+                                        and wide security applications of the Go programming language in a fun manual
+                                        format</p>
+                                    <div class="card-footer">
+                                        <div class="price">$15.56</div>
+                                        <div class="learn-more">Click to purchase!</div>
+                                    </div>
+                                </div>
+
+                                <!-- BHPM -->
+                                <div class="card" onclick="toggleCourseCategory('ebooks_bhpm')">
+                                    <h3>BHPM</h3>
+                                    <p class="short-description">Similar to Go, was designed to be a better version of
+                                        the Go manual but with the Python programming language. Not only designed with
+                                        more thought towards content in mind, but a lot more thought and effort into
+                                        editing the actual content</p>
+                                    <div class="card-footer">
+                                        <div class="price">$17.89</div>
+                                        <div class="learn-more">Click for details</div>
+                                    </div>
+                                </div>
+
+                                <!-- GHFM -->
+                                <div class="card" onclick="toggleCourseCategory('ebooks_ghfm')">
+                                    <h3>GHFM</h3>
+                                    <p class="short-description">A full fledged theoretical booklet rather than a
+                                        technical, summary-based booklet which aims to walk you through some fun niche
+                                        things within the game hacking world.</p>
+                                    <div class="card-footer">
+                                        <div class="price">$21.00</div>
+                                        <div class="learn-more">Click for details</div>
+                                    </div>
+                                </div>
+
+                                <!-- REFM -->
+                                <div class="card" onclick="toggleCourseCategory('ebooks_refm')">
+                                    <h3>REFM (PRESALE EBOOK)</h3>
+                                    <p class="short-description">Another theoretical manual, but the final manual
+                                        produced by SkyPenguinLabs indicating the move over into e-manual like content
+                                        while being able to introduce the reader to the theory of reverse engineering,
+                                        for a full book series called the Reverse Engineers Codex. Additionally, this is
+                                        a higher quality manual, with custom images, branding, and other various
+                                        additions that make it unique to SPL</p>
+                                    <div class="card-footer">
+                                        <div class="price">$23.00</div>
+                                        <div class="learn-more">Click for details</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Liquid Docs e-manual series  -->
+                        <div class="course-category" id="liquid_docs">
+                            <div class="grid">
+                                <!-- vol .1 | Season 1 -->
+                                <div class="card" onclick="toggleCourseCategory('liquid_docs_vol1')">
+                                    <h3>Liquid Docs Vol.1 s:1</h3>
+                                    <p class="short-description">The first season of the Liquid Docs series, pushing
+                                        SkyPenguinLabs away from phsyical manual production into digital ebooks which
+                                        highlight some of the primary content of the courses published here, along with
+                                        external, extended versions of course content meant to remind you why we exist
+                                    </p>
+                                    <div class="card-footer">
+                                        <div class="price">N/A</div>
+                                        <div class="learn-more">Click for details</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Open Source RIPS (o.s.r) -->
+                        <div class="course-category" id="osr">
+                            <div class="grid">
+
+                                <!-- OSR 1 | SkCrypt -->
+                                <div class="card" onclick="toggleCourseCategory('osr')">
+                                    <h3>O.S.R #1 - SkCrypt</h3>
+                                    <p class="short-description">Skcrypt, a library used for compile time encryption,
+                                        has become popular once again amongst pay-cheat communities, and in this lesson,
+                                        we do everything from a general breakdown of the inner workings, to dissecting
+                                        it behind the scenes in a program</p>
+                                    <div class="card-footer">
+                                        <div class="price">N/A</div>
+                                        <div class="learn-more">Click for details</div>
+                                    </div>
+                                </div>
+
+                                <!-- OSR 2 | Go-FastHTTP -->
+                                <div class="card" onclick="toggleCourseCategory('osr')">
+                                    <h3>O.S.R #1 - Golang's FastHTTP</h3>
+                                    <p class="short-description">FastHTTP, a third party library for the Go programming
+                                        language is designed to make HTTP requests much more faster and resilient in
+                                        lightweight scenarios or use cases. Want to understand how it remains so
+                                        performant? This lesson explores this further!</p>
+                                    <div class="card-footer">
+                                        <div class="price">N/A</div>
+                                        <div class="learn-more">Click for details</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+                        <!-- Coming soon -->
+                        <div class="course-category" id="ebooks_comingsoon">
+                            <div class="grid">
+
+                                <div class="card" onclick="toggleCourseCategory('ReverseEngineersCodex')">
+                                    <h3>The Reverse Engineering Codex</h3>
+                                    <p class="short-description">The first, full fledged modern reverse engineering
+                                        booklet SkyPenguinLabs will be producing!</p>
+                                    <div class="card-footer">
+                                        <div class="price">N/A</div>
+                                        <div class="learn-more">Click for details</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Course Information Modal -->
+        <div class="modal-overlay" id="courseModal">
+            <div class="modal">
+                <div class="modal-header">
+                    <button class="modal-close" onclick="DisableCourseModalRender()">&times;</button>
+                    <h3 id="modalTitle">Course Title</h3>
+                    <p class="modal-subtitle" id="modalSubtitle">Course subtitle</p>
+                    <div class="modal-info">
+                        <div class="info-item">
+                            <div class="info-label">Author</div>
+                            <div class="info-value" id="modalAuthor">SkyPenguinLabs</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Pages</div>
+                            <div class="info-value" id="modalPages">-</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Level</div>
+                            <div class="info-value" id="modalLevel">-</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Updated</div>
+                            <div class="info-value" id="modalDate">2025</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-tabs">
+                    <button class="modal-tab active" data-tab="overview">Overview</button>
+                    <button class="modal-tab" data-tab="author">About the Author</button>
+                    <button class="modal-tab" data-tab="sample">Sample Reference</button>
+
+                </div>
+
+                <div class="modal-tab-content" id="authorTab">
+                    <div class="author-profile">
+                        <div class="author-header">
+                            <h4 id="authorName">Author Name</h4>
+                            <span class="author-position" id="authorPosition">Position</span>
+                        </div>
+                        <p class="author-bio" id="authorBio">Author biography will appear here.</p>
+                    </div>
+                </div>
+
+                <div class="modal-tab-content" id="sampleTab">
+                    <h4>Sample Content</h4>
+                    <div id="barcodeContainer"></div>
+                    <p>Scan this QR code to access sample content or <a id="sampleLink" href="#" target="_blank">click
+                            here</a>.</p>
+                </div>
+
+
+                <div class="modal-tab-content active" id="overviewTab">
+                    <div class="modal-description" id="modalDescription">
+                        Course description shows here
+                    </div>
+                    <div class="modal-actions">
+                        <button class="modal-buy-btn" id="modalBuyBtn" onclick="purchase()">Purchase - $0</button>
+                        <button class="modal-demo-btn" onclick="viewDemo()">View Demo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Book Detail Modal -->
+        <div class="book-detail-overlay" id="bookDetailModal">
+            <div class="book-detail-modal">
+                <div class="book-detail-header">
+                    <button class="book-detail-close" onclick="closeBookModal()">&times;</button>
+                    <div class="book-detail-cover">
+                        <i id="bookDetailIcon" class="fas fa-book"></i>
+                    </div>
+                    <div class="book-detail-info">
+                        <h3 id="bookDetailTitle">Book Title</h3>
+                        <p id="bookDetailSubtitle">Book description</p>
+                        <div class="book-detail-meta">
+                            <span class="detail-price" id="bookDetailPrice">$0</span>
+                            <span class="detail-status" id="bookDetailStatus">Status</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="book-detail-content">
+                    <div class="book-detail-description" id="bookDetailDescription">
+                        Book description will appear here.
+                    </div>
+                    <div class="book-detail-actions">
+                        <button class="book-purchase-btn" id="bookPurchaseBtn"
+                            onclick="purchaseBook()">Purchase</button>
+                        <button class="book-preview-btn" onclick="previewBook()">Preview</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="coaching" id="coaching">
+            <div class="container">
+                <h2>Need Personal Guidance?</h2>
+                <p class="subtitle">Work directly with industry professionals</p>
+
+                <div class="benefits">
+                    <div class="benefit">
+                        <strong> Personal course development </strong>
+                        Will offer direct development of courses under 30 pages for specific technical concepts
+                        (depending on the suggestion)
+                    </div>
+                    <div class="benefit">
+                        <strong>Personal book signatures!</strong>
+                        Wan't a personalized signature along-side a book purchase? Reach out!
+                    </div>
+                    <div class="benefit">
+                        <strong>Tutoring & Online Guidance For Students</strong>
+                        Calls to assist on your learning path! Whether that is RE or not
+                    </div>
+                    <div class="benefit">
+                        <strong>Software Engineering Consulting</strong>
+                        Have a project but don't know where to start? We can check a free call to help you out!
+                    </div>
+                </div>
+
+                <a href="#" class="consultation-cta" onclick="bookCall()">Schedule Free Call</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="https://github.com/TotallyNotAHaxxer/A-Publisher-Icon-Edited-/blob/main/PublisherIcoRed.png?raw=true"
+                        alt="Sky Penguin Labs" class="logo-image">
+                    <span class="company-name">SkyPenguinLabs</span>
+                </div>
+                <p class="footer-description">
+                    Professional courses and consultation services for cybersecurity, reverse engineering,
+                    and software development.
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="#courses" class="footer-link">
+                    <i class="fas fa-book"></i>
+                    Courses
+                </a>
+                <a href="#coaching" class="footer-link">
+                    <i class="fas fa-user-graduate"></i>
+                    Consultation
+                </a>
+                <a href="https://skypenguinlabs.wtf/OtherPublicRefs/spl_art_cave" class="footer-link">
+                    <i class="fas fa-image"></i>
+                    SPL Art Wall
+                </a>
+                <a href="https://skypenguinlabs.wtf/OtherPublicRefs/spl_art_cave" class="footer-link">
+                    <i class="fas fa-gun"></i>
+                    SPL Rants
+                </a>
+                <a href="https://rants.skypenguinlabs.wtf" class="footer-link">
+                    <i class="fas fa-file"></i>
+                    ToC
+                </a>
+            </div>
+
+            <div class="footer-contact">
+                <h4>Get in Touch</h4>
+                <a href="mailto:skypenguinlabs@gmail.com" class="footer-link">
+                    <i class="fas fa-envelope"></i>
+                    skypenguinlabs@gmail.com
+                </a>
+                <a href="https://github.com/SkyPenguinLabs" class="footer-link">
+                    <i class="fab fa-github"></i>
+                    GitHub
+                </a>
+                <a href="https://instagram.com/@SkyPenguinLabs" class="footer-link">
+                    <i class="fab fa-instagram"></i>
+                    Instagram
+                </a>
+                <a href="https://x.com/SkyPenguinLabs" class="footer-link">
+                    <i class="fab fa-twitter"></i>
+                    X/Twitter
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025-2026 SkyPenguinLabs. All rights reserved. *Business Days Exclusive</p>
+        </div>
+    </footer>
+
+    <!-- OnAction overlay -->
+    <div class="info-modal-overlay" id="infoModalOverlay">
+        <div class="info-modal">
+            <button class="info-modal-close" onclick="closeInfoModal()">&times;</button>
+            <h3 id="infoModalTitle">Info Title</h3>
+            <div class="info-modal-content">
+                <p id="infoModalDescription">Description text will appear here.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TL;DR overlay  -->
+    <div class="tldr-overlay" id="tldrOverlay">
+        <div class="tldr-content">
+            <button class="tldr-close" onclick="toggleTldrOverlay()"><i class="fas fa-times"></i></button>
+            <div class="slideshow-container">
+                <div class="slide-header">
+                    <h2 id="slideTitle">Loading...</h2>
+                </div>
+                <div class="slide-navigation">
+                    <button class="slide-btn slide-prev" onclick="changeSlide(-1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="slide-content">
+                        <img id="slideImage" src="" onclick="GoToImageUrlIfClicked()" alt="Slide Image" />
+                    </div>
+                    <button class="slide-btn slide-next" onclick="changeSlide(1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="slide-description">
+                    <div class="description-box" id="slideDescription">
+                        Loading description...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Story Modal Overlay -->
+    <div class="story-overlay" id="storyOverlay">
+        <div class="story-modal">
+            <div class="story-header">
+                <h2>SkyPenguinLabs - The Penguin Uprising</h2>
+                <button class="story-close" onclick="toggleStoryModal()">&times;</button>
+            </div>
+            <div class="story-content">
+                <div class="story-section">
+                    <h3>Born from Frustration</h3>
+                    <p>Starting originally as a cybersecurity branding that was going to release merchandise, fun little
+                        manuals and generic content was quickly shot down after months of operating due to the
+                        realization of something bigger than us, but something that we can take on.</p>
+                </div>
+
+                <div class="story-section">
+                    <h3>Transformed From Realization</h3>
+                    <p>That realization was how terrible of a dumpster fire the cybersecurity industry is with content.
+                        Or really, any industry.
+                        Instead of venture capital or corporate funding that would pressure us to inflate prices, like
+                        every content creator posting courses, or alpha male wanna-be trying to gaslight you into buying
+                        their crypto coin, we built something sustainable through genuine community engagement.
+                        <br>
+                        <br>
+                        These courses
+                        operate with the goal of being the most concise, compacted, yet impactful courses while also
+                        remaining
+                        the most affordable in comparison to mainstream educators which charge more, overevaluating
+                        their products.
+                    </p>
+                </div>
+                <div class="story-highlight">
+                    <i class="fas fa-quote-left"></i>
+                    <blockquote>"While we can not fix stupid, or marketing, we can contribute to the pool of solutions
+                        which aim to fix it <span class="info-tag" data-title="How do we fix it?"
+                            data-description="SkyPenguinLabs deploys various tools to achieve information on the current educational landscape. The ressult of this is often, thousands, of sets of data that needs sorting. So, anything that gets used in an article, gets uploaded to our GitHub (https://github.com/SkyPenguinLabs/SPL-CourseDemos) under a list of compiled resources. This may also include additional resources for the courses."><i
+                                class="fas fa-info-circle"></i></span>. The first and foremost being to prioritize the
+                        investment over the return,
+                        instead of the return over the investment (ROI). Longevity is key"</blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
