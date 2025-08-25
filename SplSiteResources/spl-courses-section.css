@@ -203,21 +203,22 @@
     }
 
     /* --------- Sidebar Mobile Behavior --------- */
-    .sidebar-item.expandable .sidebar-content {
-        max-height: none;
-        /* Remove height restrictions on mobile */
-        overflow: visible;
+    .sidebar-item .sidebar-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height var(--transition-slow);
     }
 
     .sidebar-item.active .sidebar-content {
-        /* Allow full expansion, no style */
+        max-height: 500px;
+        /* Specific height to allow animation */
     }
 
+    /* Improve touch targets for mobile */
     .sidebar-header {
         padding: var(--space-3) var(--space-4);
         font-size: 0.9rem;
         min-height: 48px;
-        /* Proper touch target */
         display: flex;
         align-items: center;
     }
