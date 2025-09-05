@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sky Penguin Labs - Professional Development Courses</title>
+    <title>SPLabs | BaseCamp</title>
     <link rel="stylesheet" href="./SplSiteResources/spl-coaching-section.css">
     <link rel="stylesheet" href="./SplSiteResources/spl-contributions.block.css">
     <link rel="stylesheet" href="./SplSiteResources/spl-course-info-modal.css">
@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="./SplSiteResources/spl-footer.css">
     <link rel="stylesheet" href="./SplSiteResources/spl-header.css">
     <link rel="stylesheet" href="./SplSiteResources/spl-hero.css">
+    <link rel="stylesheet" href="./SplSiteResources/spl-section-header.css">
     <link rel="stylesheet" href="./SplSiteResources/spl-html-attrs.css">
     <link rel="stylesheet" href="./SplSiteResources/spl-info-tags.css">
     <link rel="stylesheet" href="./SplSiteResources/spl-info-tldrstyles.css">
@@ -208,30 +209,23 @@
                 </div>
 
                 <div class="contributions-block" id="contributionsBlock">
-                    <button class="close-btn" onclick="toggleContributions()">&times;</button>
+                    <button class="tldr-close" onclick="toggleContributions()"><i class="fas fa-times"></i></button>
                     <h3>How Your Support Fuels Our Mission</h3>
 
-                    <p>Community support is the backbone of our growth strategy. Rather than seeking venture capital or
-                        corporate funding that might pressure us to inflate prices or dilute our content quality, we're
-                        building something sustainable through genuine community engagement unlike massive educational
-                        platforms (who we ALL are aware of as the most popular right now) that prioritize profit
-                        margins. Every purchase helps us expand our course library, hire expert contributors, and
-                        develop new learning paths that respond directly to what our community needs. Additionally,
-                        SkyPenguinLabs is opting to move onto self-hosted, self-engineered and self-ran hosting software
-                        for future blogging, announcement programs, and more which investments into courses drive. This
-                        is to ensure that our content can never get locked behind a companies hands, and SkyPenguinLabs
-                        gets full, complete profit from the content which aids us in keeping prices down even during
-                        shifted economical periods. If courses are bought enough, SkyPenguinLabs considers creating
-                        hardcover, entire book versions on the concepts released to the public! :D
-                    </p>
+                    <p>Community support drives our growth. Instead of chasing venture capital that could inflate prices
+                        or compromise quality, we're building a sustainable, community-powered platform. Every purchase
+                        helps us expand our course library, bring in expert contributors, and develop new learning paths
+                        tailored to you. We're also moving to self-hosted, self-run systems to keep our content free
+                        from corporate control, ensuring we get full profits and can keep prices down-even in tough
+                        economic times. We produce constant deals, have really cheap and well produced and quality
+                        reviewed content, and do everything we can to make things affordable for us so we can for you
 
-                    <p>SkyPenguinLabs thrives on the philosophy that small-scale, focused products can create massive
-                        impact. We intentionally keep our courses concise, practical, and affordable because we believe
-                        learning should be accessible to everyone - from students to career changers to professionals
-                        upskilling. Your contributions allow us to maintain this philosophy while scaling our reach.
-                        Together, we're proving that a community-driven approach to education can compete with and often
-                        outperform larger, more expensive alternatives by staying true to our core values of quality,
-                        accessibility, and real-world applicability.</p>
+                        Keep in mind, we don't want things cheap, we wan't them affordable as keeping it affordable
+                        allows
+                        it to keep its quality, and even better, keeps us from corporate sponsors drooling over the
+                        releases
+                        or anybody internally from having a financial incentive to drive harmful change.
+                    </p>
                 </div>
 
 
@@ -262,7 +256,7 @@
 
         <section id="courses">
             <div class="container">
-                <h2>SkyPenguinLabs - Featured Courses</h2>
+                <h2 class="section-header"> <span class="highlight">Featured Courses</span></h2>
                 <br>
                 <!-- Course Category Tabs -->
                 <div class="simplified-course-layout">
@@ -274,7 +268,7 @@
                                 engineering, from game hacking to exploit development.</p>
                             <div class="card-footer">
                                 <div class="price">$9.81</div>
-                                <div class="learn-more">Click to Purchase!</div>
+                                <div class="learn-more">Purchase here!</div>
                             </div>
                         </div>
 
@@ -285,7 +279,7 @@
                                 can get stuck in loopholes. This course helps you untangle them a bit! </p>
                             <div class="card-footer">
                                 <div class="price">$11.78</div>
-                                <div class="learn-more">Click to Purchase!</div>
+                                <div class="learn-more">Purchase here! <i class="fas fa-arrow"></i></div>
                             </div>
                         </div>
 
@@ -296,7 +290,7 @@
                                 of specific functionalities during RE ops? Lets fix that for you...</p>
                             <div class="card-footer">
                                 <div class="price">$19.63</div>
-                                <div class="learn-more">Click to Purchase!</div>
+                                <div class="learn-more">Purchase here!</div>
                             </div>
                         </div>
 
@@ -308,7 +302,7 @@
                                 level intro to what Golang modules are and how they work conceptually</p>
                             <div class="card-footer">
                                 <div class="price">$8.20</div>
-                                <div class="learn-more">Click to Purchase!</div>
+                                <div class="learn-more">Purchase here!</div>
                             </div>
                         </div>
 
@@ -319,7 +313,7 @@
 
 
 
-                <h2>SkyPenguinLabs - Published Books</h2>
+                <h2 class="section-header"> <span class="highlight">Published Books</span></h2>
                 <div class="staticcont-notification" id="staticcont-notification2">
                     <button class="staticcont-close" onclick="closeNotification(2)">
                         <i class="fas fa-times"></i>
@@ -345,6 +339,7 @@
                 <br>
                 <div class="course-layout">
                     <!-- New sidebar navigation -->
+                    <!-- New sidebar navigation -->
                     <div class="course-sidebar">
                         <!-- Expandable categories section -->
                         <div class="sidebar-item expandable active">
@@ -353,22 +348,31 @@
                                 <i class="fas fa-chevron-down"></i>
                             </div>
                             <div class="sidebar-content">
-                                <button class="sidebar-tab active" onclick="switchTab('ebooks')">Regular Ebooks</button>
-                                <button class="sidebar-tab" onclick="switchTab('osr')">Open Source Rips<span
-                                        class="info-tag" data-title="What is this?"
-                                        data-description="O.S.R, also known as, Open Source RIPS, is a series dedicated entirely to taking open sourced projects published onto GitHub and reviewing their contents, while breaking down their code, analyzing their technical flaws, strengths, or application over other systems. This usually ends up going really deep and gets super technical, thus only really being designed as a niche-subtopic thing that we do for the community to give back to those that support our efforts!"><i
-                                            class="fas fa-info-circle"></i></span></button>
-                                <button class="sidebar-tab" onclick="switchTab('liquid_docs')">Liquid Docs Series <span
-                                        class="info-tag" data-title="What is this?"
-                                        data-description="Liquid Docs, is a season-based, course-specific guide that encompases highlights, extensions, and updates in relation to SkyPenguinLabs, course material notes, resources, fun guides and etc all built around each batch of courses released."><i
-                                            class="fas fa-info-circle"></i></span></button>
+                                <button class="sidebar-tab active" onclick="switchTab('ebooks')">
+                                    <i class="fas fa-book fa-fw"></i> Regular Ebooks
+                                </button>
+                                <button class="sidebar-tab" onclick="switchTab('osr')">
+                                    <i class="fas fa-code fa-fw"></i> Open Source Rips
+                                    <span class="info-tag" data-title="What is this?"
+                                        data-description="O.S.R, also known as, Open Source RIPS, is a series dedicated entirely to taking open sourced projects published onto GitHub and reviewing their contents, while breaking down their code, analyzing their technical flaws, strengths, or application over other systems. This usually ends up going really deep and gets super technical, thus only really being designed as a niche-subtopic thing that we do for the community to give back to those that support our efforts!">
+                                        <i class="fas fa-info-circle"></i>
+                                    </span>
+                                </button>
+                                <button class="sidebar-tab" onclick="switchTab('liquid_docs')">
+                                    <i class="fas fa-flask fa-fw"></i> Liquid Docs Series
+                                    <span class="info-tag" data-title="What is this?"
+                                        data-description="Liquid Docs, is a season-based, course-specific guide that encompases highlights, extensions, and updates in relation to SkyPenguinLabs, course material notes, resources, fun guides and etc all built around each batch of courses released.">
+                                        <i class="fas fa-info-circle"></i>
+                                    </span>
+                                </button>
                             </div>
                         </div>
 
                         <!-- Non-expandable tabs -->
                         <div class="sidebar-item">
-                            <button class="sidebar-tab standalone" onclick="switchTab('ebooks_comingsoon')">Coming
-                                Soon</button>
+                            <button class="sidebar-tab standalone" onclick="switchTab('ebooks_comingsoon')">
+                                <i class="fas fa-rocket fa-fw"></i> Coming Soon
+                            </button>
                         </div>
                     </div>
                     <div class="course-content">
@@ -385,7 +389,7 @@
                                         format</p>
                                     <div class="card-footer">
                                         <div class="price">$15.56</div>
-                                        <div class="learn-more">Click to purchase!</div>
+                                        <div class="learn-more">Purchase here!</div>
                                     </div>
                                 </div>
 
@@ -510,7 +514,8 @@
         <div class="modal-overlay" id="courseModal">
             <div class="modal">
                 <div class="modal-header">
-                    <button class="modal-close" onclick="DisableCourseModalRender()">&times;</button>
+                    <button class="tldr-close" onclick="DisableCourseModalRender()"><i
+                            class="fas fa-times"></i></button>
                     <h3 id="modalTitle">Course Title</h3>
                     <p class="modal-subtitle" id="modalSubtitle">Course subtitle</p>
                     <div class="modal-info">
@@ -570,35 +575,7 @@
             </div>
         </div>
 
-        <!-- Book Detail Modal -->
-        <div class="book-detail-overlay" id="bookDetailModal">
-            <div class="book-detail-modal">
-                <div class="book-detail-header">
-                    <button class="book-detail-close" onclick="closeBookModal()">&times;</button>
-                    <div class="book-detail-cover">
-                        <i id="bookDetailIcon" class="fas fa-book"></i>
-                    </div>
-                    <div class="book-detail-info">
-                        <h3 id="bookDetailTitle">Book Title</h3>
-                        <p id="bookDetailSubtitle">Book description</p>
-                        <div class="book-detail-meta">
-                            <span class="detail-price" id="bookDetailPrice">$0</span>
-                            <span class="detail-status" id="bookDetailStatus">Status</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="book-detail-content">
-                    <div class="book-detail-description" id="bookDetailDescription">
-                        Book description will appear here.
-                    </div>
-                    <div class="book-detail-actions">
-                        <button class="book-purchase-btn" id="bookPurchaseBtn"
-                            onclick="purchaseBook()">Purchase</button>
-                        <button class="book-preview-btn" onclick="previewBook()">Preview</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <section class="coaching" id="coaching">
             <div class="container">
                 <h2>Need Personal Guidance?</h2>
@@ -606,17 +583,19 @@
 
                 <div class="benefits">
                     <div class="benefit">
-                        <strong> Personal course development </strong>
-                        Will offer direct development of courses under 30 pages for specific technical concepts
-                        (depending on the suggestion)
+                        <strong>Contract Writing</strong>
+                        SPL offers a service that allows brands to use us for contract education specific 
+                        for their teams needs. 
                     </div>
                     <div class="benefit">
-                        <strong>Personal book signatures!</strong>
-                        Wan't a personalized signature along-side a book purchase? Reach out!
+                        <strong>Signature Requests!</strong>
+                        Bought a book or product from an author @SkyPenguinLabs? Email us to ask for something being signed 
+                        and shipped!
                     </div>
                     <div class="benefit">
-                        <strong>Tutoring & Online Guidance For Students</strong>
-                        Calls to assist on your learning path! Whether that is RE or not
+                        <strong>Online Guidance & Assistance</strong>
+One free consultation and online assistance with cybersecurity and development are available based on your needs
+
                     </div>
                     <div class="benefit">
                         <strong>Software Engineering Consulting</strong>
@@ -657,11 +636,11 @@
                     <i class="fas fa-image"></i>
                     SPL Art Wall
                 </a>
-                <a href="https://skypenguinlabs.wtf/OtherPublicRefs/spl_art_cave" class="footer-link">
+                <a href="https://rants.skypenguinlabs.wtf" class="footer-link">
                     <i class="fas fa-gun"></i>
                     SPL Rants
                 </a>
-                <a href="https://rants.skypenguinlabs.wtf" class="footer-link">
+                <a href="https://skypenguinlabs.wtf/toc" class="footer-link">
                     <i class="fas fa-file"></i>
                     ToC
                 </a>
@@ -696,7 +675,7 @@
     <!-- OnAction overlay -->
     <div class="info-modal-overlay" id="infoModalOverlay">
         <div class="info-modal">
-            <button class="info-modal-close" onclick="closeInfoModal()">&times;</button>
+            <button class="tldr-close" onclick="closeInfoModal()"><i class="fas fa-times"></i></button>
             <h3 id="infoModalTitle">Info Title</h3>
             <div class="info-modal-content">
                 <p id="infoModalDescription">Description text will appear here.</p>
@@ -737,7 +716,7 @@
         <div class="story-modal">
             <div class="story-header">
                 <h2>SkyPenguinLabs - The Penguin Uprising</h2>
-                <button class="story-close" onclick="toggleStoryModal()">&times;</button>
+                <button class="tldr-close" onclick="toggleStoryModal()"><i class="fas fa-times"></i></button>
             </div>
             <div class="story-content">
                 <div class="story-section">

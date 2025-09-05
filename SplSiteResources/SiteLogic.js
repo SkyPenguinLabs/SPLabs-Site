@@ -5,8 +5,6 @@
 ////
 
 
-
-
 const courseData = {
     //// pricing here was estimated given we want to sell 150 different copies a year.
     //// at 15.00/hr. 
@@ -103,9 +101,6 @@ const courseData = {
         BuyURL: 'https://www.etsy.com/listing/4346916926/rec5-static-analysis-for-ethereum?ref=shop_home_active_1&dd=1&logging_key=c9fa08a014cf305bdb526ff8818d834d9c179871%3A4346916926',
 
     },
-
-
-
     ////////////// @PAID COURSES -  Offensive Tool Developer 
     ////////////// @PAID BOOKS   - ALL OF THE BOOKS BY SKYPENGUIN LABS
     'liquid_docs_vol1': {
@@ -196,37 +191,9 @@ const courseData = {
         QrUrl: 'https://raw.githubusercontent.com/SkyPenguinLabs/SPL-CourseDemos/refs/heads/main/QRs/EbookSample_LiquidDocs.png',
         SampleURL: 'https://github.com/SkyPenguinLabs/SPL-CourseDemos/blob/main/EbookSamples/%5BDEMO%5D%20Liquid%20Docs%20Vol%20.1%20-%20Season%201%20_%20SkyPenguinLabs%20%5BDEMO%5D.pdf',
         BuyURL: 'https://www.etsy.com/listing/4346715012/refm-reverse-engineering-field-manual?ref=shop_home_active_1&dd=1&logging_key=b718a22ff20e2ba00a251c762fb0e86be968efe5%3A4346715012',
-
     },
 };
 
-
-let currentBook = null;
-
-
-///////// Tab switch routine 
-function switchBooksTab(category) {
-    document.querySelectorAll('.books-tab').forEach(tab => tab.classList.remove('active'));
-    document.querySelectorAll('.books-category').forEach(cat => cat.classList.remove('active'));
-    event.target.classList.add('active');
-    document.getElementById(category).classList.add('active');
-    const tabContainer = document.querySelector('.books-tabs');
-    const tabs = document.querySelectorAll('.books-tab');
-    const activeIndex = Array.from(tabs).indexOf(event.target);
-    tabContainer.setAttribute('data-active', activeIndex);
-}
-
-
-
-////////// Close modal 
-function closeBookModal() {
-    const modal = document.getElementById('bookDetailModal');
-    modal.classList.remove('show');
-    setTimeout(() => {
-        modal.style.display = 'none';
-    }, 300);
-    currentBook = null;
-}
 
 
 ///////////////////////////////// SITE COMPONENT - DONATION BUTTON ///////////////////////////////// > Header Component Logic #2 
@@ -322,15 +289,10 @@ function switchTab(category) {
     }
 }
 
-// Function to initialize default tab state
 function initializeDefaultTab() {
     const defaultCategory = 'ebooks';
-    
-    // Remove all active classes first to ensure clean state
     document.querySelectorAll('.sidebar-tab').forEach(btn => btn.classList.remove('active'));
     document.querySelectorAll('.course-category').forEach(cat => cat.classList.remove('active'));
-    
-    // Set the default tab and category as active
     const defaultTab = document.querySelector(`.sidebar-tab[onclick*="${defaultCategory}"]`);
     const defaultCategoryElement = document.getElementById(defaultCategory);
     
@@ -420,30 +382,23 @@ function DisableCourseModalRender() {
 // /// specific link for purchasing or scheduling. The functions below are currently placeholders 
 // ///
 
-function previewBook() {
-    if (currentBook) {
-        alert('Opening preview for this book...');
-    }
-}
 
 function purchase() {
     if (currentCourse) {
         const course = courseData[currentCourse];
         window.location = course.BuyURL;
-        alert(`Redirecting to checkout for ${course.title}...`);
     }
 }
 
 function viewDemo() {
     if (currentCourse) {
         window.location = courseData[currentCourse].SampleURL;
-        alert('Opening demo for this course...');
     }
 }
 
 function bookCall() {
     console.log('Book consultation');
-    alert('Opening calendar...');
+    alert('Opening calendar.....this is a placeholder, we dont have one yet :(');
 }
 
 
@@ -473,23 +428,11 @@ function copyToClipboard(text) {
 // ///
 
 
-//////////// Click listener | Close * overlays on-click (BooksOverlay, BookDetailModal)
+//////////// Click listener | Close * overlays on-click (Course Detail & Donation Detail)
 document.addEventListener('click', function (e) {
-    const booksOverlay = document.getElementById('booksOverlay');
-    const bookDetailModal = document.getElementById('bookDetailModal');
     const dropdown = document.getElementById('donateDropdown');
     const donateButton = document.querySelector('.donate-trigger');
     const CourseModal = document.getElementById('courseModal');
-
-    /////// Books listing overlay   
-    if (e.target === booksOverlay) {
-        toggleBooksOverlay();
-    }
-
-    /////// Books details
-    if (e.target === bookDetailModal) {
-        closeBookModal();
-    }
 
     ////// Course details
     if (e.target === CourseModal) {
@@ -504,18 +447,12 @@ document.addEventListener('click', function (e) {
 
 });
 
-//////////// Escape key listener | Close * overlays on escape (BooksOverlay, BookDetailModal)
+//////////// Escape key listener | Close * overlays on escape (Course detail)
 document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
-        const booksOverlay = document.getElementById('booksOverlay');
-        const bookDetailModal = document.getElementById('bookDetailModal');
         const CourseDetailModal = document.getElementById('courseModal');
 
-        if (booksOverlay.classList.contains('show')) {
-            toggleBooksOverlay();
-        } else if (bookDetailModal.classList.contains('show')) {
-            closeBookModal();
-        } else if (CourseDetailModal.classList.contains('show')) {
+        if (CourseDetailModal.classList.contains('show')) {
             DisableCourseModalRender();
         }
     }

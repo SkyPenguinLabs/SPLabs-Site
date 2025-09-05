@@ -345,7 +345,7 @@ main {
         color: var(--white);
         padding: 0.8rem 2rem;
         text-decoration: none;
-        border: 1px solid var(--gray-700);
+        border: 3px solid var(--gray-700);
         font-weight: 600;
         margin-top: var(--space-6);
         transition: all var(--transition);
