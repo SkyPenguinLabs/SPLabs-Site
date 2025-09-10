@@ -1,0 +1,1060 @@
+/*
+////////////////////////////////////////////////////
+   ______        ___                     _      __        __     
+  / __/ /____ __/ _ \___ ___  ___ ___ __(_)__  / /  ___ _/ /  ___
+ _\ \/  '_/ // / ___/ -_) _ \/ _ `/ // / / _ \/ /__/ _ `/ _ \(_-<
+/___/_/\_\\_, /_/   \__/_//_/\_, /\_,_/_/_//_/____/\_,_/_.__/___/
+         /___/              /___/                                
+////////////////////////////////////////////////////
+|>>> Official root style document for the entire SkyPenguinLabs static site. All of this 
+|>>> was developed and engineered with love ~ @Totally_Not_A_Haxxer
+|>>>
+|>>> None of this is AI, so if you want to make a PR or recommendation, it better not be 
+|>>> some BS AI slop that you are throwing at us. Stay logistical. This is an actual project
+|>>> not just some ordinary site that sells products. 
+*/ 
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+
+/* ================ VARIABLES ================ */
+:root {
+    /*
+        [ SPL Main Theme ]
+    */
+    --spl-grey-bg: #0D0D0C;
+    --spl-white-bg: #0F0F0F;
+    --spl-black-bg: #000000;
+    --spl-grey-dark: #404040;
+    --spl-grey-light: #808080;
+    --spl-white-dark: #BFBFBF;
+    --spl-white-light: #FFFFFF;
+    /*
+        [ SPL Main Color Theme (Accents) ]
+    */
+    --spl-red-dark: #CC0000;
+    --spl-red-light: #FF0000;
+    --spl-blue-dark: #0000CC;
+    --spl-blue-light: #0000FF;
+    --spl-green-dark: #00CC00;
+    /*      [+] Gradient Applicable Accents*/
+    --accent: #06b6d4;
+    /*
+        [ SPL Theme Typography ]
+    */
+    --spl-font-mono: 'Consolas', monospace;
+    --spl-font-sans:  'Consolas', monaco, monospace;
+    /*
+        [ SPL @CSS Properties ]
+    */
+    /*
+            [+] Spacing 
+    */
+    --spl-spacing-xs: 0.25rem;
+    --spl-spacing-sm: 0.5rem;
+    --spl-spacing-md: 1rem;
+    --spl-spacing-lg: 1.5rem;
+    --spl-spacing-xl: 2rem;
+    /*
+            [+] Defaulted border radius
+    */
+    --spl-border-radius: 4px;
+    /*
+            [+] Defaulted Animations & Misc 
+    */
+    --spl-transition: all 0.2s ease-in-out;
+    --spl-container-width: 1200px;
+}
+
+/*
+////////////////////////////////////////////////////
+   ______        ___                     _      __        __     
+  / __/ /____ __/ _ \___ ___  ___ ___ __(_)__  / /  ___ _/ /  ___
+ _\ \/  '_/ // / ___/ -_) _ \/ _ `/ // / / _ \/ /__/ _ `/ _ \(_-<
+/___/_/\_\\_, /_/   \__/_//_/\_, /\_,_/_/_//_/____/\_,_/_.__/___/
+         /___/              /___/                                
+////////////////////////////////////////////////////
+============== [ SPL Root HTML->Attribute styling ] ==============
+|
+| All primary HTML components and attributes get styled here
+| these are all global. 
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    font-family: var(--spl-font-sans);
+    background-color: var(--spl-black-bg);
+    color: var(--spl-white-light);
+    line-height: 1.6;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: var(--spl-white-light);
+    transition: var(--spl-transition);
+}
+
+a:hover {
+    color: var(--spl-red-light);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: var(--spl-spacing-md);
+}
+
+/*
+////////////////////////////////////////////////////
+   ______        ___                     _      __        __     
+  / __/ /____ __/ _ \___ ___  ___ ___ __(_)__  / /  ___ _/ /  ___
+ _\ \/  '_/ // / ___/ -_) _ \/ _ `/ // / / _ \/ /__/ _ `/ _ \(_-<
+/___/_/\_\\_, /_/   \__/_//_/\_, /\_,_/_/_//_/____/\_,_/_.__/___/
+         /___/              /___/                                
+////////////////////////////////////////////////////
+============== [ SPL Root Body Styling ] ==============
+|
+| HTML Body and content containers stay here. 
+*/
+.spl-container {
+    width: 100%;
+    max-width: var(--spl-container-width);
+    margin: 0 auto;
+    padding: 0 var(--spl-spacing-lg);
+}
+
+.spl-main {
+    flex: 1;
+    padding: var(--spl-spacing-xl) 0;
+}
+
+/*
+////////////////////////////////////////////////////
+   ______        ___                     _      __        __     
+  / __/ /____ __/ _ \___ ___  ___ ___ __(_)__  / /  ___ _/ /  ___
+ _\ \/  '_/ // / ___/ -_) _ \/ _ `/ // / / _ \/ /__/ _ `/ _ \(_-<
+/___/_/\_\\_, /_/   \__/_//_/\_, /\_,_/_/_//_/____/\_,_/_.__/___/
+         /___/              /___/                                
+////////////////////////////////////////////////////
+============== [ spl-buttons ] ==============
+|
+| Buttons were designed to follow a root prefix 'spl-button'
+| which is used to access sub-classes 'spl-button-x' where 'x'
+| equals ['primary', 'secondary', 'tertiary', n...] each subclass
+| has its own applicable modifications to the global buttons
+*/
+.spl-button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--white);
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    border: 2px solid var(--spl-blue-dark);
+    border-radius: 4px;
+    transition: all var(--transition);
+    cursor: pointer;
+}
+
+.spl-button:hover {
+    transform: translateY(-2px);
+    transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fas {
+    font-style: normal;
+    font-variant: normal;
+    line-height: 1;
+    text-rendering: auto;
+}
+
+.spl-button i {
+    width: 25px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+/*@Button->Primary*/
+.spl-button-primary {
+    background-color: var(--spl-black-bg);
+    color: var(--spl-white-light);
+}
+
+/*@Button->Secondary*/
+.spl-button-secondary {
+    background-color: var(--spl-black-bg);
+    color: var(--spl-white-light);
+    border: 2px solid var(--spl-green-dark);
+
+}
+
+/*@Button->Tertiary*/
+.spl-button-tertiary {
+    background-color: var(--spl-black-bg);
+    border: 2px solid var(--spl-blue-dark);
+}
+
+/*@Button->Close*/
+.spl-static-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #000000;
+    border: 2px solid var(--spl-red-dark);
+    color: var(--spl-white-light);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 5;
+}
+
+
+/*
+////////////////////////////////////////////////////
+   ______        ___                     _      __        __     
+  / __/ /____ __/ _ \___ ___  ___ ___ __(_)__  / /  ___ _/ /  ___
+ _\ \/  '_/ // / ___/ -_) _ \/ _ `/ // / / _ \/ /__/ _ `/ _ \(_-<
+/___/_/\_\\_, /_/   \__/_//_/\_, /\_,_/_/_//_/____/\_,_/_.__/___/
+         /___/              /___/                                
+////////////////////////////////////////////////////
+============== [ spl-header ] ==============
+|
+| The header was designed to be minimalistic, while still
+| using our main color pallete, and staying simple to our 
+| theme. This simply includes a brand icon, label / brand name,
+| and then buttons / actions on the far right which use the 
+| button class 'spl-button' for the root of all buttons rendered
+*/
+.spl-header {
+    background-color: var(--spl-black-bg);
+    /*padding: var(--spl-spacing-md) 0; [Spacing feels too large here*/
+    border-bottom: 2px solid var(--spl-grey-dark);
+}
+
+.spl-header .spl-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.spl-header-brand {
+    display: flex;
+    align-items: center;
+}
+
+.spl-logo {
+    height: 56px;
+    margin-right: var(--spl-spacing-md);
+}
+
+.spl-brand-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--spl-white-light);
+}
+
+.spl-header-actions {
+    display: flex;
+    gap: var(--spl-spacing-md);
+}
+
+/*
+////////////////////////////////////////////////////
+   ______        ___                     _      __        __     
+  / __/ /____ __/ _ \___ ___  ___ ___ __(_)__  / /  ___ _/ /  ___
+ _\ \/  '_/ // / ___/ -_) _ \/ _ `/ // / / _ \/ /__/ _ `/ _ \(_-<
+/___/_/\_\\_, /_/   \__/_//_/\_, /\_,_/_/_//_/____/\_,_/_.__/___/
+         /___/              /___/                                
+////////////////////////////////////////////////////
+/// 
+/// We take donations in Solana, Ethereum, or if people want, they can buy stuff from our print on demand 
+/// Shopify if they do not want anything else on the product shop (which, honestly, shopify was designed
+/// explicitly to push users towards SPL products) 
+///
+/* ==================== DONATE DROPDOWN - DESKTOP VERSION ==================== */
+
+
+
+.spl-donate-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 10px;
+    width: 340px;
+    background-color: var(--spl-black-bg);
+    border: 2px solid var(--spl-blue-dark);
+    border-radius: var(--spl-border-radius);
+    padding: var(--spl-spacing-md);
+    z-index: 100;
+    display: none;
+    animation: spl-fade-in 0.3s ease;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+}
+
+.spl-donate-dropdown::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    border-radius: var(--spl-border-radius) var(--spl-border-radius) 0 0;
+}
+
+.spl-donate-dropdown.active {
+    display: block;
+}
+
+.spl-donate-header {
+    text-align: center;
+    margin-bottom: var(--spl-spacing-md);
+    padding-bottom: var(--spl-spacing-sm);
+    border-bottom: 1px solid var(--spl-grey-dark);
+}
+
+.spl-donate-header h4 {
+    font-size: 1.1rem;
+    color: var(--spl-white-light);
+    margin-bottom: var(--spl-spacing-xs);
+    font-weight: 600;
+}
+
+.spl-donate-header p {
+    font-size: 0.85rem;
+    color: var(--spl-white-dark);
+    font-family: var(--spl-font-sans);
+}
+
+.spl-crypto-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spl-spacing-md);
+    margin-bottom: var(--spl-spacing-md);
+}
+
+.spl-crypto-item {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--spl-grey-dark);
+    border-radius: var(--spl-border-radius);
+    padding: var(--spl-spacing-md);
+    transition: var(--spl-transition);
+}
+
+.spl-crypto-item:hover {
+    border-color: var(--spl-blue-dark);
+    transform: translateY(-2px);
+}
+
+.spl-crypto-label {
+    display: flex;
+    align-items: center;
+    gap: var(--spl-spacing-sm);
+    margin-bottom: var(--spl-spacing-sm);
+}
+
+.spl-crypto-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.fab.fa-ethereum {
+    color: #627EEA;
+}
+
+.spl-crypto-label span {
+    font-family: var(--spl-font-sans);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--spl-white-light);
+}
+
+.spl-crypto-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spl-spacing-sm);
+}
+
+.spl-crypto-address {
+    font-family: var(--spl-font-mono);
+    font-size: 0.75rem;
+    color: var(--spl-white-dark);
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: var(--spl-spacing-sm);
+    border-radius: var(--spl-border-radius);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border: 1px solid var(--spl-grey-dark);
+}
+
+.spl-crypto-actions {
+    display: flex;
+    gap: var(--spl-spacing-sm);
+}
+
+.spl-crypto-link, 
+.spl-crypto-copy {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 0;
+    font-size: 0.75rem;
+    border-radius: var(--spl-border-radius);
+    transition: var(--spl-transition);
+    background-color: var(--spl-black-bg);
+    border: 1px solid var(--spl-grey-dark);
+}
+
+.spl-crypto-link {
+    color: var(--spl-red-dark);
+    text-decoration: none;
+}
+
+.spl-crypto-copy {
+    color: var(--spl-white-dark);
+    cursor: pointer;
+}
+
+.spl-crypto-link:hover,
+.spl-crypto-copy:hover {
+    transform: translateY(-2px);
+    border-color: var(--spl-blue-dark);
+}
+
+.spl-donate-footer {
+    text-align: center;
+    margin-top: var(--spl-spacing-md);
+    padding-top: var(--spl-spacing-sm);
+    border-top: 1px solid var(--spl-grey-dark);
+}
+
+.spl-donate-contact {
+    font-size: 0.8rem;
+    color: var(--spl-white-dark);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spl-spacing-xs);
+    transition: var(--spl-transition);
+}
+
+.spl-donate-contact:hover {
+    color: var(--spl-blue-light);
+}
+
+@keyframes spl-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/*
+////////////////////////////////////////////////////
+   ______        ___                     _      __        __     
+  / __/ /____ __/ _ \___ ___  ___ ___ __(_)__  / /  ___ _/ /  ___
+ _\ \/  '_/ // / ___/ -_) _ \/ _ `/ // / / _ \/ /__/ _ `/ _ \(_-<
+/___/_/\_\\_, /_/   \__/_//_/\_, /\_,_/_/_//_/____/\_,_/_.__/___/
+         /___/              /___/                                
+////////////////////////////////////////////////////
+============== [ spl-info ] ==============
+|
+| spl-info refers to the tooltips that appear on the page
+| which have a very simplistic style. spl-info, is just the 
+| style for the tooltip action trigger itself, rather than 
+| the overlay which the tooltip calls / renders. 
+*/
+.spl-info {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    background-color: var(--spl-black-bg);
+    border: 2px solid var(--spl-red-dark);
+    color: var(--spl-white-light);
+    font-family: var(--spl-font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    margin-left: 6px;
+    cursor: pointer;
+    transition: var(--spl-transition);
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+}
+
+.spl-info::after {
+    content: "i";
+
+}
+
+.spl-info:hover {
+    transform: translateY(-2px);
+    border-color: var(--spl-blue-light);
+}
+
+.spl-info:active {
+    transform: translateY(0);
+}
+
+/*
+////////////////////////////////////////////////////
+   ______        ___                     _      __        __     
+  / __/ /____ __/ _ \___ ___  ___ ___ __(_)__  / /  ___ _/ /  ___
+ _\ \/  '_/ // / ___/ -_) _ \/ _ `/ // / / _ \/ /__/ _ `/ _ \(_-<
+/___/_/\_\\_, /_/   \__/_//_/\_, /\_,_/_/_//_/____/\_,_/_.__/___/
+         /___/              /___/                                
+////////////////////////////////////////////////////
+============== [ spl-hero ] ==============
+|
+| spl-hero refers to the hero component of the page which defines the 
+| primary set of actions we use to drag people around the site without
+| having to manually scroll everything. Taking advantage of this, the 
+| spl-hero section was engineered explicitly to captivate specific 
+| groups of people, simply based on alignement, and structure. Please
+| be very sensitive when handling the style and orrientation of this 
+| componenent. 
+|
+*/
+.spl-hero {
+    padding: var(--spl-spacing-xl) 0;
+    background-color: var(--spl-black-bg);
+}
+
+.spl-hero-content {
+    text-align: center;
+    margin-bottom: var(--spl-spacing-xl);
+}
+
+.spl-hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: var(--spl-spacing-md);
+    /* I found out if we create a 135 degree linear gradient with our default blue and red colors 
+       we get this pretty sick leaning gradient. I want to use this for something else
+       background: linear-gradient(135deg, var(--spl-blue-light) 0%, var(--spl-red-dark) 100%);
+
+    */
+
+    /* Gradients */
+    background: linear-gradient(135deg, var(--spl-blue-dark) 0%, var(--accent) 100%);
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -1px;
+}
+
+.spl-hero-subtitle {
+    font-size: 1.5rem;
+    color: var(--spl-white-dark);
+    margin-bottom: var(--spl-spacing-xl);
+    font-weight: 400;
+}
+
+.spl-hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: var(--spl-spacing-md);
+    margin-bottom: var(--spl-spacing-xl);
+}
+
+
+.spl-hero-divider {
+    height: 1px;
+    border-bottom: 2px solid var(--spl-grey-dark);
+    margin: var(--spl-spacing-xl) 0;
+}
+
+.spl-hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spl-spacing-xl);
+    margin-bottom: var(--spl-spacing-xl);
+    text-align: center;
+}
+
+.spl-stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.spl-stat-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--spl-white-light);
+    margin-bottom: var(--spl-spacing-sm);
+    font-family: var(--spl-font-mono);
+    letter-spacing: 1px;
+}
+
+.spl-stat-subtitle {
+    font-size: 0.9rem;
+    color: var(--spl-grey-light);
+    font-family: var(--spl-font-mono);
+}
+
+.spl-shop-action {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--spl-spacing-xl);
+}
+
+/*
+////////////////////////////////////////////////////
+   ______        ___                     _      __        __     
+  / __/ /____ __/ _ \___ ___  ___ ___ __(_)__  / /  ___ _/ /  ___
+ _\ \/  '_/ // / ___/ -_) _ \/ _ `/ // / / _ \/ /__/ _ `/ _ \(_-<
+/___/_/\_\\_, /_/   \__/_//_/\_, /\_,_/_/_//_/____/\_,_/_.__/___/
+         /___/              /___/                                
+////////////////////////////////////////////////////
+============== [ spl-footer ] ==============
+|
+| Footer was kept mostly the same, the only difference between this footer and the previous
+| is largely between the spacing, coloring, and font choice which was never properly solidifed
+| previously. 
+*/
+.spl-footer {
+    background-color: var(--spl-black-bg);
+    padding-top: var(--spl-spacing-xl);
+    border-top: 2px solid var(--spl-grey-dark);
+}
+
+.spl-footer-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spl-spacing-xl);
+    padding-bottom: var(--spl-spacing-xl);
+}
+
+.spl-footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spl-spacing-md);
+}
+
+.spl-footer-logo {
+    display: flex;
+    align-items: center;
+}
+
+/*Uhhhh...hey there dev. By now you otta think you found what you are looking for......right?*/
+.spl-logo-image {
+    height: 30px;
+    margin-right: var(--spl-spacing-sm);
+}
+
+.spl-company-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--spl-white-light);
+}
+
+.spl-footer-description {
+    color: var(--spl-white-dark);
+    font-size: 0.9rem;
+}
+
+.spl-footer-links,
+.spl-footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spl-spacing-sm);
+}
+
+.spl-footer-links h4,
+.spl-footer-contact h4 {
+    color: var(--spl-white-light);
+    margin-bottom: var(--spl-spacing-md);
+}
+
+.spl-footer-link {
+    display: flex;
+    align-items: center;
+    gap: var(--spl-spacing-sm);
+    color: var(--spl-white-dark);
+    transition: var(--spl-transition);
+}
+
+.spl-footer-link:hover {
+    color: var(--spl-red-light);
+}
+
+.spl-footer-link i {
+    min-width: 20px;
+}
+
+.spl-footer-bottom {
+    padding: var(--spl-spacing-md) 0;
+    border-top: 1px solid var(--spl-grey-dark);
+    text-align: center;
+    color: var(--spl-grey-light);
+    font-size: 0.9rem;
+}
+
+/*
+////////////////////////////////////////////////////
+   ______        ___                     _      __        __     
+  / __/ /____ __/ _ \___ ___  ___ ___ __(_)__  / /  ___ _/ /  ___
+ _\ \/  '_/ // / ___/ -_) _ \/ _ `/ // / / _ \/ /__/ _ `/ _ \(_-<
+/___/_/\_\\_, /_/   \__/_//_/\_, /\_,_/_/_//_/____/\_,_/_.__/___/
+         /___/              /___/                                
+///////////////////// [spl-coaching] ///////////////
+/// The 'coaching' section defines all of what we 
+/// are going to offer outside of just course and 
+/// product selling (alongside merchandise as well)
+/// as we also do freelance services, contracting and 
+/// services like personal education. 
+///
+*/
+.spl-coaching-section {
+    padding: var(--spl-spacing-xl) 0;
+    background-color: var(--spl-black-bg);
+}
+
+.spl-coaching-header {
+    text-align: center;
+    margin-bottom: var(--spl-spacing-xl);
+}
+
+.spl-coaching-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: var(--spl-spacing-sm);
+    color: var(--spl-white-light);
+}
+
+.spl-coaching-subtitle {
+    font-size: 1.25rem;
+    color: var(--spl-white-dark);
+    font-family: var(--spl-font-sans);
+}
+
+.spl-coaching-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spl-spacing-lg);
+    margin-top: var(--spl-spacing-xl);
+    margin-bottom: 10px;
+}
+
+
+.spl-coaching-card {
+    position: relative;
+    background-color: var(--spl-black-bg);
+    border: 2px solid var(--spl-blue-dark);
+    border-radius: var(--spl-border-radius);
+    overflow: hidden;
+    transition: var(--spl-transition);
+    max-width:500px;
+}
+
+.spl-coaching-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--spl-green-dark);
+    box-shadow: 0 4px 20px rgba(0, 0, 255, 0.1);
+}
+
+.spl-coaching-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    z-index: 1;
+}
+
+.spl-coaching-card-content {
+    padding: var(--spl-spacing-lg);
+}
+
+.spl-coaching-card-title {
+    font-family: var(--spl-font-sans);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--spl-white-light);
+    margin-bottom: var(--spl-spacing-md);
+}
+
+.spl-coaching-card-description {
+    color: var(--spl-white-dark);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+
+.spl-coaching-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--spl-spacing-xl);
+}
+
+.spl-coaching-button {
+    background-color: var(--spl-black-bg);
+    border: 2px solid var(--spl-green-dark);
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+}
+
+
+/*
+////////////////////////////////////////////////////
+   ______        ___                     _      __        __     
+  / __/ /____ __/ _ \___ ___  ___ ___ __(_)__  / /  ___ _/ /  ___
+ _\ \/  '_/ // / ___/ -_) _ \/ _ `/ // / / _ \/ /__/ _ `/ _ \(_-<
+/___/_/\_\\_, /_/   \__/_//_/\_, /\_,_/_/_//_/____/\_,_/_.__/___/
+         /___/              /___/                                
+////////////////////////////////////////////////////
+///
+/// This is a simple styling for all notifications that get called onto the render. 
+/// 'notification' in this context, is simply a box of information, that is a lot more 
+/// noticeable and is designed to be, as the information displayed is typically important
+============== [ spl-static-notification ] ==============
+|>
+|> The goal of this was to create a form of statically rendered (until de-rendered by the user)
+|> form of notification that allows for the developers of the site to get users to pay attention
+|> to specific subsets of informtion. It is not by any means a 'standard notification' as it does
+|> not have any built in timing logic, it does not appear at the top, bottom, left/right sides 
+|> and is instead placed individually and specifically by developers
+*/
+.spl-static-notification {
+    max-width: 600px;
+    margin: var(--spl-spacing-xl) auto 0;
+    background: var(--spl-black-bg);
+    border: 2px solid var(--spl-red-light);
+    border-radius: var(--spl-border-radius);
+    padding: var(--spl-spacing-lg);
+    position: relative;
+}
+
+.spl-static-content {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spl-spacing-md);
+    font-family: 'Roboto Mono', var(--spl-font-mono);
+    color: #ffd700;
+}
+
+
+.spl-static-close:hover {
+    background: #1a1a1a;
+}
+
+.spl-static-icon {
+    font-size: 1.25rem;
+    color: #ffd700;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.spl-static-text {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: var(--spl-white-light);
+}
+
+.spl-static-text strong {
+    color: #ffd700;
+    font-weight: 700;
+    display: block;
+    margin-bottom: var(--spl-spacing-xs);
+    text-shadow: 0 0 4px rgba(255, 215, 0, 0.4);
+}
+
+/*
+////////////////////////////////////////////////////
+   ______        ___                     _      __        __     
+  / __/ /____ __/ _ \___ ___  ___ ___ __(_)__  / /  ___ _/ /  ___
+ _\ \/  '_/ // / ___/ -_) _ \/ _ `/ // / / _ \/ /__/ _ `/ _ \(_-<
+/___/_/\_\\_, /_/   \__/_//_/\_, /\_,_/_/_//_/____/\_,_/_.__/___/
+         /___/              /___/                                
+////////////////////////////////////////////////////
+///
+/// In case you could not tell, I fucking love overlays for web UIs. They are useful for so many things.
+/// However, I have also had a hell of a time trying to find ways to make them universal. This was my 
+/// problem on the previous version of this site as well, deployed before 9/7/2025. 
+///
+/// The idea behind this overlay style is to create a standardized canvas and container, which can be used 
+/// anywhere in the website which will then draw out or render a box of information which displays the given
+/// title, subtitle and description of what the information box in the overlay is going to display.
+///
+/// This unit is pretty simple, but the container, and methods of generating the container can be better.
+///
+/// @ReliesOn -> spl-resources/Logic/spl-logical-component.js
+///
+*/
+/* Prevent scroll on body when overlay is open */
+body.spl-overlay-open {
+    overflow: hidden;
+}
+
+
+/*
+> @OverlayContainer:
+        This is what the overlay will be generated in
+*/
+#spl-overlay-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+/*
+> @Overlay
+        : This is the style for the overlay background itself. The frost 
+          like affect which makes it an "overlay"
+*/
+.spl-overlay-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    transition: opacity var(--spl-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+}
+
+.spl-overlay-background.active {
+    opacity: 1;
+}
+
+/*
+> @OverlayBox
+        : This is the box that displays all of the information
+*/
+.spl-overlay-box {
+    background-color: var(--spl-black-bg);
+    border: 2px solid var(--spl-grey-dark);
+    border-radius: var(--spl-border-radius);
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: var(--spl-spacing-xl);
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index: 1002;
+}
+
+.spl-overlay-box.active {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.spl-overlay-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spl-spacing-md);
+}
+
+/*
+> @OverlayBox->Title 
+        :  SPL Overlay -> information box title text (red)  
+*/
+.spl-overlay-title {
+    color: var(--spl-blue-light);
+    font-family: var(--spl-font-sans);
+    font-size: 1.8rem;
+    margin: 0;
+    border-bottom: 2px solid var(--spl-grey-dark);
+}
+
+
+/*
+> @OverlayBox->Subtitle 
+        :  SPL Overlay -> information box subtitle  
+*/
+.spl-overlay-subtitle {
+    color: var(--spl-white-light);
+    font-family: var(--spl-font-sans);
+    font-size: 1.2rem;
+    margin-top: 0;
+    margin-bottom: var(--spl-spacing-md);
+    font-weight: 500;
+}
+
+/*
+> @OverlayBox->Description 
+        :  SPL Overlay -> information box description 
+*/
+.spl-overlay-description {
+    color: var(--spl-white-dark);
+    font-family: var(--spl-font-sans);
+    line-height: 1.6;
+}
+
+.spl-overlay-description a {
+    color: var(--spl-blue-light);
+    text-decoration: none;
+}
+
+.spl-overlay-description a:hover {
+    color: var(--spl-red-light);
+    text-decoration: underline;
+}
+
+/*
+> @OverlayBox->Scrollbar 
+        :  Custom scrollbar for overlay. Just in case the content decides to be a dick
+*/
+.spl-overlay-box::-webkit-scrollbar {
+    width: 8px;
+}
+
+.spl-overlay-box::-webkit-scrollbar-track {
+    background: var(--spl-black-bg);
+    border-radius: var(--spl-border-radius);
+}
+
+.spl-overlay-box::-webkit-scrollbar-thumb {
+    background: var(--spl-grey-dark);
+    border-radius: var(--spl-border-radius);
+}
+
+.spl-overlay-box::-webkit-scrollbar-thumb:hover {
+    background: var(--spl-grey-light);
+}
+
