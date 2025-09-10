@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyPenguinLabs Art Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="spl-header">
+        <div class="spl-container">
+            <div class="spl-header-brand">
+                <img src="https://github.com/TotallyNotAHaxxer/A-Publisher-Icon-Edited-/blob/main/PublisherIcoRed.png?raw=true" alt="SkyPenguinLabs Logo" class="spl-logo">
+                <span class="spl-brand-name">SkyPenguinLabs</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="spl-gallery-header">
+        <div class="spl-container">
+            <div class="spl-gallery-logo">
+<pre>                                                                                                 
+ _____ _       _____                 _     __        _           _____     _   _____             
+|   __| |_ _ _|  _  |___ ___ ___ _ _|_|___|  |   ___| |_ ___ ___|  _  |___| |_|     |___ _ _ ___ 
+|__   | '_| | |   __| -_|   | . | | | |   |  |__| .'| . |_ -|___|     |  _|  _|   --| .'| | | -_|
+|_____|_,_|_  |__|  |___|_|_|_  |___|_|_|_|_____|__,|___|___|   |__|__|_| |_| |_____|__,|\_/|___|
+          |___|             |___|                                                                </pre>
+            </div>
+            
+            <div class="spl-gallery-stats">
+                <div class="spl-stat-item">
+                    <span class="spl-stat-number" id="totalCount">0</span>
+                    <span>wallpapers</span>
+                </div>
+                <div class="spl-stat-item">
+                    <span class="spl-stat-number" id="loadedCount">0</span>
+                    <span>loaded</span>
+                </div>
+                <div class="spl-stat-item">
+                    <span class="spl-stat-number">4K+</span>
+                    <span>resolution</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="spl-gallery-controls">
+        <div class="spl-container">
+            <div class="spl-search-container">
+                <div class="spl-search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" class="spl-search-input" placeholder="Search wallpapers..." id="searchInput">
+                </div>
+                <div class="spl-filter-buttons">
+                    <button class="spl-filter-btn active" data-filter="all">All</button>
+                    <button class="spl-filter-btn" data-filter="IcyBeginnings">IcyBeginnings</button>
+                    <button class="spl-filter-btn" data-filter="Planet-C3">Planet-C3</button>
+                    <button class="spl-filter-btn" data-filter="SkyLine">SkyLine</button>
+                    <button class="spl-filter-btn" data-filter="OgArchive">OgArchive</button>
+                </div>
+            </div>
+            <div class="spl-gallery-actions">
+                <button class="spl-button" id="refreshBtn">
+                    <i class="fas fa-sync-alt"></i>
+                    Refresh
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading" class="spl-loading">
+        <div class="spl-loading-spinner"></div>
+        <div class="spl-loading-text">Loading wallpapers from the digital ice caves...</div>
+    </div>
+
+    <div id="gallery" class="spl-gallery-grid spl-container" style="display: none;"></div>
+
+    <div id="error" class="spl-error" style="display: none;">
+        <div class="spl-error-icon"><i class="fas fa-exclamation-triangle"></i></div>
+        <div class="spl-error-title">Connection to the ice caves failed</div>
+        <div class="spl-error-message">Check your connection and try again</div>
+    </div>
+
+    <div id="loadMore" class="spl-load-more" style="display: none;">
+        <button class="spl-button spl-button-primary" id="loadMoreBtn">
+            <i class="fas fa-plus"></i>
+            Load More Wallpapers
+        </button>
+    </div>
+
+    <footer class="spl-footer">
+        <div class="spl-container">
+            <div class="spl-footer-content">
+                <div class="spl-footer-brand">
+                    <div class="spl-footer-logo">
+                        <img src="https://github.com/TotallyNotAHaxxer/A-Publisher-Icon-Edited-/blob/main/PublisherIcoRed.png?raw=true"
+                            alt="Sky Penguin Labs" class="spl-logo-image">
+                        <span class="spl-company-name">SkyPenguinLabs</span>
+                    </div>
+                    <p class="spl-footer-description">
+                        Professional courses and consultation services for cybersecurity, reverse engineering,
+                        and software development.
+                    </p>
+                </div>
+
+                <div class="spl-footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="#courses" class="spl-footer-link">
+                        <i class="fas fa-book"></i>
+                        Courses
+                    </a>
+                    <a href="#coaching" class="spl-footer-link">
+                        <i class="fas fa-user-graduate"></i>
+                        Consultation
+                    </a>
+                    <a href="https://skypenguinlabs.wtf/OtherPublicRefs/spl_art_cave" class="spl-footer-link">
+                        <i class="fas fa-image"></i>
+                        SPL Art Wall
+                    </a>
+                    <a href="https://rants.skypenguinlabs.wtf" class="spl-footer-link">
+                        <i class="fas fa-bullhorn"></i>
+                        SPL Rants
+                    </a>
+                    <a href="https://skypenguinlabs.wtf/toc" class="spl-footer-link">
+                        <i class="fas fa-file"></i>
+                        ToC
+                    </a>
+                </div>
+
+                <div class="spl-footer-contact">
+                    <h4>Get in Touch</h4>
+                    <a href="mailto:contact@skypenguinlabs.wtf" class="spl-footer-link">
+                        <i class="fas fa-envelope"></i>
+                        contact@skypenguinlabs.wtf
+                    </a>
+                    <a href="https://github.com/SkyPenguinLabs" class="spl-footer-link">
+                        <i class="fab fa-github"></i>
+                        GitHub
+                    </a>
+                    <a href="https://instagram.com/@SkyPenguinLabs" class="spl-footer-link">
+                        <i class="fab fa-instagram"></i>
+                        Instagram
+                    </a>
+                    <a href="https://x.com/SkyPenguinLabs" class="spl-footer-link">
+                        <i class="fab fa-twitter"></i>
+                        X/Twitter
+                    </a>
+                </div>
+            </div>
+
+            <div class="spl-footer-bottom">
+                <p>© 2025-2026 SkyPenguinLabs. All rights reserved. *Business Days Exclusive</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        class WallpaperGallery {
+            constructor() {
+                this.wallpapers = [];
+                this.displayedWallpapers = [];
+                this.currentFilter = 'all';
+                this.searchQuery = '';
+                this.loadedCount = 0;
+                this.batchSize = 12;
+                this.init();
+            }
+
+            init() {
+                this.bindEvents();
+                this.loadWallpapers();
+            }
+
+            bindEvents() {
+                document.getElementById('searchInput').addEventListener('input', (e) => {
+                    this.searchQuery = e.target.value.toLowerCase();
+                    this.filterAndDisplay();
+                });
+
+                document.querySelectorAll('.spl-filter-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        document.querySelectorAll('.spl-filter-btn').forEach(b => b.classList.remove('active'));
+                        e.target.classList.add('active');
+                        this.currentFilter = e.target.dataset.filter;
+                        this.filterAndDisplay();
+                    });
+                });
+
+                document.getElementById('refreshBtn').addEventListener('click', () => {
+                    this.loadWallpapers();
+                });
+
+                document.getElementById('loadMoreBtn').addEventListener('click', () => {
+                    this.loadMore();
+                });
+            }
+
+            async loadWallpapers() {
+                this.showLoading();
+
+                try {
+                    await this.GitHubFetch();
+                    this.hideLoading();
+                    this.filterAndDisplay();
+                } catch (error) {
+                    this.showError();
+                }
+            }
+
+            async GitHubFetch() {
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                this.wallpapers = [
+                    {
+                        id: 1,
+                        name: 'IcyBeginnings',
+                        url: 'https://raw.githubusercontent.com/SkyPenguinLabs/SPL-CourseDemos/refs/heads/main/SplWallpapers/SPLWallpaper_WallpaperAsciiCityChaosPixelated.png',
+                        downloadUrl: 'https://raw.githubusercontent.com/SkyPenguinLabs/SPL-CourseDemos/refs/heads/main/SplWallpapers/SPLWallpaper_WallpaperAsciiCityChaosPixelated.png',
+                        category: 'IcyBeginnings',
+                        size: '1920x1080',
+                        width: 1920,
+                        height: 1080
+                    },
+                    {
+                        id: 2,
+                        name: 'SPL-Generic#1',
+                        url: 'https://raw.githubusercontent.com/SkyPenguinLabs/SPL-CourseDemos/refs/heads/main/SplWallpapers/SPLWallpaper_WallpaperGeneric1.png',
+                        downloadUrl: 'https://raw.githubusercontent.com/SkyPenguinLabs/SPL-CourseDemos/refs/heads/main/SplWallpapers/SPLWallpaper_WallpaperGeneric1.png',
+                        category: 'IcyBeginnings',
+                        size: '1920x1080',
+                        width: 1920,
+                        height: 1080
+                    },
+                    {
+                        id: 3,
+                        name: 'SplOrgLogo',
+                        url: 'https://avatars.githubusercontent.com/u/121910566?s=400&u=3fd06db0d7ec6506dc1c6db9b0a7eb35eee77721&v=4',
+                        downloadUrl: 'https://avatars.githubusercontent.com/u/121910566?s=400&u=3fd06db0d7ec6506dc1c6db9b0a7eb35eee77721&v=4',
+                        category: 'Planet-C3',
+                        size: '296x296',
+                        width: 296,
+                        height: 296,
+                    },
+                    {
+                        id: 4,
+                        name: 'SPLBrandBanner',
+                        url: 'https://raw.githubusercontent.com/SkyPenguinLabs/SPL-CourseDemos/refs/heads/main/Assets/SkyPenguinLabsGithubBackground.png',
+                        downloadUrl: 'https://raw.githubusercontent.com/SkyPenguinLabs/SPL-CourseDemos/refs/heads/main/Assets/SkyPenguinLabsGithubBackground.png',
+                        category: 'Planet-C3',
+                        size: '985x240',
+                        width: 985,
+                        height: 296,
+                    },
+                    {
+                        id: 5,
+                        name: 'BHGM-CoverImage_Amazon',
+                        url: 'https://m.media-amazon.com/images/I/21HhOHeBhQL._SY445_SX342_ControlCacheEqualizer_.jpg',
+                        downloadUrl: 'https://m.media-amazon.com/images/I/21HhOHeBhQL._SY445_SX342_ControlCacheEqualizer_.jpg',
+                        category: 'Planet-C3',
+                        size: '288x445',
+                        width: 288,
+                        height: 296,
+                    },
+                    {
+                        id: 6,
+                        name: 'GHFM-CoverImage_Amazon',
+                        url: 'https://m.media-amazon.com/images/I/21dicAbDDuL._SY445_SX342_.jpg',
+                        downloadUrl: 'https://m.media-amazon.com/images/I/21dicAbDDuL._SY445_SX342_.jpg',
+                        category: 'Planet-C3',
+                        size: '288x445',
+                        width: 288,
+                        height: 296,
+
+                    },
+                    {
+                        id: 7,
+                        name: 'BHPM-CoverImage_Amazon',
+                        url: 'https://m.media-amazon.com/images/I/51Hc9n6rM9L._SY466_.jpg',
+                        downloadUrl: 'https://m.media-amazon.com/images/I/21dicAbDDuL._SY445_SX342_.jpg',
+                        category: 'Planet-C3',
+                        size: '302x466',
+                        width: 302,
+                        height: 466,
+                    },
+                    {
+                        id: 8,
+                        name: 'historical-archive-skyline-REPL',
+                        url: 'https://miro.medium.com/v2/resize:fit:720/format:webp/1*shKvntvDw0xiLJ8K6ZikOg.png',
+                        downloadUrl: 'https://miro.medium.com/v2/resize:fit:720/format:webp/1*shKvntvDw0xiLJ8K6ZikOg.png',
+                        category: 'SkyLine',
+                        size: '652x293',
+                        width: 652,
+                        height: 466,
+                    },
+                    {
+                        id: 9,
+                        name: 'historical-archive-skyline-demobanner',
+                        url: 'https://miro.medium.com/v2/resize:fit:740/1*j9zZrTrzsYHf3iRxcVh7fw.png',
+                        downloadUrl: 'https://miro.medium.com/v2/resize:fit:740/1*j9zZrTrzsYHf3iRxcVh7fw.png',
+                        category: 'SkyLine',
+                        size: '370x94',
+                        width: 370,
+                        height: 94,
+                    },
+                    {
+                        id: 10,
+                        name: 'REFM-CoverImage',
+                        url: 'https://m.media-amazon.com/images/I/51pWDHlNh-L._SY466_.jpg',
+                        downloadUrl: 'https://m.media-amazon.com/images/I/51pWDHlNh-L._SY466_.jpg',
+                        category: 'Planet-C3',
+                        size: '302x466',
+                        width: 302,
+                        height: 466,
+                    },
+                    {
+                        id: 11,
+                        name: 'RovnaxOg',
+                        url: 'https://avatars.githubusercontent.com/u/87203697?s=400&u=bc8a48faa6f7a990ddf13e2412ff43d5356808f0&v=4',
+                        downloadUrl: 'https://avatars.githubusercontent.com/u/87203697?s=400&u=bc8a48faa6f7a990ddf13e2412ff43d5356808f0&v=4',
+                        category: 'Planet-C3',
+                        size: '263x263',
+                        width: 263,
+                        height: 466,
+                    },
+                    {
+                        id: 12,
+                        name: 'OgPenguinBackgroundTheWorldIsYours',
+                        url: 'https://raw.githubusercontent.com/TotallyNotAHaxxer/TotallyNotAHaxxer/main/TheWorldIsYours.png',
+                        downloadUrl: 'https://raw.githubusercontent.com/TotallyNotAHaxxer/TotallyNotAHaxxer/main/TheWorldIsYours.png',
+                        category: 'OgArchive',
+                        size: '1767x389',
+                        width: 1767,
+                        height: 389,
+                    },
+                    {
+                        id: 13,
+                        name: 'SkyLineInTheRunning',
+                        url: 'https://miro.medium.com/v2/1*BTLIRmLGX8-TjgXe35s9nQ.png',
+                        downloadUrl: 'https://miro.medium.com/v2/1*BTLIRmLGX8-TjgXe35s9nQ.png',
+                        category: 'OgArchive',
+                        size: '775x520',
+                        width: 1767,
+                        height: 389,
+                    }
+                ];
+
+                this.updateStats();
+            }
+
+            filterAndDisplay() {
+                let filtered = this.wallpapers;
+
+                if (this.currentFilter !== 'all') {
+                    filtered = filtered.filter(w => w.category === this.currentFilter);
+                }
+
+                if (this.searchQuery) {
+                    filtered = filtered.filter(w =>
+                        w.name.toLowerCase().includes(this.searchQuery) ||
+                        w.category.toLowerCase().includes(this.searchQuery)
+                    );
+                }
+
+                this.displayedWallpapers = filtered;
+                this.loadedCount = 0;
+                this.renderGallery();
+                this.loadMore();
+            }
+
+            renderGallery() {
+                const gallery = document.getElementById('gallery');
+                gallery.innerHTML = '';
+                gallery.style.display = 'block';
+            }
+
+            loadMore() {
+                const gallery = document.getElementById('gallery');
+                const startIndex = this.loadedCount;
+                const endIndex = Math.min(startIndex + this.batchSize, this.displayedWallpapers.length);
+
+                for (let i = startIndex; i < endIndex; i++) {
+                    const wallpaper = this.displayedWallpapers[i];
+                    const element = this.createWallpaperElement(wallpaper, i);
+                    gallery.appendChild(element);
+                }
+
+                this.loadedCount = endIndex;
+                this.updateLoadMoreButton();
+            }
+
+            createWallpaperElement(wallpaper, index) {
+                const div = document.createElement('div');
+                div.className = 'spl-wallpaper-item spl-fade-in';
+                div.style.animationDelay = `${(index % this.batchSize) * 0.1}s`;
+
+                div.innerHTML = `
+                    <img src="${wallpaper.url}" alt="${wallpaper.name}" class="spl-wallpaper-img" loading="lazy">
+                    <div class="spl-wallpaper-overlay">
+                        <div class="spl-wallpaper-title">${wallpaper.name}</div>
+                        <div class="spl-wallpaper-info">
+                            <span>${wallpaper.category}</span>
+                            <span class="spl-wallpaper-size">${wallpaper.size}</span>
+                        </div>
+                    </div>
+                `;
+
+                div.addEventListener('click', () => {
+                    window.open(wallpaper.downloadUrl, '_blank');
+                });
+
+                return div;
+            }
+
+            updateStats() {
+                document.getElementById('totalCount').textContent = this.wallpapers.length;
+            }
+
+            updateLoadMoreButton() {
+                const loadMoreDiv = document.getElementById('loadMore');
+                if (this.loadedCount < this.displayedWallpapers.length) {
+                    loadMoreDiv.style.display = 'block';
+                } else {
+                    loadMoreDiv.style.display = 'none';
+                }
+
+                document.getElementById('loadedCount').textContent = this.loadedCount;
+            }
+
+            showLoading() {
+                document.getElementById('loading').style.display = 'block';
+                document.getElementById('gallery').style.display = 'none';
+                document.getElementById('error').style.display = 'none';
+                document.getElementById('loadMore').style.display = 'none';
+            }
+
+            hideLoading() {
+                document.getElementById('loading').style.display = 'none';
+            }
+
+            showError() {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('gallery').style.display = 'none';
+                document.getElementById('error').style.display = 'block';
+                document.getElementById('loadMore').style.display = 'none';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new WallpaperGallery();
+        });
+    </script>
+</body>
+</html>
