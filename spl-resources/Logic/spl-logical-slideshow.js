@@ -231,19 +231,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // Sample slideshow data
     const splScreenshots = [
         {
-            title: "SPLabs Course Platform",
-            image: "https://raw.githubusercontent.com/SkyPenguinLabs/SPL-CourseDemos/refs/heads/main/SplWallpapers/SPLWallpaper_WallpaperAsciiCityChaosPixelated.png",
-            description: "Our intuitive learning platform designed for cybersecurity professionals."
-        },
-        {
-            title: "Reverse Engineering Workspace",
+            title: "Who Are We?",
             image: "https://raw.githubusercontent.com/SkyPenguinLabs/SPL-CourseDemos/refs/heads/main/SplWallpapers/SPLWallpaper_WallpaperGeneric1.png",
-            description: "Custom-built tools and environments for practical reverse engineering exercises."
+            description: "A small team of security researchers who got really pissed off that content creators keep trashing the educational industry and want to add our contributions to fix it! "
         },
         {
-            title: "SPL Community",
-            image: "https://raw.githubusercontent.com/SkyPenguinLabs/SPL-CourseDemos/refs/heads/main/Assets/SkyPenguinLabsGithubBackground.png",
-            description: "Join our community of security professionals and learn together."
+            title: "Why Us > Others?",
+            image: "https://raw.githubusercontent.com/SkyPenguinLabs/SPL-CourseDemos/refs/heads/main/CourseDemoSS/LoadsOfInfo.png",
+            description: "Unlike most educational providers, we give: continuous deals on all products, always have free content to release, let you preview & demo up to 20+ pages for all digital written content, maintain and produce our own artwork, not AI generated BS, not AI engineered, not even AI grown. So, should we list more? Cause we can? We do what everybody else in today's world chooses to run away from: actual development. "
+        },
+        {
+            title: "Who needs us?",
+            image: "why?",
+            description: "Curious to learn? Tired of AI content? Tired of content creators saying 'we have the golden path' and delivering shit on a silver platter? Then you are mean't for us. We don't promise to give you the path to success - we admit this is personal and is not viable to give. But, we will promise to deliver high quality, specific, niche educative and quantitative information that is affordable for everybody. We don't make you sign up to a platform to try, we don't try to push you to sales teams (this does not exist for us and won't), we don't try to push you to give us an email- simply browse, and enjoy! ^_^  "
         }
     ];
     
