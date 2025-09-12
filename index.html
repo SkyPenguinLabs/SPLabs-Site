@@ -201,17 +201,19 @@
                 </div>
 
                 <div class="spl-shop-action">
-                                                                <span class="spl-info" onclick="showSPLOverlay(
+
+
+                    <button onclick="showSPLOverlay(
                     'We have an Etsy shop!', 
                     `wan't to buy any of our content?`, 
-                    'We have decided to take all of our digital content to the beautiful platform that Etsy is. This is where SPLabs primarily facilitates all of its transactions or sales in relation to digitally produced content - courses, lessons, ebooks, art, etc. You can find us at https://skypenguinlabs.etsy.com '
-                )"></span>
-                    <a href="https://skypenguinlabs.etsy.com">
-                        <button class="spl-button spl-button-secondary">
-                            <i class="fas fa-book-open"></i>
-                            Visit the Shop
-                        </button>
-                    </a>
+                    'We have decided to take all of our digital content to the beautiful platform that Etsy is. This is where SPLabs primarily facilitates all of its transactions or sales in relation to digitally produced content - courses, lessons, ebooks, art, etc. You can find us at https://skypenguinlabs.etsy.com ',
+                    null,
+    [{text: 'Go to Dashboard', url: '/dashboard', style:'spl-button-primary'}, {text: 'View Docs', url: '/docs', newTab: true}]
+                )" class="spl-button spl-button-secondary">
+                        <i class="fas fa-book-open"></i>
+                        Visit the Shop
+                    </button>
+
                 </div>
             </div>
 

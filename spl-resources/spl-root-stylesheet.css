@@ -1037,6 +1037,23 @@ body.spl-overlay-open {
     text-decoration: underline;
 }
 
+
+
+/*
+> @OverlayBox->ButtonContainer 
+        :  SPL Overlay -> Container that holds all configured button(s) (if any)
+*/
+.spl-overlay-button-container {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
 /*
 > @OverlayBox->Scrollbar 
         :  Custom scrollbar for overlay. Just in case the content decides to be a dick
