@@ -567,10 +567,8 @@ h6 {
        background: linear-gradient(135deg, var(--spl-blue-light) 0%, var(--spl-red-dark) 100%);
 
     */
-
-    /* Gradients */
-    background: linear-gradient(135deg, var(--spl-blue-dark) 0%, var(--accent) 100%);
-
+    /* Gradients 100 degrees was chosen for just the best eveness inbetween the blues*/
+    background: linear-gradient(90deg, var(--spl-blue-light) 0%, var(--spl-blue-dark) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
