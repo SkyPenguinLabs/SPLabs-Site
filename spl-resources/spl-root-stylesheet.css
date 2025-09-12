@@ -12,7 +12,7 @@
 |>>> None of this is AI, so if you want to make a PR or recommendation, it better not be 
 |>>> some BS AI slop that you are throwing at us. Stay logistical. This is an actual project
 |>>> not just some ordinary site that sells products. 
-*/ 
+*/
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
 
@@ -42,7 +42,7 @@
         [ SPL Theme Typography ]
     */
     --spl-font-mono: 'Consolas', monospace;
-    --spl-font-sans:  'Consolas', monaco, monospace;
+    --spl-font-sans: 'Consolas', monaco, monospace;
     /*
         [ SPL @CSS Properties ]
     */
@@ -414,7 +414,7 @@ h6 {
     gap: var(--spl-spacing-sm);
 }
 
-.spl-crypto-link, 
+.spl-crypto-link,
 .spl-crypto-copy {
     flex: 1;
     display: flex;
@@ -471,6 +471,7 @@ h6 {
         opacity: 0;
         transform: translateY(-10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -778,7 +779,7 @@ h6 {
     border-radius: var(--spl-border-radius);
     overflow: hidden;
     transition: var(--spl-transition);
-    max-width:500px;
+    max-width: 500px;
 }
 
 .spl-coaching-card:hover {

@@ -1,57 +1,664 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SkyPenguinLabs Art Gallery</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>SkyPenguinLabs Asset Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --spl-grey-bg: #0D0D0C;
+            --spl-white-bg: #0F0F0F;
+            --spl-black-bg: #000000;
+            --spl-grey-dark: #404040;
+            --spl-grey-light: #808080;
+            --spl-white-dark: #BFBFBF;
+            --spl-white-light: #FFFFFF;
+            --spl-red-dark: #CC0000;
+            --spl-red-light: #FF0000;
+            --spl-blue-dark: #0000CC;
+            --spl-blue-light: #0000FF;
+            --spl-green-dark: #00CC00;
+            --spl-font-mono: 'Consolas', monospace;
+            --spl-font-sans: 'Space Grotesk', 'Arial', sans-serif;
+            --spl-spacing-xs: 0.25rem;
+            --spl-spacing-sm: 0.5rem;
+            --spl-spacing-md: 1rem;
+            --spl-spacing-lg: 1.5rem;
+            --spl-spacing-xl: 2rem;
+            --spl-border-radius: 4px;
+            --spl-transition: all 0.2s ease-in-out;
+            --spl-container-width: 1400px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            font-family: var(--spl-font-sans);
+            background-color: var(--spl-black-bg);
+            color: var(--spl-white-light);
+            line-height: 1.6;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .spl-container {
+            width: 100%;
+            max-width: var(--spl-container-width);
+            margin: 0 auto;
+            padding: 0 var(--spl-spacing-lg);
+        }
+
+        /* Header */
+        .spl-header {
+            background-color: var(--spl-black-bg);
+            padding: var(--spl-spacing-sm) 0;
+            border-bottom: 2px solid var(--spl-blue-dark);
+        }
+
+        .spl-header .spl-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .spl-header-brand {
+            display: flex;
+            align-items: center;
+        }
+
+        .spl-logo {
+            height: 32px;
+            margin-right: var(--spl-spacing-md);
+        }
+
+        .spl-brand-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--spl-white-light);
+        }
+
+        /* Banner Section */
+        .spl-banner {
+            background-color: var(--spl-black-bg);
+            padding: var(--spl-spacing-lg) 0;
+            border-bottom: 1px solid var(--spl-grey-dark);
+        }
+
+        .spl-banner-content {
+            text-align: center;
+        }
+
+        .spl-banner-logo {
+            font-family: var(--spl-font-mono);
+            font-size: 8px;
+            line-height: 1.2;
+            color: var(--spl-blue-dark);
+            margin-bottom: var(--spl-spacing-md);
+            white-space: pre;
+            overflow: auto;
+        }
+
+        .spl-banner-stats {
+            display: flex;
+            justify-content: center;
+            gap: var(--spl-spacing-xl);
+            font-family: var(--spl-font-mono);
+            margin-bottom: var(--spl-spacing-lg);
+        }
+
+        .spl-stat-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spl-spacing-xs);
+            color: var(--spl-grey-light);
+            font-size: 0.85rem;
+        }
+
+        .spl-stat-number {
+            color: var(--spl-blue-light);
+            font-weight: 600;
+        }
+
+        /* Filter Controls */
+        .spl-filter-section {
+            background-color: var(--spl-grey-bg);
+            padding: var(--spl-spacing-md) 0;
+            border-bottom: 1px solid var(--spl-grey-dark);
+        }
+
+        .spl-filter-content {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spl-spacing-md);
+        }
+
+        .spl-search-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--spl-spacing-md);
+        }
+
+        .spl-search-box {
+            position: relative;
+            flex-grow: 1;
+            max-width: 400px;
+        }
+
+        .spl-search-box i {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--spl-grey-light);
+            font-size: 0.8rem;
+        }
+
+        .spl-search-input {
+            width: 100%;
+            background-color: var(--spl-black-bg);
+            border: 1px solid var(--spl-grey-dark);
+            border-radius: var(--spl-border-radius);
+            padding: 8px 12px 8px 30px;
+            color: var(--spl-white-light);
+            font-family: var(--spl-font-mono);
+            font-size: 0.8rem;
+            transition: var(--spl-transition);
+        }
+
+        .spl-search-input:focus {
+            outline: none;
+            border-color: var(--spl-blue-dark);
+        }
+
+        .spl-filter-buttons {
+            display: flex;
+            gap: var(--spl-spacing-sm);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .spl-filter-btn {
+            background-color: var(--spl-black-bg);
+            border: 2px solid var(--spl-blue-dark);
+            color: var(--spl-blue-light);
+            font-family: var(--spl-font-mono);
+            font-size: 0.75rem;
+            padding: 6px 12px;
+            border-radius: var(--spl-border-radius);
+            cursor: pointer;
+            transition: var(--spl-transition);
+        }
+
+        .spl-filter-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .spl-filter-btn.active {
+            background-color: var(--spl-blue-dark);
+            color: var(--spl-white-light);
+        }
+
+        /* Button Component */
+        .spl-button {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spl-spacing-sm);
+            background-color: var(--spl-black-bg);
+            color: var(--spl-white-light);
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            border: 2px solid var(--spl-blue-dark);
+            border-radius: var(--spl-border-radius);
+            transition: var(--spl-transition);
+            cursor: pointer;
+            font-family: var(--spl-font-sans);
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+
+        .spl-button:hover {
+            transform: translateY(-2px);
+            border-color: var(--spl-blue-light);
+        }
+
+        /* Gallery Section */
+        .spl-gallery-section {
+            flex: 1;
+            padding: var(--spl-spacing-lg) 0;
+        }
+
+        .spl-gallery-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .spl-gallery-wrapper {
+            overflow-x: auto;
+            overflow-y: hidden;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            scroll-behavior: smooth;
+            padding: var(--spl-spacing-md) 0;
+        }
+
+        .spl-gallery-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+
+        .spl-gallery-grid {
+            display: flex;
+            gap: var(--spl-spacing-lg);
+            padding: 0 var(--spl-spacing-md);
+            min-height: 280px;
+        }
+
+        .spl-asset-item {
+            flex: 0 0 200px;
+            background-color: var(--spl-grey-bg);
+            border: 2px solid var(--spl-grey-dark);
+            border-radius: var(--spl-border-radius);
+            overflow: hidden;
+            cursor: pointer;
+            transition: var(--spl-transition);
+            position: relative;
+        }
+
+        .spl-asset-item:hover {
+            transform: translateY(-4px);
+            border-color: var(--spl-blue-light);
+            box-shadow: 0 4px 20px rgba(0, 0, 255, 0.1);
+        }
+
+        .spl-asset-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .spl-asset-item:hover .spl-asset-img {
+            transform: scale(1.05);
+        }
+
+        .spl-asset-info {
+            padding: var(--spl-spacing-sm);
+        }
+
+        .spl-asset-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--spl-blue-light);
+            margin-bottom: var(--spl-spacing-xs);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .spl-asset-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.7rem;
+        }
+
+        .spl-asset-category {
+            color: var(--spl-grey-light);
+        }
+
+        .spl-asset-size {
+            background-color: var(--spl-blue-dark);
+            color: var(--spl-white-light);
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-size: 0.6rem;
+            font-weight: 600;
+        }
+
+        /* Navigation Arrows */
+        .spl-nav-arrows {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--spl-spacing-lg);
+            margin-top: var(--spl-spacing-md);
+        }
+
+        .spl-nav-btn {
+            background-color: var(--spl-blue-dark);
+            border: none;
+            color: var(--spl-white-light);
+            width: 20px;
+            height: 20px;
+            border-radius: 10%;
+            cursor: pointer;
+            transition: var(--spl-transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .spl-nav-btn:hover:not(:disabled) {
+            background-color: var(--spl-blue-light);
+            transform: scale(1.1);
+        }
+
+        .spl-nav-btn:disabled {
+            background-color: var(--spl-grey-dark);
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .spl-page-info {
+            color: var(--spl-grey-light);
+            font-family: var(--spl-font-mono);
+            font-size: 0.8rem;
+        }
+
+        /* Loading States */
+        .spl-loading {
+            text-align: center;
+            padding: var(--spl-spacing-xl) 0;
+            color: var(--spl-grey-light);
+        }
+
+        .spl-loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--spl-grey-dark);
+            border-top: 3px solid var(--spl-blue-light);
+            border-radius: 50%;
+            margin: 0 auto var(--spl-spacing-md);
+            animation: spl-spin 1s linear infinite;
+        }
+
+        /* Modal Styles */
+        .spl-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spl-spacing-lg);
+        }
+
+        .spl-modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .spl-modal-content {
+            position: relative;
+            background: var(--spl-grey-bg);
+            border: 2px solid var(--spl-blue-dark);
+            border-radius: var(--spl-border-radius);
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        .spl-modal-close {
+            position: absolute;
+            top: var(--spl-spacing-sm);
+            right: var(--spl-spacing-sm);
+            background: var(--spl-red-dark);
+            border: none;
+            color: var(--spl-white-light);
+            width: 30px;
+            height: 30px;
+            border-radius: 10%;
+            cursor: pointer;
+            z-index: 1001;
+            transition: var(--spl-transition);
+        }
+
+        .spl-modal-close:hover {
+            background: var(--spl-red-light);
+        }
+
+        .spl-modal-header {
+            display: flex;
+            gap: var(--spl-spacing-md);
+            padding: var(--spl-spacing-lg);
+            border-bottom: 1px solid var(--spl-grey-dark);
+        }
+
+        .spl-modal-image {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: var(--spl-border-radius);
+            border: 1px solid var(--spl-grey-dark);
+        }
+
+        .spl-modal-info {
+            flex: 1;
+        }
+
+        .spl-modal-info h2 {
+            color: var(--spl-blue-light);
+            margin-bottom: var(--spl-spacing-sm);
+            font-size: 1.2rem;
+        }
+
+        .spl-modal-meta {
+            display: flex;
+            gap: var(--spl-spacing-md);
+            font-size: 0.8rem;
+            color: var(--spl-grey-light);
+        }
+
+        .spl-modal-details {
+            padding: var(--spl-spacing-lg);
+        }
+
+        .spl-detail-item {
+            margin-bottom: var(--spl-spacing-md);
+        }
+
+        .spl-detail-item label {
+            display: block;
+            color: var(--spl-blue-light);
+            font-weight: 600;
+            margin-bottom: var(--spl-spacing-xs);
+            font-size: 0.9rem;
+        }
+
+        .spl-detail-item span,
+        .spl-detail-item p {
+            color: var(--spl-white-light);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .spl-modal-actions {
+            padding: var(--spl-spacing-lg);
+            border-top: 1px solid var(--spl-grey-dark);
+            text-align: center;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes spl-spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .spl-no-results {
+            text-align: center;
+            padding: var(--spl-spacing-xl) 0;
+            color: var(--spl-grey-light);
+            font-family: var(--spl-font-mono);
+        }
+
+        /* Footer */
+        .spl-footer {
+            background-color: var(--spl-black-bg);
+            padding: var(--spl-spacing-lg) 0 var(--spl-spacing-md);
+            border-top: 1px solid var(--spl-grey-dark);
+            margin-top: auto;
+        }
+
+        .spl-footer-content {
+            text-align: center;
+            color: var(--spl-grey-light);
+            font-size: 0.8rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .spl-banner-logo {
+                font-size: 6px;
+            }
+
+            .spl-banner-stats {
+                flex-direction: column;
+                gap: var(--spl-spacing-sm);
+            }
+
+            .spl-search-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .spl-search-box {
+                max-width: none;
+            }
+
+            .spl-asset-item {
+                flex: 0 0 160px;
+            }
+
+            .spl-asset-img {
+                height: 120px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .spl-asset-item {
+                flex: 0 0 140px;
+            }
+
+            .spl-asset-img {
+                height: 100px;
+            }
+
+            .spl-modal-content {
+                margin: var(--spl-spacing-sm);
+                max-width: none;
+            }
+
+            .spl-modal-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .spl-modal-image {
+                align-self: center;
+            }
+        }
+    </style>
 </head>
+
 <body>
+    <!-- Header -->
     <header class="spl-header">
         <div class="spl-container">
             <div class="spl-header-brand">
-                <img src="https://github.com/TotallyNotAHaxxer/A-Publisher-Icon-Edited-/blob/main/PublisherIcoRed.png?raw=true" alt="SkyPenguinLabs Logo" class="spl-logo">
+                <img src="https://github.com/TotallyNotAHaxxer/A-Publisher-Icon-Edited-/blob/main/PublisherIcoRed.png?raw=true"
+                    alt="SkyPenguinLabs Logo" class="spl-logo">
                 <span class="spl-brand-name">SkyPenguinLabs</span>
             </div>
         </div>
     </header>
 
-    <div class="spl-gallery-header">
+    <!-- Banner -->
+    <section class="spl-banner">
         <div class="spl-container">
-            <div class="spl-gallery-logo">
-<pre>                                                                                                 
+            <div class="spl-banner-content">
+                <div class="spl-banner-logo">
+                    <pre>
  _____ _       _____                 _     __        _           _____     _   _____             
 |   __| |_ _ _|  _  |___ ___ ___ _ _|_|___|  |   ___| |_ ___ ___|  _  |___| |_|     |___ _ _ ___ 
 |__   | '_| | |   __| -_|   | . | | | |   |  |__| .'| . |_ -|___|     |  _|  _|   --| .'| | | -_|
 |_____|_,_|_  |__|  |___|_|_|_  |___|_|_|_|_____|__,|___|___|   |__|__|_| |_| |_____|__,|\_/|___|
           |___|             |___|                                                                </pre>
-            </div>
-            
-            <div class="spl-gallery-stats">
-                <div class="spl-stat-item">
-                    <span class="spl-stat-number" id="totalCount">0</span>
-                    <span>wallpapers</span>
                 </div>
-                <div class="spl-stat-item">
-                    <span class="spl-stat-number" id="loadedCount">0</span>
-                    <span>loaded</span>
-                </div>
-                <div class="spl-stat-item">
-                    <span class="spl-stat-number">4K+</span>
-                    <span>resolution</span>
+
+                <div class="spl-banner-stats">
+                    <div class="spl-stat-item">
+                        <span class="spl-stat-number" id="totalCount">0</span>
+                        <span>assets</span>
+                    </div>
+                    <div class="spl-stat-item">
+                        <span class="spl-stat-number" id="filteredCount">0</span>
+                        <span>filtered</span>
+                    </div>
+                    <div class="spl-stat-item">
+                        <span class="spl-stat-number" id="currentPage">1</span>
+                        <span>of</span>
+                        <span class="spl-stat-number" id="totalPages">1</span>
+                        <span>pages</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="spl-gallery-controls">
+    <!-- Filter Controls -->
+    <section class="spl-filter-section">
         <div class="spl-container">
-            <div class="spl-search-container">
-                <div class="spl-search-box">
-                    <i class="fas fa-search"></i>
-                    <input type="text" class="spl-search-input" placeholder="Search wallpapers..." id="searchInput">
+            <div class="spl-filter-content">
+                <div class="spl-search-row">
+                    <div class="spl-search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" class="spl-search-input" placeholder="Search assets..." id="searchInput">
+                    </div>
+                    <button class="spl-filter-btn" id="refreshBtn">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
                 </div>
                 <div class="spl-filter-buttons">
                     <button class="spl-filter-btn active" data-filter="all">All</button>
@@ -61,394 +668,493 @@
                     <button class="spl-filter-btn" data-filter="OgArchive">OgArchive</button>
                 </div>
             </div>
-            <div class="spl-gallery-actions">
-                <button class="spl-button" id="refreshBtn">
-                    <i class="fas fa-sync-alt"></i>
-                    Refresh
-                </button>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="spl-gallery-section">
+        <div class="spl-container">
+            <div id="loading" class="spl-loading">
+                <div class="spl-loading-spinner"></div>
+                <div>Loading assets from the digital archives...</div>
+            </div>
+
+            <div id="gallery" class="spl-gallery-container" style="display: none;">
+                <div class="spl-gallery-wrapper" id="galleryWrapper">
+                    <div class="spl-gallery-grid" id="galleryGrid"></div>
+                </div>
+
+                <div class="spl-nav-arrows">
+                    <button class="spl-nav-btn" id="prevBtn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="spl-page-info">
+                        <span id="pageInfo">Page 1 of 1</span>
+                    </div>
+                    <button class="spl-nav-btn" id="nextBtn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="noResults" class="spl-no-results" style="display: none;">
+                <i class="fas fa-search"></i><br>
+                No assets found matching your criteria
             </div>
         </div>
-    </div>
 
-    <div id="loading" class="spl-loading">
-        <div class="spl-loading-spinner"></div>
-        <div class="spl-loading-text">Loading wallpapers from the digital ice caves...</div>
-    </div>
+        <!-- Asset Details Modal -->
+        <div id="assetModal" class="spl-modal" style="display: none;">
+            <div class="spl-modal-overlay"></div>
+            <div class="spl-modal-content">
+                <button class="spl-modal-close" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="spl-modal-header">
+                    <img id="modalImage" src="" alt="" class="spl-modal-image">
+                    <div class="spl-modal-info">
+                        <h2 id="modalTitle">Asset Name</h2>
+                        <div class="spl-modal-meta">
+                            <span id="modalCategory">Category</span>
+                            <span id="modalSize">Size</span>
+                        </div>
+                        <div class="spl-modal-author" id="modalAuthor">by Author</div>
+                    </div>
+                </div>
+                <div class="spl-modal-details">
+                    <div class="spl-detail-item">
+                        <label>Description</label>
+                        <span id="modalDescription">-</span>
+                    </div>
+                    <div class="spl-detail-item">
+                        <label>Story</label>
+                        <span id="modalStory">-</span>
+                    </div>
+                </div>
+                <div class="spl-modal-actions">
+                    <button class="spl-button" id="downloadBtn">
+                        <i class="fas fa-download"></i>View full version here
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div id="gallery" class="spl-gallery-grid spl-container" style="display: none;"></div>
-
-    <div id="error" class="spl-error" style="display: none;">
-        <div class="spl-error-icon"><i class="fas fa-exclamation-triangle"></i></div>
-        <div class="spl-error-title">Connection to the ice caves failed</div>
-        <div class="spl-error-message">Check your connection and try again</div>
-    </div>
-
-    <div id="loadMore" class="spl-load-more" style="display: none;">
-        <button class="spl-button spl-button-primary" id="loadMoreBtn">
-            <i class="fas fa-plus"></i>
-            Load More Wallpapers
-        </button>
-    </div>
-
+    <!-- Footer -->
     <footer class="spl-footer">
         <div class="spl-container">
             <div class="spl-footer-content">
-                <div class="spl-footer-brand">
-                    <div class="spl-footer-logo">
-                        <img src="https://github.com/TotallyNotAHaxxer/A-Publisher-Icon-Edited-/blob/main/PublisherIcoRed.png?raw=true"
-                            alt="Sky Penguin Labs" class="spl-logo-image">
-                        <span class="spl-company-name">SkyPenguinLabs</span>
-                    </div>
-                    <p class="spl-footer-description">
-                        Professional courses and consultation services for cybersecurity, reverse engineering,
-                        and software development.
-                    </p>
-                </div>
-
-                <div class="spl-footer-links">
-                    <h4>Quick Links</h4>
-                    <a href="#courses" class="spl-footer-link">
-                        <i class="fas fa-book"></i>
-                        Courses
-                    </a>
-                    <a href="#coaching" class="spl-footer-link">
-                        <i class="fas fa-user-graduate"></i>
-                        Consultation
-                    </a>
-                    <a href="https://skypenguinlabs.wtf/OtherPublicRefs/spl_art_cave" class="spl-footer-link">
-                        <i class="fas fa-image"></i>
-                        SPL Art Wall
-                    </a>
-                    <a href="https://rants.skypenguinlabs.wtf" class="spl-footer-link">
-                        <i class="fas fa-bullhorn"></i>
-                        SPL Rants
-                    </a>
-                    <a href="https://skypenguinlabs.wtf/toc" class="spl-footer-link">
-                        <i class="fas fa-file"></i>
-                        ToC
-                    </a>
-                </div>
-
-                <div class="spl-footer-contact">
-                    <h4>Get in Touch</h4>
-                    <a href="mailto:contact@skypenguinlabs.wtf" class="spl-footer-link">
-                        <i class="fas fa-envelope"></i>
-                        contact@skypenguinlabs.wtf
-                    </a>
-                    <a href="https://github.com/SkyPenguinLabs" class="spl-footer-link">
-                        <i class="fab fa-github"></i>
-                        GitHub
-                    </a>
-                    <a href="https://instagram.com/@SkyPenguinLabs" class="spl-footer-link">
-                        <i class="fab fa-instagram"></i>
-                        Instagram
-                    </a>
-                    <a href="https://x.com/SkyPenguinLabs" class="spl-footer-link">
-                        <i class="fab fa-twitter"></i>
-                        X/Twitter
-                    </a>
-                </div>
-            </div>
-
-            <div class="spl-footer-bottom">
                 <p>© 2025-2026 SkyPenguinLabs. All rights reserved. *Business Days Exclusive</p>
             </div>
         </div>
     </footer>
 
     <script>
-        class WallpaperGallery {
+        class AssetGallery {
             constructor() {
-                this.wallpapers = [];
-                this.displayedWallpapers = [];
+                this.assets = [];
+                this.filteredAssets = [];
                 this.currentFilter = 'all';
                 this.searchQuery = '';
-                this.loadedCount = 0;
-                this.batchSize = 12;
+                this.currentPage = 1;
+                this.itemsPerPage = 6;
                 this.init();
             }
 
             init() {
                 this.bindEvents();
-                this.loadWallpapers();
+                this.loadAssets();
             }
 
             bindEvents() {
+                // Search
                 document.getElementById('searchInput').addEventListener('input', (e) => {
                     this.searchQuery = e.target.value.toLowerCase();
-                    this.filterAndDisplay();
+                    this.applyFilters();
                 });
 
-                document.querySelectorAll('.spl-filter-btn').forEach(btn => {
+                // Filter buttons
+                document.querySelectorAll('.spl-filter-btn[data-filter]').forEach(btn => {
                     btn.addEventListener('click', (e) => {
-                        document.querySelectorAll('.spl-filter-btn').forEach(b => b.classList.remove('active'));
+                        document.querySelectorAll('.spl-filter-btn[data-filter]').forEach(b => b.classList.remove('active'));
                         e.target.classList.add('active');
                         this.currentFilter = e.target.dataset.filter;
-                        this.filterAndDisplay();
+                        this.applyFilters();
                     });
                 });
 
-                document.getElementById('refreshBtn').addEventListener('click', () => {
-                    this.loadWallpapers();
+                // Navigation
+                document.getElementById('prevBtn').addEventListener('click', () => this.previousPage());
+                document.getElementById('nextBtn').addEventListener('click', () => this.nextPage());
+
+                // Refresh
+                document.getElementById('refreshBtn').addEventListener('click', () => this.loadAssets());
+
+                // Keyboard navigation
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') this.previousPage();
+                    if (e.key === 'ArrowRight') this.nextPage();
+                    if (e.key === 'Escape') this.hideAssetModal();
                 });
 
-                document.getElementById('loadMoreBtn').addEventListener('click', () => {
-                    this.loadMore();
+                // Modal events
+                document.getElementById('closeModal').addEventListener('click', () => this.hideAssetModal());
+                document.getElementById('assetModal').addEventListener('click', (e) => {
+                    if (e.target.classList.contains('spl-modal-overlay')) {
+                        this.hideAssetModal();
+                    }
                 });
             }
 
-            async loadWallpapers() {
+            async loadAssets() {
                 this.showLoading();
 
                 try {
-                    await this.GitHubFetch();
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+
+                    this.assets = [
+                        {
+                            id: 1,
+                            name: 'IcyBeginnings',
+                            url: 'https://raw.githubusercontent.com/SkyPenguinLabs/SPL-CourseDemos/refs/heads/main/SplWallpapers/SPLWallpaper_WallpaperAsciiCityChaosPixelated.png',
+                            downloadUrl: 'https://raw.githubusercontent.com/SkyPenguinLabs/SPL-CourseDemos/refs/heads/main/SplWallpapers/SPLWallpaper_WallpaperAsciiCityChaosPixelated.png',
+                            category: 'IcyBeginnings',
+                            size: '1920x1080',
+                            Inform: {
+                                Author: "SkyPenguinLabs",
+                                Description: "A pixelated ASCII city chaos wallpaper featuring cyberpunk aesthetics with terminal-style graphics.",
+                                PurposeOrStory: "Created as the inaugural wallpaper for the IcyBeginnings collection, representing the digital frontier where code meets art in the frozen digital landscape."
+                            }
+                        },
+                        {
+                            id: 2,
+                            name: 'SPL-Generic#1',
+                            url: 'https://raw.githubusercontent.com/SkyPenguinLabs/SPL-CourseDemos/refs/heads/main/SplWallpapers/SPLWallpaper_WallpaperGeneric1.png',
+                            downloadUrl: 'https://raw.githubusercontent.com/SkyPenguinLabs/SPL-CourseDemos/refs/heads/main/SplWallpapers/SPLWallpaper_WallpaperGeneric1.png',
+                            category: 'IcyBeginnings',
+                            size: '1920x1080',
+                            Inform: {
+                                Author: "SkyPenguinLabs",
+                                Description: "A versatile generic wallpaper design with clean geometric patterns and SPL branding elements.",
+                                PurposeOrStory: "Designed as a multipurpose background that embodies the SPL aesthetic while remaining subtle enough for professional use."
+                            }
+                        },
+                        {
+                            id: 3,
+                            name: 'SplOrgLogo',
+                            url: 'https://avatars.githubusercontent.com/u/121910566?s=400&u=3fd06db0d7ec6506dc1c6db9b0a7eb35eee77721&v=4',
+                            downloadUrl: 'https://avatars.githubusercontent.com/u/121910566?s=400&u=3fd06db0d7ec6506dc1c6db9b0a7eb35eee77721&v=4',
+                            category: 'Planet-C3',
+                            size: '296x296',
+                            Inform: {
+                                Author: "SkyPenguinLabs",
+                                Description: "Official organization logo featuring the iconic penguin design with cybersecurity elements.",
+                                PurposeOrStory: "The cornerstone visual identity of SkyPenguinLabs, representing the fusion of Antarctic resilience with cutting-edge technology expertise."
+                            }
+                        },
+                        {
+                            id: 4,
+                            name: 'SPLBrandBanner',
+                            url: 'https://raw.githubusercontent.com/SkyPenguinLabs/SPL-CourseDemos/refs/heads/main/Assets/SkyPenguinLabsGithubBackground.png',
+                            downloadUrl: 'https://raw.githubusercontent.com/SkyPenguinLabs/SPL-CourseDemos/refs/heads/main/Assets/SkyPenguinLabsGithubBackground.png',
+                            category: 'Planet-C3',
+                            size: '985x240',
+                            Inform: {
+                                Author: "SkyPenguinLabs",
+                                Description: "GitHub profile banner showcasing the SkyPenguinLabs brand identity and core services.",
+                                PurposeOrStory: "Created to establish a professional presence across GitHub repositories and showcase our expertise in cybersecurity and software development."
+                            }
+                        },
+                        {
+                            id: 5,
+                            name: 'BHGM-CoverImage',
+                            url: 'https://m.media-amazon.com/images/I/21HhOHeBhQL._SY445_SX342_ControlCacheEqualizer_.jpg',
+                            downloadUrl: 'https://m.media-amazon.com/images/I/21HhOHeBhQL._SY445_SX342_ControlCacheEqualizer_.jpg',
+                            category: 'Planet-C3',
+                            size: '342x445',
+                            Inform: {
+                                Author: "SkyPenguinLabs",
+                                Description: "Book cover for 'Black Hat Go Mastery' - an advanced guide to cybersecurity with Go programming.",
+                                PurposeOrStory: "Part of our educational publishing initiative to share advanced cybersecurity knowledge and practical programming techniques with the community."
+                            }
+                        },
+                        {
+                            id: 6,
+                            name: 'GHFM-CoverImage',
+                            url: 'https://m.media-amazon.com/images/I/21dicAbDDuL._SY445_SX342_.jpg',
+                            downloadUrl: 'https://m.media-amazon.com/images/I/21dicAbDDuL._SY445_SX342_.jpg',
+                            category: 'Planet-C3',
+                            size: '342x445',
+                            Inform: {
+                                Author: "SkyPenguinLabs",
+                                Description: "Book cover for 'Go Hacking For Mastery' featuring advanced penetration testing techniques.",
+                                PurposeOrStory: "Another cornerstone publication in our cybersecurity education series, focusing on ethical hacking methodologies and Go programming applications."
+                            }
+                        },
+                        {
+                            id: 7,
+                            name: 'BHPM-CoverImage',
+                            url: 'https://m.media-amazon.com/images/I/51Hc9n6rM9L._SY466_.jpg',
+                            downloadUrl: 'https://m.media-amazon.com/images/I/51Hc9n6rM9L._SY466_.jpg',
+                            category: 'Planet-C3',
+                            size: '302x466',
+                            Inform: {
+                                Author: "SkyPenguinLabs",
+                                Description: "Book cover for 'Black Hat Python Mastery' - comprehensive Python security programming guide.",
+                                PurposeOrStory: "The Python companion to our cybersecurity education series, demonstrating advanced security concepts through practical Python implementations."
+                            }
+                        },
+                        {
+                            id: 8,
+                            name: 'SkyLine-REPL',
+                            url: 'https://miro.medium.com/v2/resize:fit:720/format:webp/1*shKvntvDw0xiLJ8K6ZikOg.png',
+                            downloadUrl: 'https://miro.medium.com/v2/resize:fit:720/format:webp/1*shKvntvDw0xiLJ8K6ZikOg.png',
+                            category: 'SkyLine',
+                            size: '652x293',
+                            Inform: {
+                                Author: "Totally_Not_A_Haxxer",
+                                Description: "Screenshot of the SkyLine programming language REPL interface in action.",
+                                PurposeOrStory: "Documentation asset showcasing the interactive development environment of our custom programming language designed for security research and automation."
+                            }
+                        },
+                        {
+                            id: 9,
+                            name: 'SkyLine-DemoBanner',
+                            url: 'https://miro.medium.com/v2/resize:fit:740/1*j9zZrTrzsYHf3iRxcVh7fw.png',
+                            downloadUrl: 'https://miro.medium.com/v2/resize:fit:740/1*j9zZrTrzsYHf3iRxcVh7fw.png',
+                            category: 'SkyLine',
+                            size: '370x94',
+                            Inform: {
+                                Author: "SkyPenguinLabs",
+                                Description: "Promotional banner highlighting SkyLine language features and capabilities.",
+                                PurposeOrStory: "Marketing asset used in Medium articles and documentation to introduce readers to the innovative features of our custom programming language."
+                            }
+                        },
+                        {
+                            id: 10,
+                            name: 'REFM-CoverImage',
+                            url: 'https://m.media-amazon.com/images/I/51pWDHlNh-L._SY466_.jpg',
+                            downloadUrl: 'https://m.media-amazon.com/images/I/51pWDHlNh-L._SY466_.jpg',
+                            category: 'Planet-C3',
+                            size: '302x466',
+                            Inform: {
+                                Author: "SkyPenguinLabs",
+                                Description: "Book cover for 'Reverse Engineering For Mastery' - comprehensive guide to software analysis.",
+                                PurposeOrStory: "Educational publication focusing on reverse engineering methodologies, malware analysis, and binary exploitation techniques for cybersecurity professionals."
+                            }
+                        },
+                        {
+                            id: 11,
+                            name: 'RovnaxOg',
+                            url: 'https://avatars.githubusercontent.com/u/87203697?s=400&u=bc8a48faa6f7a990ddf13e2412ff43d5356808f0&v=4',
+                            downloadUrl: 'https://avatars.githubusercontent.com/u/87203697?s=400&u=bc8a48faa6f7a990ddf13e2412ff43d5356808f0&v=4',
+                            category: 'Planet-C3',
+                            size: '263x263',
+                            Inform: {
+                                Author: "Totally_Not_A_Haxxer",
+                                Description: "Original GitHub avatar for the Rovnax project, featuring minimalist design elements.",
+                                PurposeOrStory: "Historical avatar from early development phases, representing the evolution of our project identity and development philosophy."
+                            }
+                        },
+                        {
+                            id: 12,
+                            name: 'OgPenguin-TheWorldIsYours',
+                            url: 'https://raw.githubusercontent.com/TotallyNotAHaxxer/TotallyNotAHaxxer/main/TheWorldIsYours.png',
+                            downloadUrl: 'https://raw.githubusercontent.com/TotallyNotAHaxxer/TotallyNotAHaxxer/main/TheWorldIsYours.png',
+                            category: 'OgArchive',
+                            size: '1767x389',
+                            Inform: {
+                                Author: "Totally_Not_A_Haxxer",
+                                Description: "Motivational banner with cyberpunk aesthetics featuring the iconic 'The World Is Yours' message.",
+                                PurposeOrStory: "Created during the early days of the project as an inspirational banner, embodying the ambitious spirit and limitless potential of our cybersecurity endeavors."
+                            }
+                        },
+                        {
+                            id: 13,
+                            name: 'SkyLineInTheRunning',
+                            url: 'https://miro.medium.com/v2/1*BTLIRmLGX8-TjgXe35s9nQ.png',
+                            downloadUrl: 'https://miro.medium.com/v2/1*BTLIRmLGX8-TjgXe35s9nQ.png',
+                            category: 'OgArchive',
+                            size: '775x520',
+                            Inform: {
+                                Author: "Totally_Not_A_Haxxer",
+                                Description: "An image of the SkyLine programming language logo originally designed during active development.",
+                                PurposeOrStory: "This image was built in 2025 after a disruption in the skyline programming language which ended up making it a cornerstone of our development philosophy. It represents the perseverance through technical challenges and the evolution of our custom language architecture."
+                            }
+                        }
+                    ];
+
                     this.hideLoading();
-                    this.filterAndDisplay();
+                    this.applyFilters();
                 } catch (error) {
                     this.showError();
                 }
             }
 
-            async GitHubFetch() {
-                await new Promise(resolve => setTimeout(resolve, 1500));
-                this.wallpapers = [
-                    {
-                        id: 1,
-                        name: 'IcyBeginnings',
-                        url: 'https://raw.githubusercontent.com/SkyPenguinLabs/SPL-CourseDemos/refs/heads/main/SplWallpapers/SPLWallpaper_WallpaperAsciiCityChaosPixelated.png',
-                        downloadUrl: 'https://raw.githubusercontent.com/SkyPenguinLabs/SPL-CourseDemos/refs/heads/main/SplWallpapers/SPLWallpaper_WallpaperAsciiCityChaosPixelated.png',
-                        category: 'IcyBeginnings',
-                        size: '1920x1080',
-                        width: 1920,
-                        height: 1080
-                    },
-                    {
-                        id: 2,
-                        name: 'SPL-Generic#1',
-                        url: 'https://raw.githubusercontent.com/SkyPenguinLabs/SPL-CourseDemos/refs/heads/main/SplWallpapers/SPLWallpaper_WallpaperGeneric1.png',
-                        downloadUrl: 'https://raw.githubusercontent.com/SkyPenguinLabs/SPL-CourseDemos/refs/heads/main/SplWallpapers/SPLWallpaper_WallpaperGeneric1.png',
-                        category: 'IcyBeginnings',
-                        size: '1920x1080',
-                        width: 1920,
-                        height: 1080
-                    },
-                    {
-                        id: 3,
-                        name: 'SplOrgLogo',
-                        url: 'https://avatars.githubusercontent.com/u/121910566?s=400&u=3fd06db0d7ec6506dc1c6db9b0a7eb35eee77721&v=4',
-                        downloadUrl: 'https://avatars.githubusercontent.com/u/121910566?s=400&u=3fd06db0d7ec6506dc1c6db9b0a7eb35eee77721&v=4',
-                        category: 'Planet-C3',
-                        size: '296x296',
-                        width: 296,
-                        height: 296,
-                    },
-                    {
-                        id: 4,
-                        name: 'SPLBrandBanner',
-                        url: 'https://raw.githubusercontent.com/SkyPenguinLabs/SPL-CourseDemos/refs/heads/main/Assets/SkyPenguinLabsGithubBackground.png',
-                        downloadUrl: 'https://raw.githubusercontent.com/SkyPenguinLabs/SPL-CourseDemos/refs/heads/main/Assets/SkyPenguinLabsGithubBackground.png',
-                        category: 'Planet-C3',
-                        size: '985x240',
-                        width: 985,
-                        height: 296,
-                    },
-                    {
-                        id: 5,
-                        name: 'BHGM-CoverImage_Amazon',
-                        url: 'https://m.media-amazon.com/images/I/21HhOHeBhQL._SY445_SX342_ControlCacheEqualizer_.jpg',
-                        downloadUrl: 'https://m.media-amazon.com/images/I/21HhOHeBhQL._SY445_SX342_ControlCacheEqualizer_.jpg',
-                        category: 'Planet-C3',
-                        size: '288x445',
-                        width: 288,
-                        height: 296,
-                    },
-                    {
-                        id: 6,
-                        name: 'GHFM-CoverImage_Amazon',
-                        url: 'https://m.media-amazon.com/images/I/21dicAbDDuL._SY445_SX342_.jpg',
-                        downloadUrl: 'https://m.media-amazon.com/images/I/21dicAbDDuL._SY445_SX342_.jpg',
-                        category: 'Planet-C3',
-                        size: '288x445',
-                        width: 288,
-                        height: 296,
+            applyFilters() {
+                let filtered = this.assets;
 
-                    },
-                    {
-                        id: 7,
-                        name: 'BHPM-CoverImage_Amazon',
-                        url: 'https://m.media-amazon.com/images/I/51Hc9n6rM9L._SY466_.jpg',
-                        downloadUrl: 'https://m.media-amazon.com/images/I/21dicAbDDuL._SY445_SX342_.jpg',
-                        category: 'Planet-C3',
-                        size: '302x466',
-                        width: 302,
-                        height: 466,
-                    },
-                    {
-                        id: 8,
-                        name: 'historical-archive-skyline-REPL',
-                        url: 'https://miro.medium.com/v2/resize:fit:720/format:webp/1*shKvntvDw0xiLJ8K6ZikOg.png',
-                        downloadUrl: 'https://miro.medium.com/v2/resize:fit:720/format:webp/1*shKvntvDw0xiLJ8K6ZikOg.png',
-                        category: 'SkyLine',
-                        size: '652x293',
-                        width: 652,
-                        height: 466,
-                    },
-                    {
-                        id: 9,
-                        name: 'historical-archive-skyline-demobanner',
-                        url: 'https://miro.medium.com/v2/resize:fit:740/1*j9zZrTrzsYHf3iRxcVh7fw.png',
-                        downloadUrl: 'https://miro.medium.com/v2/resize:fit:740/1*j9zZrTrzsYHf3iRxcVh7fw.png',
-                        category: 'SkyLine',
-                        size: '370x94',
-                        width: 370,
-                        height: 94,
-                    },
-                    {
-                        id: 10,
-                        name: 'REFM-CoverImage',
-                        url: 'https://m.media-amazon.com/images/I/51pWDHlNh-L._SY466_.jpg',
-                        downloadUrl: 'https://m.media-amazon.com/images/I/51pWDHlNh-L._SY466_.jpg',
-                        category: 'Planet-C3',
-                        size: '302x466',
-                        width: 302,
-                        height: 466,
-                    },
-                    {
-                        id: 11,
-                        name: 'RovnaxOg',
-                        url: 'https://avatars.githubusercontent.com/u/87203697?s=400&u=bc8a48faa6f7a990ddf13e2412ff43d5356808f0&v=4',
-                        downloadUrl: 'https://avatars.githubusercontent.com/u/87203697?s=400&u=bc8a48faa6f7a990ddf13e2412ff43d5356808f0&v=4',
-                        category: 'Planet-C3',
-                        size: '263x263',
-                        width: 263,
-                        height: 466,
-                    },
-                    {
-                        id: 12,
-                        name: 'OgPenguinBackgroundTheWorldIsYours',
-                        url: 'https://raw.githubusercontent.com/TotallyNotAHaxxer/TotallyNotAHaxxer/main/TheWorldIsYours.png',
-                        downloadUrl: 'https://raw.githubusercontent.com/TotallyNotAHaxxer/TotallyNotAHaxxer/main/TheWorldIsYours.png',
-                        category: 'OgArchive',
-                        size: '1767x389',
-                        width: 1767,
-                        height: 389,
-                    },
-                    {
-                        id: 13,
-                        name: 'SkyLineInTheRunning',
-                        url: 'https://miro.medium.com/v2/1*BTLIRmLGX8-TjgXe35s9nQ.png',
-                        downloadUrl: 'https://miro.medium.com/v2/1*BTLIRmLGX8-TjgXe35s9nQ.png',
-                        category: 'OgArchive',
-                        size: '775x520',
-                        width: 1767,
-                        height: 389,
-                    }
-                ];
-
-                this.updateStats();
-            }
-
-            filterAndDisplay() {
-                let filtered = this.wallpapers;
-
+                // Apply category filter
                 if (this.currentFilter !== 'all') {
-                    filtered = filtered.filter(w => w.category === this.currentFilter);
+                    filtered = filtered.filter(asset => asset.category === this.currentFilter);
                 }
 
+                // Apply search filter
                 if (this.searchQuery) {
-                    filtered = filtered.filter(w =>
-                        w.name.toLowerCase().includes(this.searchQuery) ||
-                        w.category.toLowerCase().includes(this.searchQuery)
+                    filtered = filtered.filter(asset =>
+                        asset.name.toLowerCase().includes(this.searchQuery) ||
+                        asset.category.toLowerCase().includes(this.searchQuery)
                     );
                 }
 
-                this.displayedWallpapers = filtered;
-                this.loadedCount = 0;
-                this.renderGallery();
-                this.loadMore();
+                this.filteredAssets = filtered;
+                this.currentPage = 1;
+                this.updateDisplay();
             }
 
-            renderGallery() {
-                const gallery = document.getElementById('gallery');
-                gallery.innerHTML = '';
-                gallery.style.display = 'block';
-            }
+            updateDisplay() {
+                const totalPages = Math.ceil(this.filteredAssets.length / this.itemsPerPage);
 
-            loadMore() {
-                const gallery = document.getElementById('gallery');
-                const startIndex = this.loadedCount;
-                const endIndex = Math.min(startIndex + this.batchSize, this.displayedWallpapers.length);
-
-                for (let i = startIndex; i < endIndex; i++) {
-                    const wallpaper = this.displayedWallpapers[i];
-                    const element = this.createWallpaperElement(wallpaper, i);
-                    gallery.appendChild(element);
+                if (this.filteredAssets.length === 0) {
+                    this.showNoResults();
+                    return;
                 }
 
-                this.loadedCount = endIndex;
-                this.updateLoadMoreButton();
+                this.hideNoResults();
+                this.renderCurrentPage();
+                this.updateStats();
+                this.updateNavigation(totalPages);
             }
 
-            createWallpaperElement(wallpaper, index) {
+            renderCurrentPage() {
+                const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+                const endIndex = startIndex + this.itemsPerPage;
+                const pageAssets = this.filteredAssets.slice(startIndex, endIndex);
+
+                const grid = document.getElementById('galleryGrid');
+                grid.innerHTML = '';
+
+                pageAssets.forEach((asset, index) => {
+                    const element = this.createAssetElement(asset);
+                    element.style.animationDelay = `${index * 0.1}s`;
+                    grid.appendChild(element);
+                });
+
+                document.getElementById('gallery').style.display = 'block';
+            }
+
+            showAssetModal(asset) {
+                document.getElementById('modalImage').src = asset.url;
+                document.getElementById('modalTitle').textContent = asset.name;
+                document.getElementById('modalCategory').textContent = asset.category;
+                document.getElementById('modalSize').textContent = asset.size;
+
+                if (asset.Inform) {
+                    document.getElementById('modalAuthor').textContent = asset.Inform.Author || 'Unknown';
+                    document.getElementById('modalDescription').textContent = asset.Inform.Description || 'No description available';
+                    document.getElementById('modalStory').textContent = asset.Inform.PurposeOrStory || 'No story available';
+                } else {
+                    document.getElementById('modalAuthor').textContent = 'SkyPenguinLabs';
+                    document.getElementById('modalDescription').textContent = 'Asset from the SkyPenguinLabs collection';
+                    document.getElementById('modalStory').textContent = 'Part of our digital asset archive';
+                }
+
+                document.getElementById('downloadBtn').onclick = () => {
+                    window.open(asset.downloadUrl, '_blank');
+                };
+
+                document.getElementById('assetModal').style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+
+            hideAssetModal() {
+                document.getElementById('assetModal').style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+
+            createAssetElement(asset) {
                 const div = document.createElement('div');
-                div.className = 'spl-wallpaper-item spl-fade-in';
-                div.style.animationDelay = `${(index % this.batchSize) * 0.1}s`;
+                div.className = 'spl-asset-item';
 
                 div.innerHTML = `
-                    <img src="${wallpaper.url}" alt="${wallpaper.name}" class="spl-wallpaper-img" loading="lazy">
-                    <div class="spl-wallpaper-overlay">
-                        <div class="spl-wallpaper-title">${wallpaper.name}</div>
-                        <div class="spl-wallpaper-info">
-                            <span>${wallpaper.category}</span>
-                            <span class="spl-wallpaper-size">${wallpaper.size}</span>
+                    <img src="${asset.url}" alt="${asset.name}" class="spl-asset-img" loading="lazy">
+                    <div class="spl-asset-info">
+                        <div class="spl-asset-title">${asset.name}</div>
+                        <div class="spl-asset-meta">
+                            <span class="spl-asset-category">${asset.category}</span>
+                            <span class="spl-asset-size">${asset.size}</span>
                         </div>
                     </div>
                 `;
 
                 div.addEventListener('click', () => {
-                    window.open(wallpaper.downloadUrl, '_blank');
+                    this.showAssetModal(asset);
                 });
 
                 return div;
             }
 
             updateStats() {
-                document.getElementById('totalCount').textContent = this.wallpapers.length;
+                document.getElementById('totalCount').textContent = this.assets.length;
+                document.getElementById('filteredCount').textContent = this.filteredAssets.length;
+                document.getElementById('currentPage').textContent = this.currentPage;
+                document.getElementById('totalPages').textContent = Math.ceil(this.filteredAssets.length / this.itemsPerPage);
             }
 
-            updateLoadMoreButton() {
-                const loadMoreDiv = document.getElementById('loadMore');
-                if (this.loadedCount < this.displayedWallpapers.length) {
-                    loadMoreDiv.style.display = 'block';
-                } else {
-                    loadMoreDiv.style.display = 'none';
-                }
+            updateNavigation(totalPages) {
+                const prevBtn = document.getElementById('prevBtn');
+                const nextBtn = document.getElementById('nextBtn');
+                const pageInfo = document.getElementById('pageInfo');
 
-                document.getElementById('loadedCount').textContent = this.loadedCount;
+                prevBtn.disabled = this.currentPage === 1;
+                nextBtn.disabled = this.currentPage === totalPages;
+                pageInfo.textContent = `Page ${this.currentPage} of ${totalPages}`;
+            }
+
+            previousPage() {
+                if (this.currentPage > 1) {
+                    this.currentPage--;
+                    this.updateDisplay();
+                }
+            }
+
+            nextPage() {
+                const totalPages = Math.ceil(this.filteredAssets.length / this.itemsPerPage);
+                if (this.currentPage < totalPages) {
+                    this.currentPage++;
+                    this.updateDisplay();
+                }
             }
 
             showLoading() {
                 document.getElementById('loading').style.display = 'block';
                 document.getElementById('gallery').style.display = 'none';
-                document.getElementById('error').style.display = 'none';
-                document.getElementById('loadMore').style.display = 'none';
+                document.getElementById('noResults').style.display = 'none';
             }
 
             hideLoading() {
                 document.getElementById('loading').style.display = 'none';
             }
 
+            showNoResults() {
+                document.getElementById('gallery').style.display = 'none';
+                document.getElementById('noResults').style.display = 'block';
+                this.updateStats();
+            }
+
+            hideNoResults() {
+                document.getElementById('noResults').style.display = 'none';
+            }
+
             showError() {
                 document.getElementById('loading').style.display = 'none';
-                document.getElementById('gallery').style.display = 'none';
-                document.getElementById('error').style.display = 'block';
-                document.getElementById('loadMore').style.display = 'none';
             }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            new WallpaperGallery();
+            new AssetGallery();
         });
     </script>
 </body>
+
 </html>

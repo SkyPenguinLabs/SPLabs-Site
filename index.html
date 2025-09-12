@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="./spl-resources/Stylesheets/spl-coaching.css">
     <link rel="stylesheet" href="./spl-resources/Stylesheets/spl-donation.css">
     <link rel="stylesheet" href="./spl-resources/Stylesheets/spl-slideshow.css">
+    <link rel="stylesheet" href="./spl-resources/spl-root-stylesheet.mobile.css">
 </head>
 
 <body>
@@ -33,8 +34,7 @@
                 <span class="spl-brand-name">SkyPenguinLabs</span>
             </div>
             <div class="spl-header-actions">
-                <a href="#spl-coaching-title"> <button class="spl-button spl-button-primary">Book a
-                        Consultation</button></a>
+                <a href="#spl-coaching-title"> <button class="spl-button spl-button-primary">Consultation</button></a>
                 <div style="position: relative;">
                     <button class="spl-button spl-button-secondary" onclick="toggleDonateDropdown()">
                         <i class="fas fa-hand-holding-dollar"></i>
@@ -201,16 +201,17 @@
                 </div>
 
                 <div class="spl-shop-action">
+                                                                <span class="spl-info" onclick="showSPLOverlay(
+                    'We have an Etsy shop!', 
+                    `wan't to buy any of our content?`, 
+                    'We have decided to take all of our digital content to the beautiful platform that Etsy is. This is where SPLabs primarily facilitates all of its transactions or sales in relation to digitally produced content - courses, lessons, ebooks, art, etc. You can find us at https://skypenguinlabs.etsy.com '
+                )"></span>
                     <a href="https://skypenguinlabs.etsy.com">
                         <button class="spl-button spl-button-secondary">
                             <i class="fas fa-book-open"></i>
                             Visit the Shop
                         </button>
-                    </a> <span class="spl-info" onclick="showSPLOverlay(
-                    'We have an Etsy shop!', 
-                    `wan't to buy any of our content?`, 
-                    'We have decided to take all of our digital content to the beautiful platform that Etsy is. This is where SPLabs primarily facilitates all of its transactions or sales in relation to digitally produced content - courses, lessons, ebooks, art, etc. You can find us at https://skypenguinlabs.etsy.com '
-                )"></span>
+                    </a>
                 </div>
             </div>
 
@@ -282,7 +283,8 @@
         <div class="spl-container">
             <div class="spl-coaching-header">
                 <h2 class="spl-coaching-title" id="spl-coaching-title">Need Personal Guidance?</h2>
-                <p class="spl-coaching-subtitle">Work directly with industry professionals<span class="spl-info" onclick="showSPLOverlay(
+                <p class="spl-coaching-subtitle">Work directly with industry professionals<span class="spl-info"
+                        onclick="showSPLOverlay(
                     'We do offer services', 
                     `These are considerably personal services`, 
                     `Ones which include conversing and educating you about specific topics, discussing collab opportunities, asking for signatures from our writers (if they want to take part), and more. If you want ANY of these, email us at skypenguinlabs@gmail.com, followed by your name, online alias, and service request + a reasonable description of your goals that you want to complete with this service request to ensure they are fit for what we can do to help! Afterall, we would not want to lead you into thinking we are professionals in a specific area and scam you just for profit....like most of those people`
@@ -364,17 +366,17 @@
                         <i class="fas fa-book"></i>
                         Courses
                     </a>
-                    <a href="https://skypenguinlabs.wtf/OtherPublicRefs/spl_art_cave" class="spl-footer-link">
+                    <a href="./spl-new-page/spl_art_cave.html" class="spl-footer-link">
                         <i class="fas fa-image"></i>
-                        SPL Art Wall
+                        SPL Asset Board
                     </a>
                     <a href="https://rants.skypenguinlabs.wtf" class="spl-footer-link">
-                        <i class="fas fa-gun"></i>
+                        <i class="fas fa-mug-hot"></i>
                         SPL Rants
                     </a>
-                    <a href="https://skypenguinlabs.wtf/toc" class="spl-footer-link">
+                    <a href="./spl-new-page/toc.html" class="spl-footer-link">
                         <i class="fas fa-file"></i>
-                        ToC
+                        SPL ToC
                     </a>
                 </div>
 
@@ -421,21 +423,21 @@
                 <h3 id="spl-slide-title" class="spl-slide-title">Slide Title</h3>
                 <button id="spl-slideshow-close" class="spl-static-close"><i class="fas fa-times"></i></button>
             </div>
-            
+
             <div class="spl-slideshow-content">
                 <button class="spl-slide-nav spl-slide-prev">
                     <i class="fas fa-chevron-left"></i>
                 </button>
-                
+
                 <div class="spl-slide-image-container">
                     <img id="spl-slide-image" class="spl-slide-image" src="" alt="Slideshow image">
                 </div>
-                
+
                 <button class="spl-slide-nav spl-slide-next">
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
-            
+
             <div class="spl-slideshow-footer">
                 <p id="spl-slide-description" class="spl-slide-description">Slide description text goes here.</p>
                 <div class="spl-slide-indicators" id="spl-slide-indicators">
@@ -455,66 +457,66 @@
 <script src="./spl-resources/Logic/spl-logical-slideshow.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-    const productFilter = new SPLProductFilter();
-    const PM = new SPLProductManager();
-    async function fetchCourseData() {
-        try {
-            const response = await fetch('https://raw.githubusercontent.com/SkyPenguinLabs/SPL-CourseDemos/refs/heads/main/ExperimentalSecondaryDataSet.json');
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            
-            const data = await response.json();
-            return data.CourseList || [];
-        } catch (error) {
-            E(`Error fetching course data: ${error}`, 1);
-            return []; 
-        }
-    }
-    
-    async function initializeCourses() {
-        const courses = await fetchCourseData();
-        
-        if (courses.length === 0) {
-            E("No courses found or error fetching data. Using fallback data.", 1);
-            return;
-        }
-        
-        const filterProducts = courses.map((course, index) => ({
-            id: `course-${index}`,
-            title: course.Name,
-            category: course.TopicShort || course.Topic,
-            description: course.Desc,
-            price: parseFloat(course.Price.replace('$', '')),
-            link: course.ShopUrl
-        }));
-        
-        productFilter.setProducts(filterProducts);
-        productFilter.initialize();
-        
-        function getLinkText(level) {
-            switch(level?.toLowerCase()) {
-                case 'beginner': return 'Start Learning';
-                case 'intermediate': return 'Explore Now';
-                case 'advanced': return 'Dive Deep';
-                default: return 'Learn More';
+        const productFilter = new SPLProductFilter();
+        const PM = new SPLProductManager();
+        async function fetchCourseData() {
+            try {
+                const response = await fetch('https://raw.githubusercontent.com/SkyPenguinLabs/SPL-CourseDemos/refs/heads/main/ExperimentalSecondaryDataSet.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                return data.CourseList || [];
+            } catch (error) {
+                E(`Error fetching course data: ${error}`, 1);
+                return [];
             }
         }
-        
-        courses.slice(0, 4).forEach(course => {
-            PM.RegisterProduct({
+
+        async function initializeCourses() {
+            const courses = await fetchCourseData();
+
+            if (courses.length === 0) {
+                E("No courses found or error fetching data. Using fallback data.", 1);
+                return;
+            }
+
+            const filterProducts = courses.map((course, index) => ({
+                id: `course-${index}`,
                 title: course.Name,
+                category: course.TopicShort || course.Topic,
                 description: course.Desc,
                 price: parseFloat(course.Price.replace('$', '')),
-                link: course.ShopUrl,
-                linkText: getLinkText(course.Level)
+                link: course.ShopUrl
+            }));
+
+            productFilter.setProducts(filterProducts);
+            productFilter.initialize();
+
+            function getLinkText(level) {
+                switch (level?.toLowerCase()) {
+                    case 'beginner': return 'Start Learning';
+                    case 'intermediate': return 'Explore Now';
+                    case 'advanced': return 'Dive Deep';
+                    default: return 'Learn More';
+                }
+            }
+
+            courses.slice(0, 4).forEach(course => {
+                PM.RegisterProduct({
+                    title: course.Name,
+                    description: course.Desc,
+                    price: parseFloat(course.Price.replace('$', '')),
+                    link: course.ShopUrl,
+                    linkText: getLinkText(course.Level)
+                });
             });
-        });
-        PM.renderProducts();
-    }
-    
-    initializeCourses();
-});
+            PM.renderProducts();
+        }
+
+        initializeCourses();
+    });
 </script>
 
 </html>

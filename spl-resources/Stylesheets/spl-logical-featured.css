@@ -156,3 +156,85 @@
     font-family: var(--spl-font-mono);
 }
 
+
+
+/* ================ PRODUCT FILTER COMPONENT - MOBILE QUERY ================ */
+@media (max-width: 768px) {
+    /* Filter header mobile optimization */
+    .spl-filter-header {
+        flex-direction: column;
+        gap: var(--spl-spacing-md);
+        align-items: stretch;
+        margin-bottom: var(--spl-spacing-md);
+    }
+    
+    /* Filter categories - stack and center */
+    .spl-filter-categories {
+        justify-content: center;
+        gap: var(--spl-spacing-xs);
+    }
+    
+    /* Filter buttons mobile optimization */
+    .spl-filter-btn {
+        padding: 0.75rem 1rem;
+        font-size: 0.8rem;
+        min-height: 44px; /* Touch target size */
+        flex: 1;
+        min-width: 80px;
+        text-align: center;
+    }
+    
+    /* Search input mobile optimization */
+    .spl-filter-search {
+        min-width: 100%;
+        order: -1; /* Move search to top */
+    }
+    
+    .spl-filter-search input {
+        padding: 0.75rem 1rem 0.75rem 2.75rem;
+        font-size: 0.9rem;
+        min-height: 44px; /* Touch target size */
+    }
+    
+    .spl-filter-search i {
+        left: 1rem;
+        font-size: 1rem;
+    }
+    
+    /* Product items mobile optimization */
+    .spl-product-item {
+        max-height: none; /* Remove height restriction on mobile */
+        margin-bottom: var(--spl-spacing-sm);
+    }
+    
+    .spl-product-content {
+        padding: var(--spl-spacing-sm);
+    }
+    
+    .spl-product-title {
+        font-size: 1rem;
+        line-height: 1.3;
+    }
+    
+    .spl-product-description {
+        font-size: 0.825rem;
+        line-height: 1.4;
+    }
+    
+    .spl-product-footer {
+        flex-direction: column;
+        gap: var(--spl-spacing-sm);
+        align-items: stretch;
+    }
+    
+    .spl-product-price {
+        text-align: center;
+        font-size: 1rem;
+    }
+    
+    /* Empty state mobile optimization */
+    .spl-product-empty {
+        padding: var(--spl-spacing-lg);
+        font-size: 0.9rem;
+    }
+}
