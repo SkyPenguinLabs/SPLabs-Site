@@ -567,10 +567,8 @@ h6 {
        background: linear-gradient(135deg, var(--spl-blue-light) 0%, var(--spl-red-dark) 100%);
 
     */
-
-    /* Gradients */
-    background: linear-gradient(135deg, var(--spl-blue-dark) 0%, var(--accent) 100%);
-
+    /* Gradients 100 degrees was chosen for just the best eveness inbetween the blues*/
+    background: linear-gradient(90deg, var(--spl-blue-light) 0%, var(--spl-blue-dark) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -1036,6 +1034,23 @@ body.spl-overlay-open {
     color: var(--spl-red-light);
     text-decoration: underline;
 }
+
+
+
+/*
+> @OverlayBox->ButtonContainer 
+        :  SPL Overlay -> Container that holds all configured button(s) (if any)
+*/
+.spl-overlay-button-container {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 
 /*
 > @OverlayBox->Scrollbar 

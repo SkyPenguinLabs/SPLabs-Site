@@ -190,6 +190,11 @@
         font-size: 1.5rem;
     }
 
+    .spl-overlay-button-container {
+        flex-direction: column;
+        gap: 8px;
+    }
+
     .spl-overlay-subtitle {
         font-size: 1.1rem;
     }

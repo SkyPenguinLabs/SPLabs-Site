@@ -28,7 +28,9 @@ class SPLOverlay {
         this.overlaySubtitle = document.getElementById('spl-overlay-subtitle');
         this.overlayDescription = document.getElementById('spl-overlay-description');
         this.overlayCloseBtn = document.getElementById('spl-overlay-close');
-        
+        this.overlayButtonContainer = document.getElementById('spl-overlay-button-container');
+        this.activeButtons = []; //// @BTN_TRACKER
+
         /////// @DocuListener 
         this.overlayCloseBtn.addEventListener('click', () => this.close());
         this.overlayBackground.addEventListener('click', (e) => {
@@ -36,17 +38,17 @@ class SPLOverlay {
                 this.close();
             }
         });
-        
+
         ////// @Feature->OnEscapeKey (Exit)
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && this.isOpen) {
                 this.close();
             }
         });
-        
+
         this.isOpen = false;
     }
-    
+
     createOverlayContainer() {
         const container = document.createElement('div');
         container.id = 'spl-overlay-container';
@@ -61,12 +63,49 @@ class SPLOverlay {
                     </div>
                     <h3 id="spl-overlay-subtitle" class="spl-overlay-subtitle"></h3>
                     <div id="spl-overlay-description" class="spl-overlay-description"></div>
+                    <div id="spl-overlay-button-container" class="spl-overlay-button-container"></div>
                 </div>
             </div>
         `;
         document.body.appendChild(container);
     }
-    
+
+    createButtons(buttons) {
+        this.overlayButtonContainer.innerHTML = '';
+        this.activeButtons = [];
+
+        if (!buttons || !Array.isArray(buttons)) {
+            return; 
+        }
+
+        buttons.forEach((btn, index) => {
+            const button = document.createElement('button');
+            button.className = `spl-button ${btn.style || 'spl-button-primary'}`;
+            button.textContent = btn.text || 'Action';
+
+            const clickHandler = (e) => {
+                e.preventDefault();
+                if (btn.url) {
+                    if (btn.newTab) {
+                        window.open(btn.url, '_blank');
+                    } else {
+                        window.location.href = btn.url;
+                    }
+                }
+                if (btn.callback) {
+                    btn.callback();
+                }
+                if (btn.closeAfter !== false) {
+                    this.close();
+                }
+            };
+
+            button.addEventListener('click', clickHandler);
+            this.activeButtons.push({ element: button, handler: clickHandler });
+            this.overlayButtonContainer.appendChild(button);
+        });
+    }
+
     /**
      * Open the overlay with provided content
      * @param {Object} config - Configuration object
@@ -79,7 +118,7 @@ class SPLOverlay {
         /////// @Content
         this.overlayTitle.textContent = config.title || '';
         this.overlaySubtitle.textContent = config.subtitle || '';
-        
+
         /////// @Description
         if (typeof config.description === 'string') {
             this.overlayDescription.innerHTML = config.description;
@@ -87,10 +126,15 @@ class SPLOverlay {
             this.overlayDescription.innerHTML = '';
             console.error('Description must be a string');
         }
-        
+
+        /////// @Buttons
+        if (config.buttons) {
+            this.createButtons(config.buttons);
+        }
+
         /////// @Callback
         this.onCloseCallback = config.onClose;
-        
+
         /////// @OverlayWithanimation
         this.overlayContainer.style.display = 'block';
         setTimeout(() => {
@@ -100,7 +144,7 @@ class SPLOverlay {
             this.isOpen = true;
         }, 10);
     }
-    
+
     /////// @API->Func [overlay.close()]
     close() {
         this.overlayBackground.classList.remove('active');
@@ -110,32 +154,25 @@ class SPLOverlay {
         setTimeout(() => {
             this.overlayContainer.style.display = 'none';
             this.isOpen = false;
-            
+
             ///// @Callback
             if (typeof this.onCloseCallback === 'function') {
                 this.onCloseCallback();
             }
-        }, 300); 
+        }, 300);
     }
 }
 
 
 ////// @API->Func [showSPLOverlay]
 const splOverlay = new SPLOverlay();
-function showSPLOverlay(title, subtitle, description, onClose) {
+function showSPLOverlay(title, subtitle, description, onClose, buttons = null) {
     splOverlay.open({
         title,
         subtitle,
         description,
-        onClose
+        onClose,
+        buttons
     });
 }
 
-
-///////// Notification specific function  | Notifications use this overlay system above ^ 
-function closeNotification(IDENT) {
-    const notification = document.getElementById(`spl-static-notification${IDENT}`);
-    if (notification) {
-        notification.style.display = 'none';
-    }
-}
