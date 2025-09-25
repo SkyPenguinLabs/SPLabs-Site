@@ -1,0 +1,1388 @@
+<!--
+SkyPenguinLabs PoC - Product Iceberg (this is where people view our full product catalog on the site) 
+ideally designed to reach out to GitHub to fetch the course list and display it. 
+
+------- TODO list
+@TODO - maybe add a button that gives insight on our product evaluation process
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyPenguinLabs Course Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --spl-grey-bg: #0D0D0C;
+            --spl-white-bg: #0F0F0F;
+            --spl-black-bg: #000000;
+            --spl-grey-dark: #404040;
+            --spl-grey-light: #808080;
+            --spl-white-dark: #BFBFBF;
+            --spl-white-light: #FFFFFF;
+            --spl-blue-dark: #CC0000;
+            --spl-blue-light: #FF0000;
+            --spl-blue-dark: #0000CC;
+            --spl-blue-light: #0000FF;
+            --spl-green-dark: #00CC00;
+            --spl-font-mono: 'Consolas', monospace;
+            --spl-font-sans: 'Space Grotesk', 'Arial', sans-serif;
+            --spl-spacing-xs: 0.25rem;
+            --spl-spacing-sm: 0.5rem;
+            --spl-spacing-md: 1rem;
+            --spl-spacing-lg: 1.5rem;
+            --spl-spacing-xl: 2rem;
+            --spl-border-radius: 4px;
+            --spl-transition: all 0.2s ease-in-out;
+            --spl-container-width: 1400px;
+        }
+
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            font-family: var(--spl-font-sans);
+            background-color: var(--spl-black-bg);
+            color: var(--spl-white-light);
+            line-height: 1.6;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .spl-container {
+            width: 100%;
+            max-width: var(--spl-container-width);
+            margin: 0 auto;
+            padding: 0 var(--spl-spacing-lg);
+        }
+
+        .spl-header {
+            background-color: var(--spl-black-bg);
+            padding: var(--spl-spacing-sm) 0;
+            border-bottom: 2px solid var(--spl-blue-dark);
+        }
+
+        .spl-header .spl-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .spl-header-brand {
+            display: flex;
+            align-items: center;
+        }
+
+        .spl-logo {
+            height: 32px;
+            margin-right: var(--spl-spacing-md);
+        }
+
+        .spl-brand-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--spl-white-light);
+        }
+
+        .spl-banner {
+            background-color: var(--spl-black-bg);
+            padding: var(--spl-spacing-lg) 0;
+            border-bottom: 2px solid var(--spl-grey-dark);
+        }
+
+        .spl-banner-content {
+            text-align: center;
+        }
+
+        .spl-banner-logo {
+            font-family: var(--spl-font-mono);
+            font-size: 8px;
+            line-height: 1.2;
+            color: var(--spl-blue-dark);
+            margin-bottom: var(--spl-spacing-md);
+            white-space: pre;
+            overflow: auto;
+        }
+
+        .spl-banner-stats {
+            display: flex;
+            justify-content: center;
+            gap: var(--spl-spacing-xl);
+            font-family: var(--spl-font-mono);
+            margin-bottom: var(--spl-spacing-lg);
+        }
+
+        .spl-stat-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spl-spacing-xs);
+            color: var(--spl-grey-light);
+            font-size: 0.85rem;
+        }
+
+        .spl-stat-number {
+            color: var(--spl-blue-light);
+            font-weight: 600;
+        }
+
+        .spl-filter-section {
+            background-color: var(--spl-grey-bg);
+            padding: var(--spl-spacing-md) 0;
+            border-bottom: 2px solid var(--spl-grey-dark);
+        }
+
+        .spl-filter-content {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spl-spacing-md);
+        }
+
+        .spl-search-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--spl-spacing-md);
+        }
+
+        .spl-search-box {
+            position: relative;
+            flex-grow: 1;
+            max-width: 400px;
+        }
+
+        .spl-search-box i {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--spl-grey-light);
+            font-size: 0.8rem;
+        }
+
+        .spl-search-input {
+            width: 100%;
+            background-color: var(--spl-black-bg);
+            border: 2px solid var(--spl-grey-dark);
+            border-radius: var(--spl-border-radius);
+            padding: 8px 12px 8px 30px;
+            color: var(--spl-white-light);
+            font-family: var(--spl-font-mono);
+            font-size: 0.8rem;
+            transition: var(--spl-transition);
+        }
+
+        .spl-search-input:focus {
+            outline: none;
+            border-color: var(--spl-blue-dark);
+        }
+
+        .spl-filter-buttons {
+            display: flex;
+            gap: var(--spl-spacing-sm);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .spl-filter-btn {
+            background-color: var(--spl-black-bg);
+            border: 2px solid var(--spl-blue-dark);
+            color: var(--spl-blue-light);
+            font-family: var(--spl-font-mono);
+            font-size: 0.75rem;
+            padding: 6px 12px;
+            border-radius: var(--spl-border-radius);
+            cursor: pointer;
+            transition: var(--spl-transition);
+        }
+
+        .spl-filter-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .spl-filter-btn.active {
+            background-color: var(--spl-blue-dark);
+            color: var(--spl-white-light);
+        }
+
+        .spl-button {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spl-spacing-sm);
+            background-color: var(--spl-black-bg);
+            color: var(--spl-white-light);
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            border: 2px solid var(--spl-blue-dark);
+            border-radius: var(--spl-border-radius);
+            transition: var(--spl-transition);
+            cursor: pointer;
+            font-family: var(--spl-font-sans);
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+
+        .spl-button:hover {
+            transform: translateY(-2px);
+            border-color: var(--spl-blue-light);
+        }
+
+        .spl-button-secondary {
+            border-color: var(--spl-blue-dark);
+            color: var(--spl-blue-light);
+        }
+
+        .spl-button-secondary:hover {
+            border-color: var(--spl-blue-light);
+        }
+
+        .spl-gallery-section {
+            flex: 1;
+            padding: var(--spl-spacing-lg) 0;
+        }
+
+        .spl-gallery-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .spl-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--spl-spacing-lg);
+            padding: var(--spl-spacing-md) 0;
+        }
+
+        .spl-course-item {
+            background-color: var(--spl-grey-bg);
+            border: 2px solid var(--spl-grey-dark);
+            border-radius: var(--spl-border-radius);
+            overflow: hidden;
+            cursor: pointer;
+            transition: var(--spl-transition);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .spl-course-item:hover {
+            transform: translateY(-4px);
+            border-color: var(--spl-blue-light);
+            box-shadow: 0 4px 20px rgba(255, 0, 0, 0.1);
+        }
+
+        .spl-course-header {
+            padding: var(--spl-spacing-sm);
+            background-color: rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid var(--spl-grey-dark);
+        }
+
+        .spl-course-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--spl-blue-light);
+            margin-bottom: var(--spl-spacing-xs);
+        }
+
+        .spl-course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.7rem;
+            margin-top: var(--spl-spacing-xs);
+        }
+
+        .spl-course-category {
+            background-color: var(--spl-blue-dark);
+            color: var(--spl-white-light);
+            padding: 2px 6px;
+            border-radius: 2px;
+            font-size: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .spl-course-date {
+            color: var(--spl-grey-light);
+            font-family: var(--spl-font-mono);
+            font-size: 0.65rem;
+        }
+
+        .spl-course-content {
+            padding: var(--spl-spacing-sm);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .spl-course-description {
+            font-size: 0.8rem;
+            color: var(--spl-white-dark);
+            margin-bottom: var(--spl-spacing-md);
+            flex: 1;
+        }
+
+        .spl-course-stats {
+            display: flex;
+            gap: var(--spl-spacing-md);
+            font-size: 0.7rem;
+            color: var(--spl-grey-light);
+            border-top: 1px solid var(--spl-grey-dark);
+            padding-top: var(--spl-spacing-sm);
+            font-family: var(--spl-font-mono);
+        }
+
+        .spl-course-stat {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .spl-course-stat i {
+            color: var(--spl-blue-light);
+            font-size: 0.8rem;
+        }
+
+        .spl-pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--spl-spacing-lg);
+            margin-top: var(--spl-spacing-lg);
+        }
+
+        .spl-nav-btn {
+            background-color: var(--spl-blue-dark);
+            border: none;
+            color: var(--spl-white-light);
+            width: 32px;
+            height: 32px;
+            border-radius: 10%;
+            cursor: pointer;
+            transition: var(--spl-transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .spl-nav-btn:hover:not(:disabled) {
+            background-color: var(--spl-blue-light);
+            transform: scale(1.1);
+        }
+
+        .spl-nav-btn:disabled {
+            background-color: var(--spl-grey-dark);
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .spl-page-info {
+            color: var(--spl-grey-light);
+            font-family: var(--spl-font-mono);
+            font-size: 0.8rem;
+        }
+
+        .spl-loading {
+            text-align: center;
+            padding: var(--spl-spacing-xl) 0;
+            color: var(--spl-grey-light);
+        }
+
+        .spl-loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--spl-grey-dark);
+            border-top: 3px solid var(--spl-blue-light);
+            border-radius: 50%;
+            margin: 0 auto var(--spl-spacing-md);
+            animation: spl-spin 1s linear infinite;
+        }
+
+        .spl-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spl-spacing-md);
+        }
+
+        .spl-modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .spl-modal-content {
+            position: relative;
+            background: var(--spl-grey-bg);
+            border: 2px solid var(--spl-blue-dark);
+            border-radius: var(--spl-border-radius);
+            max-width: 550px;
+            width: 90%;
+            max-height: 75vh;
+            overflow-y: auto;
+            animation: modalSlideIn 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            font-size: 0.85rem;
+        }
+
+        .spl-modal-close {
+            position: absolute;
+            top: var(--spl-spacing-xs);
+            right: var(--spl-spacing-xs);
+            background: var(--spl-blue-dark);
+            border: none;
+            color: var(--spl-white-light);
+            width: 24px;
+            height: 24px;
+            border-radius: 10%;
+            cursor: pointer;
+            z-index: 1001;
+            transition: var(--spl-transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+        }
+
+        .spl-modal-close:hover {
+            background: var(--spl-blue-light);
+        }
+
+        .spl-modal-header {
+            padding: var(--spl-spacing-md) var(--spl-spacing-md) var(--spl-spacing-sm);
+            border-bottom: 1px solid var(--spl-grey-dark);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .spl-modal-title {
+            color: var(--spl-blue-light);
+            margin-bottom: var(--spl-spacing-xs);
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .spl-modal-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spl-spacing-sm);
+            font-size: 0.7rem;
+            color: var(--spl-grey-light);
+        }
+
+        .spl-modal-category {
+            background-color: var(--spl-blue-dark);
+            color: var(--spl-white-light);
+            padding: 1px 6px;
+            border-radius: 2px;
+            font-weight: 600;
+            font-size: 0.65rem;
+        }
+
+        .spl-modal-date {
+            font-family: var(--spl-font-mono);
+        }
+
+        .spl-modal-author {
+            color: var(--spl-white-dark);
+        }
+
+        .spl-modal-body {
+            padding: var(--spl-spacing-sm);
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: var(--spl-spacing-sm);
+        }
+
+        .spl-modal-description {
+            font-size: 0.8rem;
+            line-height: 1.4;
+            color: var(--spl-white-light);
+        }
+
+        .spl-modal-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spl-spacing-sm);
+        }
+
+        .spl-qr-code {
+            width: 100%;
+            max-width: 120px;
+            height: auto;
+            margin: 0 auto;
+            border: 1px solid var(--spl-grey-dark);
+            padding: var(--spl-spacing-xs);
+            background-color: white;
+        }
+
+        .spl-modal-info-group {
+            margin-top: var(--spl-spacing-xs);
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spl-spacing-xs) var(--spl-spacing-sm);
+        }
+
+        .spl-modal-info-item {
+            margin-bottom: var(--spl-spacing-xs);
+        }
+
+        .spl-modal-info-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--spl-blue-light);
+            margin-bottom: 1px;
+        }
+
+        .spl-modal-info-value {
+            font-size: 0.7rem;
+            color: var(--spl-white-dark);
+            word-break: break-word;
+        }
+
+        .spl-modal-actions {
+            padding: var(--spl-spacing-sm);
+            border-top: 1px solid var(--spl-grey-dark);
+            display: flex;
+            justify-content: center;
+            gap: var(--spl-spacing-sm);
+            flex-wrap: wrap;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes spl-spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .spl-no-results {
+            text-align: center;
+            padding: var(--spl-spacing-xl) 0;
+            color: var(--spl-grey-light);
+            font-family: var(--spl-font-mono);
+        }
+
+
+        @media (max-width: 768px) {
+            .spl-banner-logo {
+                font-size: 6px;
+            }
+
+            .spl-banner-stats {
+                flex-direction: column;
+                gap: var(--spl-spacing-sm);
+            }
+
+            .spl-search-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .spl-search-box {
+                max-width: none;
+            }
+
+            .spl-gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+
+            .spl-modal-actions {
+                flex-direction: column;
+            }
+
+            .spl-button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- [Header] -->
+    <header class="spl-header">
+        <div class="spl-container">
+            <div class="spl-header-brand">
+                <img src="https://github.com/TotallyNotAHaxxer/A-Publisher-Icon-Edited-/blob/main/PublisherIcoRed.png?raw=true"
+                    alt="SkyPenguinLabs Logo" class="spl-logo">
+                <span class="spl-brand-name">SkyPenguinLabs</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- [Banner] -->
+    <section class="spl-banner">
+        <div class="spl-container">
+            <div class="spl-banner-content">
+                <div class="spl-banner-logo">
+                    <pre>  _____ _       _____                 _     __        _           _____                 _         _    _____                    
+|   __| |_ _ _|  _  |___ ___ ___ _ _|_|___|  |   ___| |_ ___ ___|  _  |___ ___ ___ _ _| |_ ___ _| |  |     |___ _ _ ___      
+|__   | '_| | |   __| -_|   | . | | | |   |  |__| .'| . |_ -|___|   __|  _| . | . | | |  _| -_| . |  |   --| .'| | | -_|     
+|_____|_,_|_  |__|  |___|_|_|_  |___|_|_|_|_____|__,|___|___|   |__|  |_| |___|___|___|_| |___|___|  |_____|__,|\_/|___|     
+          |___|             |___|                                                                                             </pre>
+                </div>
+
+                <div class="spl-banner-stats">
+                    <div class="spl-stat-item">
+                        <span class="spl-stat-number" id="totalCount">0</span>
+                        <span>courses</span>
+                    </div>
+                    <div class="spl-stat-item">
+                        <span class="spl-stat-number" id="filteredCount">0</span>
+                        <span>filtered</span>
+                    </div>
+                    <div class="spl-stat-item">
+                        <span class="spl-stat-number" id="currentPage">1</span>
+                        <span>of</span>
+                        <span class="spl-stat-number" id="totalPages">1</span>
+                        <span>pages</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- [Filter Controls] -->
+    <section class="spl-filter-section">
+        <div class="spl-container">
+            <div class="spl-filter-content">
+                <div class="spl-search-row">
+                    <div class="spl-search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" class="spl-search-input" placeholder="Search courses..." id="searchInput">
+                    </div>
+                    <button class="spl-filter-btn" id="refreshBtn">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
+                </div>
+                <div class="spl-filter-buttons">
+                    <!-- [dyn-html: filter-buttons] -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- [Gallery] -->
+    <section class="spl-gallery-section">
+        <div class="spl-container">
+            <div id="loading" class="spl-loading">
+                <div class="spl-loading-spinner"></div>
+                <div>Loading courses from the digital archives...</div>
+            </div>
+
+            <div id="gallery" class="spl-gallery-container" style="display: none;">
+                <div class="spl-gallery-grid" id="galleryGrid"></div>
+
+                <div class="spl-pagination">
+                    <button class="spl-nav-btn" id="prevBtn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="spl-page-info">
+                        <span id="pageInfo">Page 1 of 1</span>
+                    </div>
+                    <button class="spl-nav-btn" id="nextBtn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="noResults" class="spl-no-results" style="display: none;">
+                <i class="fas fa-search"></i><br>
+                No courses found matching your criteria
+            </div>
+        </div>
+
+        <!-- [Course Details Modal] -->
+        <div id="courseModal" class="spl-modal" style="display: none;">
+            <div class="spl-modal-overlay"></div>
+            <div class="spl-modal-content">
+                <button class="spl-modal-close" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="spl-modal-header">
+                    <h2 id="modalTitle" class="spl-modal-title">Course Title</h2>
+                    <div class="spl-modal-meta">
+                        <span id="modalCategory" class="spl-modal-category">Category</span>
+                        <span id="modalDate" class="spl-modal-date">Release Date</span>
+                        <span id="modalAuthor" class="spl-modal-author">Author</span>
+                    </div>
+                </div>
+                <div class="spl-modal-body">
+                    <div class="spl-modal-description" id="modalDescription">
+                        <!-- [dyn-html: modal-descriptions] -->
+                    </div>
+                    <div class="spl-modal-sidebar">
+                        <img id="modalQR" src="" alt="Course QR Code" class="spl-qr-code">
+
+                        <div class="spl-modal-info-group">
+                            <div class="spl-modal-info-item">
+                                <div class="spl-modal-info-label">Duration</div>
+                                <div class="spl-modal-info-value" id="modalDuration">-</div>
+                            </div>
+
+                            <div class="spl-modal-info-item">
+                                <div class="spl-modal-info-label">Difficulty</div>
+                                <div class="spl-modal-info-value" id="modalDifficulty">-</div>
+                            </div>
+
+                            <div class="spl-modal-info-item">
+                                <div class="spl-modal-info-label">Prerequisites</div>
+                                <div class="spl-modal-info-value" id="modalPrerequisites">-</div>
+                            </div>
+
+                            <div class="spl-modal-info-item">
+                                <div class="spl-modal-info-label">Type</div>
+                                <div class="spl-modal-info-value" id="modalType">-</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="spl-modal-actions">
+                    <a href="#" class="spl-button" id="viewCourseBtn" target="_blank">
+                        <i class="fas fa-graduation-cap"></i> View Course
+                    </a>
+                    <a href="#" class="spl-button spl-button-secondary" id="viewDemoBtn" target="_blank">
+                        <i class="fas fa-play"></i> View Sample
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--
+    |>
+    |> @RenderComponent - Footer:
+    |>          Footer of SPL's main website. Has a different style than the header, a little bit bulkier than the previous one
+    |>          additionally made more use of different fonts. 
+    |>
+    -->
+    <style>
+        :root {
+            /*
+        [ SPL Main Theme ]
+    */
+            --spl-grey-bg: #0D0D0C;
+            --spl-black-bg: #000000;
+            --spl-grey-dark: #404040;
+            --spl-grey-light: #808080;
+            --spl-white-dark: #BFBFBF;
+            --spl-white-light: #FFFFFF;
+            /*
+        [ SPL Main Color Theme (Accents) ]
+    */
+            --spl-red-dark: #CC0000;
+            --spl-red-light: #FF0000;
+            /*
+            [+] Spacing 
+    */
+            --spl-spacing-xs: 0.25rem;
+            --spl-spacing-sm: 0.5rem;
+            --spl-spacing-md: 1rem;
+            --spl-spacing-lg: 1.5rem;
+            --spl-spacing-xl: 2rem;
+            /*
+            [+] Defaulted Animations & Misc 
+    */
+            --spl-transition: all 0.2s ease-in-out;
+        }
+
+        /*
+////////////////////////////////////////////////////
+   ______        ___                     _      __        __     
+  / __/ /____ __/ _ \___ ___  ___ ___ __(_)__  / /  ___ _/ /  ___
+ _\ \/  '_/ // / ___/ -_) _ \/ _ `/ // / / _ \/ /__/ _ `/ _ \(_-<
+/___/_/\_\\_, /_/   \__/_//_/\_, /\_,_/_/_//_/____/\_,_/_.__/___/
+         /___/              /___/                                
+////////////////////////////////////////////////////
+============== [ spl-footer ] ==============
+|
+| Footer was kept mostly the same, the only difference between this footer and the previous
+| is largely between the spacing, coloring, and font choice which was never properly solidifed
+| previously. 
+*/
+        .spl-footer {
+            background-color: var(--spl-black-bg);
+            padding-top: var(--spl-spacing-xl);
+            border-top: 2px solid var(--spl-grey-dark);
+        }
+
+        .spl-footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spl-spacing-xl);
+            padding-bottom: var(--spl-spacing-xl);
+        }
+
+        .spl-footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spl-spacing-md);
+        }
+
+        .spl-footer-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        /*Uhhhh...hey there dev. By now you otta think you found what you are looking for......right?*/
+        .spl-logo-image {
+            height: 30px;
+            margin-right: var(--spl-spacing-sm);
+        }
+
+        .spl-company-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--spl-white-light);
+        }
+
+        .spl-footer-description {
+            color: var(--spl-white-dark);
+            font-size: 0.9rem;
+        }
+
+        .spl-footer-links,
+        .spl-footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spl-spacing-sm);
+        }
+
+        .spl-footer-links h4,
+        .spl-footer-contact h4 {
+            color: var(--spl-white-light);
+            margin-bottom: var(--spl-spacing-md);
+        }
+
+        .spl-footer-link {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: var(--spl-spacing-sm);
+            color: var(--spl-white-dark);
+            transition: var(--spl-transition);
+        }
+
+        .spl-footer-link:hover {
+            color: var(--spl-red-light);
+        }
+
+        .spl-footer-link i {
+            min-width: 20px;
+        }
+
+        .spl-footer-bottom {
+            padding: var(--spl-spacing-md) 0;
+            border-top: 1px solid var(--spl-grey-dark);
+            text-align: center;
+            color: var(--spl-grey-light);
+            font-size: 0.9rem;
+        }
+
+        .spl-container {
+            width: 100%;
+            max-width: var(--spl-container-width);
+            margin: 0 auto;
+            padding: 0 var(--spl-spacing-lg);
+        }
+
+        @media (max-width: 768px) {
+            .spl-footer-content {
+                display: block;
+                grid-template-columns: unset;
+            }
+
+            .spl-footer-brand,
+            .spl-footer-links,
+            .spl-footer-contact {
+                width: 100%;
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+    <footer class="spl-footer">
+        <div class="spl-container">
+            <div class="spl-footer-content">
+                <!--
+                [+] Footer left  
+                -->
+                <div class="spl-footer-brand">
+                    <div class="spl-footer-logo">
+                        <img src="https://github.com/TotallyNotAHaxxer/A-Publisher-Icon-Edited-/blob/main/PublisherIcoRed.png?raw=true"
+                            alt="Sky Penguin Labs" class="spl-logo-image">
+                        <span class="spl-company-name">SkyPenguinLabs</span>
+                    </div>
+                    <p class="spl-footer-description">
+                        Professional courses and consultation services for cybersecurity, reverse engineering,
+                        and software development.
+                    </p>
+                </div>
+                <!--
+                [+] Footer link placement (right)
+                -->
+                <div class="spl-footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="https://github.com/SkyPenguinLabs/SPL-CourseDemos/tree/main/Free_Lessons#:~:text=README.md-,ALL%20FREE%20LESSONS,-All%20of%20the"
+                        class="spl-footer-link">
+                        <i class="fas fa-hand-holding-dollar"></i>
+                        Free Courses
+                    </a>
+                    <a href="https://github.com/SkyPenguinLabs/SPL-CourseDemos/tree/main/CourseSamples#:~:text=If%20you%20are%20looking%20to%20buy%20a%20course%20or%20lesson%20by%20SkyPenguinLabs%2C%20this%20is%20the%20place%20to%20be"
+                        class="spl-footer-link">
+                        <i class="fas fa-flask"></i>
+                        Demos of Courses
+                    </a>
+                    <a href="./spl-new-page/spl_art_cave.html" class="spl-footer-link">
+                        <i class="fas fa-image"></i>
+                        SPL Assets
+                    </a>
+                    <a href="https://github.com/SkyPenguinLabs/SPL-CourseDemos/tree/main/CourseResources/HelpUsFightPiracy#:~:text=In%20order%20to%20make%20sure%20you%20are%20not%20getting%20scammed%20(e.g%2C%20by%20somebody%20who%20claims%20to%20be%20selling%20our%20courses%2C%20but%20does%20not%20fully%20look%20like%20us)%2C%20we%20have%20decided%20to%20make%20this%20document%20the%20official%20record%20of%20all%20SHA1%20(only)%20hashes%20for%20the%20files%20sold%20by%20SkyPenguinLabs."
+                        class="spl-footer-link">
+                        <i class="fas fa-gun"></i>
+                        Fight piracy
+                    </a>
+                    <a href="./spl-new-page/toc.html" class="spl-footer-link">
+                        <i class="fas fa-file"></i>
+                        SPL ToC
+                    </a>
+                </div>
+
+                <div class="spl-footer-contact">
+                    <h4>Get in Touch</h4>
+                    <a href="mailto:skypenguinlabs@gmail.com" class="spl-footer-link">
+                        <i class="fas fa-envelope"></i>
+                        skypenguinlabs@gmail.com
+                    </a>
+                    <a href="https://github.com/SkyPenguinLabs" class="spl-footer-link">
+                        <i class="fab fa-github"></i>
+                        GitHub
+                    </a>
+                    <a href="https://instagram.com/@SkyPenguinLabs" class="spl-footer-link">
+                        <i class="fab fa-instagram"></i>
+                        Instagram
+                    </a>
+                    <a href="https://x.com/SkyPenguinLabs" class="spl-footer-link">
+                        <i class="fab fa-twitter"></i>
+                        X/Twitter
+                    </a>
+                    <a href="https://beacons.ai/SkyPenguinLabs" class="spl-footer-link">
+                        <i class="fas fa-wifi"></i>
+                        Other/Beacons
+                    </a>
+
+                </div>
+            </div>
+            <!--
+                [+] Footer bottom end / cutoff  
+                -->
+            <div class="spl-footer-bottom">
+                <p>© 2025-2026 SkyPenguinLabs. All rights reserved. *Business Days Exclusive. Site Engineered by Acutual
+                    Fucking Humans - Not AI</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        class CourseGallery {
+            constructor() {
+                this.courses = [];
+                this.filteredCourses = [];
+                this.currentFilter = 'all';
+                this.searchQuery = '';
+                this.currentPage = 1;
+                this.itemsPerPage = 4;
+                /*@TODO: Currently, all loaded resources uses PNG, we should swap to WebP or AVIF, because PNG is just annoyingly heavy to deal with*/
+                this.jsonUrl = 'https://raw.githubusercontent.com/SkyPenguinLabs/skypenguinlabs.github.io/refs/heads/main/ProductIcebergList.json';
+                this.categories = new Set(['all']);
+                this.init();
+            }
+
+            init() {
+                this.bindEvents();
+                this.loadCourses();
+            }
+
+            bindEvents() {
+                document.getElementById('searchInput').addEventListener('input', (e) => {
+                    this.searchQuery = e.target.value.toLowerCase();
+                    this.applyFilters();
+                });
+                document.getElementById('prevBtn').addEventListener('click', () => this.previousPage());
+                document.getElementById('nextBtn').addEventListener('click', () => this.nextPage());
+                document.getElementById('refreshBtn').addEventListener('click', () => this.loadCourses());
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') this.previousPage();
+                    if (e.key === 'ArrowRight') this.nextPage();
+                    if (e.key === 'Escape') this.hideCourseModal();
+                });
+                document.getElementById('closeModal').addEventListener('click', () => this.hideCourseModal());
+                document.getElementById('courseModal').addEventListener('click', (e) => {
+                    if (e.target.classList.contains('spl-modal-overlay')) {
+                        this.hideCourseModal();
+                    }
+                });
+            }
+
+            bindFilterButtons() {
+                document.querySelectorAll('.spl-filter-btn[data-filter]').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        document.querySelectorAll('.spl-filter-btn[data-filter]').forEach(b => b.classList.remove('active'));
+                        e.target.classList.add('active');
+                        this.currentFilter = e.target.dataset.filter;
+                        this.applyFilters();
+                    });
+                });
+            }
+
+            async loadCourses() {
+                this.showLoading();
+                try {
+                    const response = await fetch(this.jsonUrl);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    const data = await response.json();
+                    if (data && data.CourseList && Array.isArray(data.CourseList) && data.CourseList.length > 0) {
+                        this.courses = data.CourseList.map(course => {
+                            let prefix = "MISC";
+                            const codePattern = /^([A-Z]{2,7}\d*)[\s-]/;
+                            if (course.Subtitle) {
+                                const match = course.Subtitle.match(codePattern);
+                                if (match && match[1]) {
+                                    prefix = match[1];
+                                }
+                            }
+                            if (prefix === "MISC" && course.Name) {
+                                const match = course.Name.match(codePattern);
+                                if (match && match[1]) {
+                                    prefix = match[1];
+                                }
+                            }
+                            return {
+                                id: prefix,
+                                title: course.Name || 'Untitled Course',
+                                category: course.Category || 'Uncategorized',
+                                codePrefix: prefix,
+                                description: course.Desc || 'No description available',
+                                releaseDate: course.DatePublished || 'No date',
+                                author: course.Author?.Name || 'SkyPenguinLabs',
+                                authorPosition: course.Author?.Position || '',
+                                authorBio: course.Author?.Biography || '',
+                                duration: course.PageCount ? `${course.PageCount} pages` : 'Not specified',
+                                difficulty: course.Level || 'Not specified',
+                                prerequisites: 'Not specified',
+                                courseType: course.Topic || 'Not specified',
+                                price: course.Price || 'Not specified',
+                                qrCode: course.QrUrl || '',
+                                courseUrl: course.ShopUrl || '',
+                                demoUrl: course.SampleURL || '',
+                                subtitle: course.Subtitle || ''
+                            };
+                        });
+                    } else {
+                        console.warn('No CourseList found in data, using fallback mock data');
+                    }
+                } catch (error) {
+                    console.error('Error loading courses:', error);
+                }
+                this.generateCategories();
+                this.updateFilterButtons();
+                this.hideLoading();
+                this.applyFilters();
+            }
+
+            generateCategories() {
+                this.categories = new Set(['all']);
+                const prefixMap = new Map();
+
+                this.courses.forEach(course => {
+                    if (course.codePrefix && course.codePrefix !== "MISC") {
+                        const letterPrefix = course.codePrefix.replace(/\d+$/, 'x');
+                        prefixMap.set(letterPrefix, true);
+                    }
+                });
+
+                prefixMap.forEach((_, prefix) => {
+                    this.categories.add(prefix);
+                });
+
+                this.courses.forEach(course => {
+                    if (course.category) {
+                        this.categories.add(course.category);
+                    }
+                });
+            }
+
+            updateFilterButtons() {
+                const filterContainer = document.querySelector('.spl-filter-buttons');
+                filterContainer.innerHTML = '';
+                Array.from(this.categories).sort().forEach(category => {
+                    const button = document.createElement('button');
+                    button.className = 'spl-filter-btn' + (category === 'all' ? ' active' : '');
+                    button.setAttribute('data-filter', category);
+                    button.textContent = category === 'all' ? 'All' : category;
+                    filterContainer.appendChild(button);
+                });
+                this.bindFilterButtons();
+            }
+
+            applyFilters() {
+                let filtered = this.courses;
+
+                if (this.currentFilter !== 'all') {
+                    if (this.currentFilter.endsWith('x')) {
+                        const prefixBase = this.currentFilter.slice(0, -1);
+                        filtered = filtered.filter(course =>
+                            (course.codePrefix && course.codePrefix.startsWith(prefixBase)) ||
+                            course.category === this.currentFilter
+                        );
+                    } else {
+                        filtered = filtered.filter(course =>
+                            course.codePrefix === this.currentFilter ||
+                            course.category === this.currentFilter
+                        );
+                    }
+                }
+
+                if (this.searchQuery) {
+                    filtered = filtered.filter(course =>
+                        (course.title && course.title.toLowerCase().includes(this.searchQuery)) ||
+                        (course.description && course.description.toLowerCase().includes(this.searchQuery)) ||
+                        (course.codePrefix && course.codePrefix.toLowerCase().includes(this.searchQuery)) ||
+                        (course.category && course.category.toLowerCase().includes(this.searchQuery)) ||
+                        (course.author && course.author.toLowerCase().includes(this.searchQuery)) ||
+                        (course.courseType && course.courseType.toLowerCase().includes(this.searchQuery))
+                    );
+                }
+
+                this.filteredCourses = filtered;
+                this.currentPage = 1;
+                this.updateDisplay();
+            }
+
+            updateDisplay() {
+                const totalPages = Math.ceil(this.filteredCourses.length / this.itemsPerPage);
+
+                if (this.filteredCourses.length === 0) {
+                    this.showNoResults();
+                    return;
+                }
+
+                this.hideNoResults();
+                this.renderCurrentPage();
+                this.updateStats();
+                this.updateNavigation(totalPages);
+            }
+
+            renderCurrentPage() {
+                const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+                const endIndex = startIndex + this.itemsPerPage;
+                const pageCourses = this.filteredCourses.slice(startIndex, endIndex);
+
+                const grid = document.getElementById('galleryGrid');
+                grid.innerHTML = '';
+
+                pageCourses.forEach((course, index) => {
+                    const element = this.createCourseElement(course);
+                    element.style.animationDelay = `${index * 0.1}s`;
+                    grid.appendChild(element);
+                });
+
+                document.getElementById('gallery').style.display = 'block';
+            }
+
+            showCourseModal(course) {
+                document.getElementById('modalTitle').textContent = course.title || 'Untitled Course';
+                document.getElementById('modalCategory').textContent = course.category || 'Uncategorized';
+                document.getElementById('modalDate').textContent = course.releaseDate || 'No date';
+
+                let authorText = course.author || '';
+                if (course.authorPosition) {
+                    authorText += ` - ${course.authorPosition}`;
+                }
+                document.getElementById('modalAuthor').textContent = authorText;
+
+                document.getElementById('modalDescription').innerHTML = this.formatDescription(course.description);
+                document.getElementById('modalDuration').textContent = course.duration || 'Not specified';
+                document.getElementById('modalDifficulty').textContent = course.difficulty || 'Not specified';
+                document.getElementById('modalPrerequisites').textContent = course.prerequisites || 'None';
+                document.getElementById('modalType').textContent = course.courseType || 'Not specified';
+
+                if (course.qrCode) {
+                    document.getElementById('modalQR').src = course.qrCode;
+                    document.getElementById('modalQR').style.display = 'block';
+                } else {
+                    document.getElementById('modalQR').style.display = 'none';
+                }
+
+                if (course.courseUrl && course.courseUrl !== '#') {
+                    document.getElementById('viewCourseBtn').href = course.courseUrl;
+                    document.getElementById('viewCourseBtn').style.display = 'inline-flex';
+                } else {
+                    document.getElementById('viewCourseBtn').style.display = 'none';
+                }
+
+                if (course.demoUrl) {
+                    document.getElementById('viewDemoBtn').href = course.demoUrl;
+                    document.getElementById('viewDemoBtn').style.display = 'inline-flex';
+                } else {
+                    document.getElementById('viewDemoBtn').style.display = 'none';
+                }
+
+                document.getElementById('courseModal').style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+
+            formatDescription(description) {
+                if (!description) return 'No description available';
+                return description.split('\n\n').map(para => `<p>${para}</p>`).join('');
+            }
+
+            hideCourseModal() {
+                document.getElementById('courseModal').style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+
+            createCourseElement(course) {
+                const div = document.createElement('div');
+                div.className = 'spl-course-item';
+
+                div.innerHTML = `
+                    <div class="spl-course-header">
+                        <div class="spl-course-title">${course.title || 'Untitled Course'}</div>
+                        <div class="spl-course-meta">
+                            <span class="spl-course-category">${course.codePrefix || 'MISC'}</span>
+                            <span class="spl-course-date">${course.releaseDate || 'No date'}</span>
+                        </div>
+                    </div>
+                    <div class="spl-course-content">
+                        <div class="spl-course-description">${this.truncateText(course.description, 150)}</div>
+                        <div class="spl-course-stats">
+                            <div class="spl-course-stat">
+                                <i class="fas fa-book"></i>
+                                <span>${course.duration || 'N/A'}</span>
+                            </div>
+                            <div class="spl-course-stat">
+                                <i class="fas fa-tag"></i>
+                                <span>${course.price || 'N/A'}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                div.addEventListener('click', () => {
+                    this.showCourseModal(course);
+                });
+
+                return div;
+            }
+
+            truncateText(text, maxLength) {
+                if (!text) return 'No description available';
+                if (text.length <= maxLength) return text;
+                return text.substring(0, maxLength) + '...';
+            }
+
+            updateStats() {
+                document.getElementById('totalCount').textContent = this.courses.length;
+                document.getElementById('filteredCount').textContent = this.filteredCourses.length;
+                document.getElementById('currentPage').textContent = this.currentPage;
+                document.getElementById('totalPages').textContent = Math.ceil(this.filteredCourses.length / this.itemsPerPage);
+            }
+
+            updateNavigation(totalPages) {
+                const prevBtn = document.getElementById('prevBtn');
+                const nextBtn = document.getElementById('nextBtn');
+                const pageInfo = document.getElementById('pageInfo');
+
+                prevBtn.disabled = this.currentPage === 1;
+                nextBtn.disabled = this.currentPage === totalPages;
+                pageInfo.textContent = `Page ${this.currentPage} of ${totalPages}`;
+            }
+
+            previousPage() {
+                if (this.currentPage > 1) {
+                    this.currentPage--;
+                    this.updateDisplay();
+                }
+            }
+
+            nextPage() {
+                const totalPages = Math.ceil(this.filteredCourses.length / this.itemsPerPage);
+                if (this.currentPage < totalPages) {
+                    this.currentPage++;
+                    this.updateDisplay();
+                }
+            }
+
+            showLoading() {
+                document.getElementById('loading').style.display = 'block';
+                document.getElementById('gallery').style.display = 'none';
+                document.getElementById('noResults').style.display = 'none';
+            }
+
+            hideLoading() {
+                document.getElementById('loading').style.display = 'none';
+            }
+
+            showNoResults() {
+                document.getElementById('gallery').style.display = 'none';
+                document.getElementById('noResults').style.display = 'block';
+                this.updateStats();
+            }
+
+            hideNoResults() {
+                document.getElementById('noResults').style.display = 'none';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new CourseGallery();
+        });
+    </script>
+</body>
+
+</html>

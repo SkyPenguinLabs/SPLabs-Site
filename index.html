@@ -10,12 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SkyPenguinLabs</title>
     <link rel="stylesheet" href="./spl-resources/spl-root-stylesheet.css">
-    <link rel="stylesheet" href="./spl-resources/Stylesheets/spl-logical-component-style.css">
-    <link rel="stylesheet" href="./spl-resources/Stylesheets/spl-logical-product.css">
-    <link rel="stylesheet" href="./spl-resources/Stylesheets/spl-logical-featured.css">
-    <link rel="stylesheet" href="./spl-resources/Stylesheets/spl-coaching.css">
-    <link rel="stylesheet" href="./spl-resources/Stylesheets/spl-donation.css">
-    <link rel="stylesheet" href="./spl-resources/Stylesheets/spl-slideshow.css">
     <link rel="stylesheet" href="./spl-resources/spl-root-stylesheet.mobile.css">
 </head>
 
@@ -42,6 +36,9 @@
                     </button>
                     <div id="spl-donate-dropdown" class="spl-donate-dropdown">
                         <div class="spl-donate-header">
+                            <button class="spl-static-close" onclick="toggleDonateDropdown()">
+                                <i class="fas fa-times"></i>
+                            </button>
                             <h4>Support Our Work</h4>
                             <p>Help us keep education accessible and affordable</p>
                         </div>
@@ -82,7 +79,7 @@
                                             <i class="fas fa-external-link-alt"></i> Explorer
                                         </a>
                                         <button class="spl-crypto-copy"
-                                            onclick="copyToClipboard('9H6FtbaDhtPBYFvk67yxmacKntDuYYyHVATQPyBAzQpg')">
+                                            onclick="CpyToClipboard('9H6FtbaDhtPBYFvk67yxmacKntDuYYyHVATQPyBAzQpg')">
                                             <i class="fas fa-copy"></i> Copy
                                         </button>
                                     </div>
@@ -107,7 +104,7 @@
                                             <i class="fas fa-external-link-alt"></i> Explorer
                                         </a>
                                         <button class="spl-crypto-copy"
-                                            onclick="copyToClipboard('0xe3c40c79b22018e90E68DA55fDaDD75A287E8bac')">
+                                            onclick="CpyToClipboard('0xe3c40c79b22018e90E68DA55fDaDD75A287E8bac')">
                                             <i class="fas fa-copy"></i> Copy
                                         </button>
                                     </div>
@@ -290,7 +287,7 @@
         <div class="spl-container">
             <div class="spl-coaching-header">
                 <h2 class="spl-coaching-title" id="spl-coaching-title">Need Personal Guidance?</h2>
-                <p class="spl-coaching-subtitle">Work directly with industry professionals<span class="spl-info"
+                <p class="spl-coaching-subtitle">Work directly with industry professionals, email us with a request > skypenguinlabs@gmail.com<span class="spl-info"
                         onclick="showSPLOverlay(
                     'We do offer services', 
                     `These are considerably personal services`, 
@@ -302,8 +299,7 @@
                 <div class="spl-coaching-card">
                     <div class="spl-coaching-card-content">
                         <h3 class="spl-coaching-card-title">Contract Writing</h3>
-                        <p class="spl-coaching-card-description">SPL offers a service that allows brands to use us for
-                            contract education specific for their teams needs.</p>
+                        <p class="spl-coaching-card-description">Need some form of educational material custom for your team? We got your back! Send us your topics and goals to initiate a conversation</p>
                     </div>
                 </div>
 
@@ -311,23 +307,14 @@
                     <div class="spl-coaching-card-content">
                         <h3 class="spl-coaching-card-title">Signature Requests!</h3>
                         <p class="spl-coaching-card-description">Bought a book or product from an author
-                            @SkyPenguinLabs? Email us to ask for something being signed and shipped!</p>
+                            @SkyPenguinLabs? Wan't it signed by the same author? Reach out and we will happily settle requests!</p>
                     </div>
                 </div>
 
                 <div class="spl-coaching-card">
                     <div class="spl-coaching-card-content">
                         <h3 class="spl-coaching-card-title">Online Guidance & Assistance</h3>
-                        <p class="spl-coaching-card-description">One free consultation and online assistance with
-                            cybersecurity and development are available based on your needs.</p>
-                    </div>
-                </div>
-
-                <div class="spl-coaching-card">
-                    <div class="spl-coaching-card-content">
-                        <h3 class="spl-coaching-card-title">Software Engineering Consulting</h3>
-                        <p class="spl-coaching-card-description">Have a project but don't know where to start? We can
-                            check a free call to help you out!</p>
+                        <p class="spl-coaching-card-description">Each person gets one free live consult if need be to handle, and or think out logistical tasks that require hands on problem solving, especially those for junior software engineering & cybersecurity practitioner</p>
                     </div>
                 </div>
             </div>
@@ -371,15 +358,31 @@
                     <h4>Quick Links</h4>
                     <a href="#spl-featured-products" class="spl-footer-link">
                         <i class="fas fa-book"></i>
-                        Courses
+                        Paid Courses
+                    </a>
+                    <a href="https://github.com/SkyPenguinLabs/SPL-CourseDemos/tree/main/Free_Lessons#:~:text=README.md-,ALL%20FREE%20LESSONS,-All%20of%20the"
+                        class="spl-footer-link">
+                        <i class="fas fa-hand-holding-dollar"></i>
+                        Free Courses
+                    </a>
+                    <a href="https://github.com/SkyPenguinLabs/SPL-CourseDemos/tree/main/CourseSamples#:~:text=If%20you%20are%20looking%20to%20buy%20a%20course%20or%20lesson%20by%20SkyPenguinLabs%2C%20this%20is%20the%20place%20to%20be"
+                        class="spl-footer-link">
+                        <i class="fas fa-flask"></i>
+                        Demos of Courses
+                    </a>
+                    <a href="./spl-new-page/spl_product_iceberg.html"
+                        class="spl-footer-link">
+                        <i class="fas fa-coins"></i>
+                        All Courses
                     </a>
                     <a href="./spl-new-page/spl_art_cave.html" class="spl-footer-link">
                         <i class="fas fa-image"></i>
-                        SPL Asset Board
+                        SPL Assets
                     </a>
-                    <a href="https://rants.skypenguinlabs.wtf" class="spl-footer-link">
-                        <i class="fas fa-mug-hot"></i>
-                        SPL Rants
+                    <a href="https://github.com/SkyPenguinLabs/SPL-CourseDemos/tree/main/CourseResources/HelpUsFightPiracy#:~:text=In%20order%20to%20make%20sure%20you%20are%20not%20getting%20scammed%20(e.g%2C%20by%20somebody%20who%20claims%20to%20be%20selling%20our%20courses%2C%20but%20does%20not%20fully%20look%20like%20us)%2C%20we%20have%20decided%20to%20make%20this%20document%20the%20official%20record%20of%20all%20SHA1%20(only)%20hashes%20for%20the%20files%20sold%20by%20SkyPenguinLabs."
+                        class="spl-footer-link">
+                        <i class="fas fa-gun"></i>
+                        Fight piracy
                     </a>
                     <a href="./spl-new-page/toc.html" class="spl-footer-link">
                         <i class="fas fa-file"></i>
@@ -405,6 +408,11 @@
                         <i class="fab fa-twitter"></i>
                         X/Twitter
                     </a>
+                    <a href="https://beacons.ai/SkyPenguinLabs" class="spl-footer-link">
+                        <i class="fas fa-wifi"></i>
+                        Other/Beacons
+                    </a>
+
                 </div>
             </div>
             <!--
@@ -455,13 +463,8 @@
     </div>
 
 </body>
-<script src="./spl-resources/Logic/spl-logical-component.js"></script>
-<script src="./spl-resources/Logic/spl-logical-product.js"></script>
-<script src="./spl-resources/Logic/spl-logical-static-tooltips.js"></script>
-<script src="./spl-resources/Logic/spl-logical-featured.js"></script>
-<script src="./spl-resources/Logic/spl-logical-donate.js"></script>
+<script src="./spl-resources/Logic/spl-web-logic.js"></script>
 <script src="./spl-resources/Logic/spl-logical-notif.js"></script>
-<script src="./spl-resources/Logic/spl-logical-slideshow.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const productFilter = new SPLProductFilter();

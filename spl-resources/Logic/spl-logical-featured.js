@@ -1,8 +1,7 @@
 /**
- * SkyPenguinLabs Product Filter System
+ * SkyPenguinLabs Product Filter System PoC 
  * A component to display and filter products by category and search text
  */
-
 class SPLProductFilter {
     constructor(containerId = 'spl-products-container') {
         this.container = document.getElementById(containerId);
@@ -20,7 +19,7 @@ class SPLProductFilter {
     }
 
     /**
-     * Add a product to the catalog
+     * Add a product to the catalog [ auto-gen desc ]
      * @param {Object} product - Product data
      * @param {string} product.id - Unique product ID
      * @param {string} product.title - Product title
@@ -30,7 +29,6 @@ class SPLProductFilter {
      * @param {string} product.link - URL to product page
      */
     addProduct(product) {
-        // Validate required fields
         if (!product.id || !product.title || !product.category || !product.price) {
             console.error('Product must have id, title, category, and price');
             return;
@@ -48,26 +46,17 @@ class SPLProductFilter {
         products.forEach(product => this.addProduct(product));
     }
 
-    /**
-     * Set up event listeners for filtering
-     */
     setupEventListeners() {
-        // Handle category filter clicks
         this.container.addEventListener('click', (e) => {
             if (e.target.classList.contains('spl-filter-btn')) {
                 const category = e.target.dataset.category;
-
-                // Update active button
                 const buttons = this.container.querySelectorAll('.spl-filter-btn');
                 buttons.forEach(btn => btn.classList.remove('active'));
                 e.target.classList.add('active');
-
                 this.activeCategory = category;
                 this.filterProducts();
             }
         });
-
-        // Handle search input
         this.container.addEventListener('input', (e) => {
             if (e.target.classList.contains('spl-filter-search-input')) {
                 this.searchTerm = e.target.value.toLowerCase().trim();
@@ -76,16 +65,9 @@ class SPLProductFilter {
         });
     }
 
-    /**
-     * Filter products based on active category and search term
-     */
     filterProducts() {
         const filteredProducts = this.products.filter(product => {
-            // Filter by category
-            const categoryMatch = this.activeCategory === 'all' ||
-                product.category === this.activeCategory;
-
-            // Filter by search term
+            const categoryMatch = this.activeCategory === 'all' || product.category === this.activeCategory;
             const searchMatch = this.searchTerm === '' ||
                 product.title.toLowerCase().includes(this.searchTerm) ||
                 product.description.toLowerCase().includes(this.searchTerm);
@@ -96,14 +78,12 @@ class SPLProductFilter {
         this.renderProducts(filteredProducts);
     }
 
-    /**
-     * Render the product grid
-     */
     renderProducts(filteredProducts) {
         const productGrid = this.container.querySelector('.spl-product-grid');
-        if (!productGrid) return;
+        if (!productGrid) {
+            return; 
+        }
 
-        // Clear product grid
         productGrid.innerHTML = '';
 
         if (filteredProducts.length === 0) {
@@ -116,7 +96,6 @@ class SPLProductFilter {
             return;
         }
 
-        // Add each product
         filteredProducts.forEach(product => {
             const productEl = this.createProductElement(product);
             productGrid.appendChild(productEl);
@@ -124,7 +103,7 @@ class SPLProductFilter {
     }
 
     /**
-     * Create a product element
+     * Create a product element <dyn html> 
      * @param {Object} product - Product data
      * @returns {HTMLElement} - Product element
      */
@@ -148,13 +127,9 @@ class SPLProductFilter {
         return productEl;
     }
 
-    /**
-     * Initialize the filter UI and render products
-     */
     initialize() {
         if (!this.container) return;
-
-        // Create category buttons
+        //// <dyn html> 
         const categoryButtons = ['all', ...this.categories].map(category => {
             return `
                 <button class="spl-filter-btn ${category === 'all' ? 'active' : ''}" data-category="${category}">
@@ -163,7 +138,7 @@ class SPLProductFilter {
             `;
         }).join('');
 
-        // Create filter UI
+        //// Filtering UI portion <dyn html> 
         const filterUI = `
             <div class="spl-filter-header">
                 <div class="spl-filter-categories">
@@ -180,8 +155,6 @@ class SPLProductFilter {
         `;
 
         this.container.innerHTML = filterUI;
-
-        // Render all products initially
         this.filterProducts();
     }
 }
