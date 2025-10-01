@@ -11,7 +11,7 @@ ideally designed to reach out to GitHub to fetch the course list and display it.
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SkyPenguinLabs Course Gallery</title>
+    <title>SkyPenguinLabs&lt;Product & Course Gallery</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -643,16 +643,21 @@ ideally designed to reach out to GitHub to fetch the course list and display it.
 
 <body>
     <!-- [Header] -->
-    <header class="spl-header">
-        <div class="spl-container">
-            <div class="spl-header-brand">
-                <img src="https://github.com/TotallyNotAHaxxer/A-Publisher-Icon-Edited-/blob/main/PublisherIcoRed.png?raw=true"
-                    alt="SkyPenguinLabs Logo" class="spl-logo">
-                <span class="spl-brand-name">SkyPenguinLabs</span>
-            </div>
-        </div>
-    </header>
 
+    <header class="spl-header">
+
+        <div class="spl-container">
+            <a href="https://skypenguinlabs.com" style="text-decoration: none; color: inherit;">
+                <div class="spl-header-brand">
+                    <img src="https://github.com/TotallyNotAHaxxer/A-Publisher-Icon-Edited-/blob/main/PublisherIcoRed.png?raw=true"
+                        alt="SkyPenguinLabs Logo" class="spl-logo">
+                    <span class="spl-brand-name">SkyPenguinLabs&lt;Products</span>
+                </div>
+            </a>
+
+        </div>
+
+    </header>
     <!-- [Banner] -->
     <section class="spl-banner">
         <div class="spl-container">
@@ -799,9 +804,16 @@ ideally designed to reach out to GitHub to fetch the course list and display it.
     |>          additionally made more use of different fonts. 
     |>
     -->
+    
     <style>
-        :root {
-            /*
+    /*
+            Keeping this style isolated for now. 
+            as we will eventually be plannung to
+            tie all of the UI components together
+            such as the websites header.         
+    */
+    :root {
+            /* 
         [ SPL Main Theme ]
     */
             --spl-grey-bg: #0D0D0C;
@@ -1035,7 +1047,7 @@ ideally designed to reach out to GitHub to fetch the course list and display it.
                 this.currentPage = 1;
                 this.itemsPerPage = 4;
                 /*@TODO: Currently, all loaded resources uses PNG, we should swap to WebP or AVIF, because PNG is just annoyingly heavy to deal with*/
-                this.jsonUrl = 'https://raw.githubusercontent.com/SkyPenguinLabs/skypenguinlabs.github.io/refs/heads/main/ProductIcebergList.json';
+                this.jsonUrl = 'https://raw.githubusercontent.com/SkyPenguinLabs/skypenguinlabs.github.io/refs/heads/main/spl_productlist.json';
                 this.categories = new Set(['all']);
                 this.init();
             }
