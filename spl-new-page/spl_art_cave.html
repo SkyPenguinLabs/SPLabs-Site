@@ -9,6 +9,12 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+    /*
+            Keeping this style isolated for now. 
+            as we will eventually be plannung to
+            tie all of the UI components together
+            such as the websites header.         
+    */
         :root {
             --spl-grey-bg: #0D0D0C;
             --spl-white-bg: #0F0F0F;
@@ -582,11 +588,15 @@
     <!-- Header -->
     <header class="spl-header">
         <div class="spl-container">
-            <div class="spl-header-brand">
-                <img src="https://github.com/TotallyNotAHaxxer/A-Publisher-Icon-Edited-/blob/main/PublisherIcoRed.png?raw=true"
-                    alt="SkyPenguinLabs Logo" class="spl-logo">
-                <span class="spl-brand-name">SkyPenguinLabs</span>
-            </div>
+            <a href="https://skypenguinlabs.com" style="text-decoration: none; color: inherit;">
+
+                <div class="spl-header-brand">
+                    <img src="https://github.com/TotallyNotAHaxxer/A-Publisher-Icon-Edited-/blob/main/PublisherIcoRed.png?raw=true"
+                        alt="SkyPenguinLabs Logo" class="spl-logo">
+                    <span class="spl-brand-name">SkyPenguinLabs&lt;Asset Gallery</span>
+                </div>
+            </a>
+
         </div>
     </header>
 
@@ -775,10 +785,10 @@
                 this.showLoading();
                 try {
                     const RemoteResp = await fetch(
-                        `https://raw.githubusercontent.com/SkyPenguinLabs/skypenguinlabs.github.io/refs/heads/main/AssetGaleryList.json` 
-                    ); 
+                        `https://raw.githubusercontent.com/SkyPenguinLabs/skypenguinlabs.github.io/refs/heads/main/spl_assetgallerylist.json`
+                    );
                     if (!RemoteResp.ok) {
-                        throw new Error('Could not load the asset list for some dang reason...'); 
+                        throw new Error('Could not load the asset list for some dang reason...');
                     }
                     this.assets = await RemoteResp.json();
                     this.hideLoading();

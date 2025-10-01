@@ -260,9 +260,7 @@ class SPLToolTipsOverlay {
         }
 
         /////// @Buttons
-        if (config.buttons) {
-            this.createButtons(config.buttons);
-        }
+        this.createButtons(config.buttons || null);
 
         /////// @Callback
         this.onCloseCallback = config.onClose;
@@ -510,7 +508,7 @@ class SPLSlideshow {
 const splSlideshow = new SPLSlideshow();
 
 document.addEventListener('DOMContentLoaded', () => {
-    fetch(`https://raw.githubusercontent.com/SkyPenguinLabs/skypenguinlabs.github.io/refs/heads/main/TldrPanelAssetList.json`)
+    fetch(`https://raw.githubusercontent.com/SkyPenguinLabs/skypenguinlabs.github.io/refs/heads/main/spl_tldrpanelassetlist.json`)
         .then(response => response.json())
         .then(splScreenshots => {
             /////// @Handler->Button[tldr-button]
